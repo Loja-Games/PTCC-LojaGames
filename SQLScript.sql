@@ -44,7 +44,7 @@ create table Tb_usuario(
 Cpf_cli char(11) not null,
 Usuario_cli varchar(50),
 Senha_cli varchar(50) not null,
-Cargo_cli varchar (50) default 'Cliente',
+Cargo_cli varchar (50) default('Cliente'),
 Ativo_cli bool default 1,
 primary key(Usuario_cli),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
@@ -80,6 +80,7 @@ create table Tb_carrinho(
 Id_carrinho int auto_increment,
 Cpf_cli char(11) not null,
 Id_prod int not null,
+Id_pag int not null,
 preco_prod numeric(20,2) not null,
 Data_pedido_car date not null,
 Data_entrega_car date not null,
@@ -89,7 +90,8 @@ Numero_residencia varchar(10) not null,
 primary key(id_carrinho),
 foreign key(Cep, Numero_residencia) references Tb_endereco(Cep, Numero_residencia),
 foreign key(Id_prod) references Tb_produto(Id_prod),
-foreign key(Cpf_cli) references Tb_cliente(Cpf_cli)
+foreign key(Cpf_cli) references Tb_cliente(Cpf_cli),
+foreign key(Id_pag) references Tb_pagamento(Id_pag)
 );
 
 
