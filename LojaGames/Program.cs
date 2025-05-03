@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 /* ADICIONANDO OS REPOSITORIOS COMO SERVIÇO */
 builder.Services.AddScoped<UsuarioRepositorio>();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

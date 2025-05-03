@@ -2,6 +2,7 @@
 using LojaGames.Models;
 using System.Configuration;
 using System.Data;
+using LojaGames.Repositorios;
 
 
 namespace LojaGames.Repositorios
@@ -9,60 +10,83 @@ namespace LojaGames.Repositorios
     public class UsuarioRepositorio(IConfiguration configuration)
     {
 
-
-        private readonly string _conexaoMySQL = configuration.GetConnectionString("MySQLConnection");
-
+        private readonly string _connectionString = configuration.GetConnectionString("MySQLConnection");
 
 
-        /* Define um método público para obter um usuário do banco de dados com base no seu email.
-            Recebe o email como parâmetro e retorna um objeto 'Usuario' ou null se não encontrado.*/
-        public Tb_usuario ObterUsuario(string email)
+        public void AdicionarUsuario(Tb_usuario usuario, Tb_cliente cliente, Tb_email email)
         {
-            // Cria uma nova instância da conexão MySQL dentro de um bloco 'using'.
-            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            using (var db = new Conexao(_connectionString))
             {
-                // Abre a conexão com o banco de dados MySQL.
-                conexao.Open();
-                // Cria um novo comando SQL para selecionar todos os campos da tabela 'Usuario' onde o campo 'Email' corresponde ao parâmetro fornecido.
-                MySqlCommand cmd = new("SELECT * FROM Usuario WHERE Email = @email", conexao);
-                // Adiciona um parâmetro ao comando SQL para o campo 'Email', especificando o tipo como VarChar e utilizando o valor do parâmetro 'email'.
-                cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "INSERT INTO Tb_usuario (Cpf_cli, Usuario_cli, Senha_cli, Cargo_cli) VALUES (@Cpf,@Usuario,@Senha,@Cargo)";
+                cmd.Parameters.AddWithValue("@Cpf", usuario.Cpf_cli);
+                cmd.Parameters.AddWithValue("@Usuario", usuario.Usuario_cli);
+                cmd.Parameters.AddWithValue("@Senha", usuario.Senha_cli);
+                cmd.Parameters.AddWithValue("@Cargo", usuario.Cargo_cli);
+                cmd.ExecuteNonQuery();
 
-                // Executa o comando SQL SELECT e obtém um leitor de dados (MySqlDataReader). O CommandBehavior.CloseConnection garante que a conexão
-                // será fechada automaticamente quando o leitor for fechado.
-                using (MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
-                {
-                    // Inicializa uma variável 'usuario' como null. Ela será preenchida se um usuário for encontrado.
-                    Tb_usuario usuario = null;
-                    // Lê a próxima linha do resultado da consulta. Retorna true se houver uma linha e false caso contrário.
-                    if (dr.Read())
-                    {
-                        // Cria uma nova instância do objeto 'Usuario'.
-                        usuario = new Tb_usuario
-                        {
-                            // Lê o valor da coluna "Id" da linha atual do resultado, converte para inteiro e atribui à propriedade 'Id' do objeto 'usuario'.
-                            Id = Convert.ToInt32(dr["Id"]),
-                            // Lê o valor da coluna "Nome" da linha atual do resultado, converte para string e atribui à propriedade 'Nome' do objeto 'usuario'.
-                            Nome = dr["Nome"].ToString(),
-                            // Lê o valor da coluna "Email" da linha atual do resultado, converte para string e atribui à propriedade 'Email' do objeto 'usuario'.
-                            Email = dr["Email"].ToString(),
-                            // Lê o valor da coluna "Senha" da linha atual do resultado, converte para string e atribui à propriedade 'Senha' do objeto 'usuario'.
-                            Senha = dr["Senha"].ToString()
-                        };
-                    }
-                    /* Retorna o objeto 'usuario'. Se nenhum usuário foi encontrado com o email fornecido, a variável 'usuario'
-                     permanecerá null e será retornado.*/
-                    return usuario;
-                }
+                cmd.CommandText = "INSERT INTO Tb_cliente (Cpf_cli, Nome_cli) VALUES (@Cpf,@Nome)";
+                cmd.Parameters.AddWithValue("@Cpf", cliente.Cpf_cli);
+                cmd.Parameters.AddWithValue("@Nome", cliente.Nome_cli);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "INSERT INTO Tb_email (Cpf_cli, Email) VALUES (@Cpf,@Email)";
+                cmd.Parameters.AddWithValue("@Cpf", email.Cpf_cli);
+                cmd.Parameters.AddWithValue("@Email", email.Email);
+                cmd.ExecuteNonQuery();
             }
         }
 
-
+        
+        public Tb_usuario ObterUsuarioCpf(Tb_usuario tb_Usuario)
+        {
+            using (var db = new Conexao(_connectionString))
+            {
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "SELECT * FROM Tb_usuario WHERE Cpf_cli = @Cpf";
+                cmd.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
+                cmd.ExecuteNonQuery();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Tb_usuario
+                        {
+                            Cpf_cli = reader.GetString("Cpf_cli"),
+                            Usuario_cli = reader.GetString("Usuario_cli"),
+                            Senha_cli = reader.GetString("Senha_cli"),
+                            Cargo_cli = reader.GetString("Cargo_cli"),
+                            Ativo_cli = reader.GetBoolean("Ativo_cli"),
+                        };
+                    }
+                }
+                return new Tb_usuario();
+            }
+        }
+        public Tb_usuario ObterUsuarioUsu(Tb_usuario tb_Usuario)
+        {
+            using (var db = new Conexao(_connectionString))
+            {
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "SELECT * FROM Tb_usuario WHERE Usuario_cli = @Usuario";
+                cmd.Parameters.AddWithValue("@Usuario", tb_Usuario.Usuario_cli);
+                cmd.ExecuteNonQuery();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Tb_usuario
+                        {
+                            Cpf_cli = reader.GetString("Cpf_cli"),
+                            Usuario_cli = reader.GetString("Usuario_cli"),
+                            Senha_cli = reader.GetString("Senha_cli"),
+                            Cargo_cli = reader.GetString("Cargo_cli"),
+                            Ativo_cli = reader.GetBoolean("Ativo_cli"),
+                        };
+                    }
+                }
+                return new Tb_usuario();
+            }
+        }
     }
-
-
-
-
-
-
 }
