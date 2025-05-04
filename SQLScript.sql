@@ -1,3 +1,4 @@
+drop database db_vxgames;
 create database db_vxgames;
 use db_vxgames;
 
@@ -44,7 +45,7 @@ create table Tb_usuario(
 Cpf_cli char(11) not null,
 Usuario_cli varchar(50),
 Senha_cli varchar(50) not null,
-Cargo_cli varchar (50) default('Cliente'),
+Cargo_cli varchar (50) default'Cliente',
 Ativo_cli bool default 1,
 primary key(Usuario_cli),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
@@ -93,7 +94,3 @@ foreign key(Id_prod) references Tb_produto(Id_prod),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli),
 foreign key(Id_pag) references Tb_pagamento(Id_pag)
 );
-
-
-
-
