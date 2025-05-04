@@ -1,0 +1,33 @@
+﻿@model LojaGames.Models.Tb_usuario;
+
+<h1>CADASTRO</h1>
+
+<form asp-action="Cadastro" method="post">
+    
+    <div class="from-group">
+        <label>Nome:</label>
+        <input type="text" name="nome" required class="form-control" />
+    </div>
+
+    <div class="from-group">
+        <label>Cpf:</label>
+        <input type="text" name="cpf" maxlength="11" minlength="11" required class="form-control" />
+    </div>
+
+    <div class="from-group">
+        <label>Usuario:</label>
+        <input type="text" name="usuario" required class="form-control" />
+    </div>
+
+    <div class="from-group">
+        <label>Senha:</label>
+        <input type="password" name="senha" required class="form-control" />
+    </div>
+
+    <div class="from-group">
+        <label>Email:</label>
+        <input type="text" name="email" required class="form-control" />
+    </div>
+
+    <button type="submit" class="btn-primary">Cadastrar</button>
+</form>

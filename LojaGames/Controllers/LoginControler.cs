@@ -14,7 +14,7 @@ namespace LojaGames.Controllers
         }
         
 
-        public IActionResult Index()
+        public IActionResult Cadastro()
         {
             return View();
         }
@@ -25,10 +25,43 @@ namespace LojaGames.Controllers
             return View();
         }
 
+
+
+        [HttpPost]
+        public IActionResult Cadastro(string nome, string cpf, string usuario, string senha, string email)
+        {
+            Tb_usuario tb_Usuario = new Tb_usuario();
+            tb_Usuario.Cpf_cli = cpf;
+            tb_Usuario.Usuario_cli = usuario;
+            tb_Usuario.Senha_cli = senha;
+            Tb_cliente tb_Cliente = new Tb_cliente();
+            tb_Cliente.Cpf_cli = cpf;
+            tb_Cliente.Nome_cli = nome;
+            Tb_email tb_Email = new Tb_email();
+            tb_Email.Cpf_cli = cpf;
+            tb_Email.Email = email;
+
+            if (_usuarioRepositorio.ValidarExistenciaUsuario(tb_Usuario) == false)
+            {
+                _usuarioRepositorio.AdicionarUsuario(tb_Usuario, tb_Cliente, tb_Email);
+                return RedirectToAction("Login", "LoginControler");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Esse CPF e esse Usuario ja estao cadastrados");
+                return View();
+            }
+
+
+
+
+       
+        }
+
+
         [HttpPost]
         public IActionResult Login(string cpf, string senha)
         {
-
             Tb_usuario tb_Usuario = new Tb_usuario();
             tb_Usuario.Cpf_cli = cpf;
             tb_Usuario.Senha_cli = senha;

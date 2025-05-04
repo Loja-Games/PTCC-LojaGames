@@ -3,17 +3,21 @@
 <link href="~/css/login.css" rel="stylesheet" />
 
 
+@* Alterado a entrada principal de Email para CPF, para ficar mais seguro *@
+
 <h1 class="login-title">Login</h1>
 
 <form asp-action="Login" method="post" class="login-form">
     <div class="from-group">
         <label>Cpf:</label>
-        <input type="text" name="cpf" required class="form-control" />
+        <input type="text" name="cpf" required maxlength="11" minlength="11" class="form-control" />
     </div>
 
     <div class="from-group">
         <label>Senha:</label>
         <input type="password" name="senha" required class="form-control" />
     </div>
-    <button type="submit" class="btn-primary">Login</button>
+   
+    <button type="submit" class="btn btn-primary">Login</button>
 </form>
+<a asp-controller="LoginControler" asp-action="Cadastro" class="btn btn-primary">Cadastrar</a>
