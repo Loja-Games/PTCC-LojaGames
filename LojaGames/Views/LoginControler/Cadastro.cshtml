@@ -1,8 +1,10 @@
 ﻿@model LojaGames.Models.Tb_usuario;
 
-<h1>CADASTRO</h1>
+<link href="~/css/cadastro.css" rel="stylesheet" />
 
-<form asp-action="Cadastro" method="post">
+<h1 class="titulo-cli">CADASTRO</h1>
+
+<form asp-action="Cadastro" method="post" class="form-cadastro">
     
     <div class="from-group">
         <label>Nome:</label>
@@ -28,6 +30,7 @@
         <label>Email:</label>
         <input type="text" name="email" required class="form-control" />
     </div>
+    <br />
 
-    <button type="submit" class="btn-primary">Cadastrar</button>
+    <button type="submit" class="btn-cadastrar">Cadastrar</button>
 </form>

@@ -1,14 +1,10 @@
-﻿body {
-
-}
-
-.login-title {
+﻿.titulo-cli {
     text-align: center;
     color: blue;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-.login-form {
+.form-cadastro {
     width: 300px;
     margin: 0 auto;
     padding: 20px;
@@ -17,24 +13,23 @@
     background: #f4f4f4;
 }
 
+body {
+    background:#0094ff;
+    
+}
+
+
 .form-group {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background: #f4f4f4;
     margin-bottom: 15px;
 }
 
-    .form-group label {
-        display: block;
-        margin-bottom: 15px;
-        font-weight: 700;
-    }
-
-.form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #0094ff;
-    box-sizing: border-box;
-}
-
-.btn-primary {
+.btn-cadastrar {
     background-image: linear-gradient(#0026ff,aqua);
     color: #0026ff;
     padding: 10px 15px;
@@ -45,8 +40,6 @@
     margin: 0 auto;
     transition: 0.1s color ease;
 }
-
-    .btn-primary:hover {
+    .btn-cadastrar:hover {
         background: black;
     }
-
