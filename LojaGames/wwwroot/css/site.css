@@ -20,3 +20,36 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.borda{
+    border: 1px solid black;
+}
+
+.barradepesquisa {
+    background-color: #6886FF;
+    padding: 2px 3px;
+    border-radius: 8px;
+    max-height: 20%
+}
+.barraentradapesquisa {
+    border-radius: 8px;
+    padding-left: 40px;
+    border: none;
+}
+
+.lupa {
+    max-width: 25px;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 8px;
+    transform: scaleX(-1);
+}
+.fundopesquisa{
+    display:flex;
+    flex-direction:row;
+    background-color:white;
+    border-radius: 8px;
+}
+.iconconta{
+    width:8%
+}
