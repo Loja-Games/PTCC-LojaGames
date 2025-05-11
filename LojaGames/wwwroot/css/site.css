@@ -87,3 +87,12 @@ body {
     margin-left:3%;
     margin-right: 3%;
 }
+.barradeopcoes {
+    background-color: #0079D6;
+    font-family: jersey25;
+}
+
+@font-face {
+    font-family: 'jersey25';
+    src: url('../assets/font/jersey25-regular.ttf') format('truetype');
+}
