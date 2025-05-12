@@ -136,5 +136,47 @@ namespace LojaGames.Repositorios
                 return new Tb_usuario();
             }
         }
+        public string ObterEmail(Tb_usuario tb_Usuario)
+        {
+            using (var db = new Conexao(_connectionString))
+            {
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "SELECT * FROM Tb_Email WHERE Cpf_cli = @Cpf";
+                cmd.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
+                cmd.ExecuteNonQuery();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader.GetString("Email");
+                    }
+                    else
+                    {
+                        return "nenhum Email";
+                    }
+                }
+            }
+        }
+        public string ObterNome(Tb_usuario tb_Usuario)
+        {
+            using (var db = new Conexao(_connectionString))
+            {
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "SELECT * FROM Tb_cliente WHERE Cpf_cli = @Cpf";
+                cmd.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
+                cmd.ExecuteNonQuery();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader.GetString("Nome_cli");
+                    }
+                    else
+                    {
+                        return "nenhum Nome";
+                    }
+                }
+            }
+        }
     }
 }

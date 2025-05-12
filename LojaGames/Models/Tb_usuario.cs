@@ -6,6 +6,20 @@
         public string? Usuario_cli { get; set; }
         public string? Senha_cli { get; set; }
         public string? Cargo_cli { get; set; }
+
+
+
+
+        public void alterarEmail(string email)
+        {
+            Email = email;
+        }
+        public void alterarNome(string nome)
+        {
+            Nome = nome;
+        }
+        public string? Email { get; set; }
+        public string? Nome { get; set; }
         public bool Ativo_cli { get; set; }
     }
 }

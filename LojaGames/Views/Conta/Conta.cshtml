@@ -1,9 +1,26 @@
-﻿
+﻿@model LojaGames.Models.Tb_usuario;
+
 <link href="~/css/conta.css" rel="stylesheet" />
 <div class="d-flex justify-content-center align-items-center borda">
     <table border="1">
         <tr>
-            <td>Sua Conta</td>
+            <td>
+                <div class="backinformacoes">
+                    <div class="informacoes">
+                        <div class="borda">
+							<img id="imagemdeperfil" src="~/assets/image/perfil-de-usuario.png"/>
+                        </div>
+                        <div class="largura40 borda2">
+                            <label>Bem Vindo, @Html.DisplayFor(model => model.Nome)</label><br>
+                            <label>Usuario: @Html.DisplayFor(model => model.Usuario_cli)</label><br>
+                            <label>E-Mail: @Html.DisplayFor(model => model.Email)</label><br>
+                        </div>
+                        <div class="largura30 borda">
+                            gfdsfgsd
+                        </div>
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>Meus Pedidos</td>

@@ -77,6 +77,8 @@ namespace LojaGames.Controllers
             if (usuario != null && tb_Usuario.Senha_cli == usuario.Senha_cli && tb_Usuario.Cpf_cli == usuario.Cpf_cli)
             {
                 LoginGlobal.usuario = usuario;
+                LoginGlobal.usuario.alterarEmail(_usuarioRepositorio.ObterEmail(usuario));
+                LoginGlobal.usuario.alterarNome(_usuarioRepositorio.ObterNome(usuario));
                 return RedirectToAction("Conta", "Conta"); /* Destino Após o login */
             }
 
