@@ -12,7 +12,6 @@ namespace LojaGames.Repositorios
 
         private readonly string _connectionString = configuration.GetConnectionString("MySQLConnection");
 
-
         public void AdicionarUsuario(Tb_usuario usuario, Tb_cliente cliente, Tb_email email)
         {
             using (var db = new Conexao(_connectionString))

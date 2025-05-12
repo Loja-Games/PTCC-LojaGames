@@ -1,4 +1,5 @@
 using LojaGames.Models;
+using LojaGames.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,7 +16,7 @@ namespace LojaGames.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(LoginGlobal.usuario);
         }
 
         public IActionResult Privacy()

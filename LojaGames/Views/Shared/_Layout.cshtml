@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model LojaGames.Models.Tb_usuario;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,7 +29,7 @@
                         <li class="conta">
                             <a asp-area="" asp-controller="LoginControler" asp-action="Login" class="conjuntominhaconta">
 								<img src="~/assets/image/perfil-de-usuario.png" />
-                                <label class="text-white">Minha Conta</label>
+                                <label class="text-white nav-link">@Html.DisplayFor(model => model.Usuario_cli)</label>
                             </a>
                         </li>
                         <li>

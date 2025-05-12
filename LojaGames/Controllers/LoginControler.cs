@@ -16,13 +16,19 @@ namespace LojaGames.Controllers
 
         public IActionResult Cadastro()
         {
-            return View();
+            return View(LoginGlobal.usuario);
         }
 
         public IActionResult Login()
         {
-            // retorna a página Login
-            return View();
+            if (LoginGlobal.usuario.Usuario_cli != "Minha Conta")
+            {
+                return RedirectToAction("Conta", "Conta");
+            }
+            else
+            {
+                return View(LoginGlobal.usuario);
+            }
         }
 
 
@@ -70,6 +76,7 @@ namespace LojaGames.Controllers
 
             if (usuario != null && tb_Usuario.Senha_cli == usuario.Senha_cli && tb_Usuario.Cpf_cli == usuario.Cpf_cli)
             {
+                LoginGlobal.usuario = usuario;
                 return RedirectToAction("Conta", "Conta"); /* Destino Após o login */
             }
 
