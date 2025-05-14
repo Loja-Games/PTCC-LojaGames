@@ -1,4 +1,4 @@
-﻿@model LojaGames.Models.Tb_usuario;
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
 <link href="~/css/conta.css" rel="stylesheet" />
 <div class="d-flex justify-content-center align-items-center borda">
@@ -11,9 +11,9 @@
 							<img id="imagemdeperfil" src="~/assets/image/perfil-de-usuario.png"/>
                         </div>
                         <div class="largura40 borda2">
-                            <label>Bem Vindo, @Html.DisplayFor(model => model.Nome)</label><br>
-                            <label>Usuario: @Html.DisplayFor(model => model.Usuario_cli)</label><br>
-                            <label>E-Mail: @Html.DisplayFor(model => model.Email)</label><br>
+                            <label>Bem Vindo, @HttpContextAccessor.HttpContext.Session.GetString("nome")</label><br>
+                            <label>Usuario: @HttpContextAccessor.HttpContext.Session.GetString("perfil")</label><br>
+                            <label>E-Mail: @HttpContextAccessor.HttpContext.Session.GetString("email")</label><br>
                         </div>
                         <div class="largura30 borda">
                             gfdsfgsd

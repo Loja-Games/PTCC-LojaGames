@@ -1,6 +1,8 @@
 ﻿using LojaGames.Models;
 using LojaGames.Repositorios;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using MySqlX.XDevAPI;
 
 namespace LojaGames.Controllers
 {
@@ -16,18 +18,23 @@ namespace LojaGames.Controllers
 
         public IActionResult Cadastro()
         {
-            return View(LoginGlobal.usuario);
+            return View();
         }
 
         public IActionResult Login()
         {
-            if (LoginGlobal.usuario.Usuario_cli != "Minha Conta")
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("perfil"))) 
+            {
+                HttpContext.Session.SetString("perfil", "Entrar na Conta");
+            }
+            
+            if (HttpContext.Session.GetString("perfil") != "Entrar na Conta")
             {
                 return RedirectToAction("Conta", "Conta");
             }
             else
             {
-                return View(LoginGlobal.usuario);
+                return View();
             }
         }
 
@@ -76,9 +83,11 @@ namespace LojaGames.Controllers
 
             if (usuario != null && tb_Usuario.Senha_cli == usuario.Senha_cli && tb_Usuario.Cpf_cli == usuario.Cpf_cli)
             {
-                LoginGlobal.usuario = usuario;
-                LoginGlobal.usuario.alterarEmail(_usuarioRepositorio.ObterEmail(usuario));
-                LoginGlobal.usuario.alterarNome(_usuarioRepositorio.ObterNome(usuario));
+                /* Adicioando os dados na cache*/
+                HttpContext.Session.SetString("perfil", usuario.Usuario_cli);
+                HttpContext.Session.SetString("nome", _usuarioRepositorio.ObterNome(usuario));
+                HttpContext.Session.SetString("email", _usuarioRepositorio.ObterEmail(usuario));
+
                 return RedirectToAction("Conta", "Conta"); /* Destino Após o login */
             }
 

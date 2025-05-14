@@ -16,7 +16,7 @@ namespace LojaGames.Controllers
 
         public IActionResult Index()
         {
-            return View(LoginGlobal.usuario);
+            return View();
         }
 
         public IActionResult Privacy()

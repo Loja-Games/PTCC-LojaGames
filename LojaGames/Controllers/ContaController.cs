@@ -19,7 +19,7 @@ namespace LojaGames.Controllers
         }
         public IActionResult Conta()
         {
-            return View(LoginGlobal.usuario);
+            return View();
         }
     }
 }
