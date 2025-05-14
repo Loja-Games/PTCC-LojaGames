@@ -1,3 +1,9 @@
+:root {
+    --colorbase: #FAFAFA;
+    --colorbase1: #0079D6;
+}
+
+
 html {
   font-size: 14px;
 }
@@ -23,7 +29,7 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: #FAFAFA;
+  background-color: var(--colorbase);
 }
 
 .borda{
@@ -34,7 +40,7 @@ body {
 }
 
 .barradepesquisa {
-    background-color: #6886FF;
+    background-color: var(--colorbase1);
     padding: 2px 3px;
     border-radius: 8px;
     max-height: fit-content;
@@ -89,11 +95,16 @@ body {
     margin-right: 3%;
 }
 .barradeopcoes {
-    background-color: #0079D6;
+    background-color: var(--colorbase1);
     font-family: jersey25;
+    font-size:30px;
 }
 
 @font-face {
     font-family: 'jersey25';
     src: url('../assets/font/jersey25-regular.ttf') format('truetype');
+}
+.logoshop{
+    width: 45px;
+    margin-right:3%
 }

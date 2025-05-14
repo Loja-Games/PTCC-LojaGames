@@ -1,34 +1,44 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
+
 <link href="~/css/conta.css" rel="stylesheet" />
-<div class="d-flex justify-content-center align-items-center borda">
-    <table border="1">
-        <tr>
-            <td>
-                <div class="backinformacoes">
-                    <div class="informacoes">
-                        <div class="borda">
-							<img id="imagemdeperfil" src="~/assets/image/perfil-de-usuario.png"/>
-                        </div>
-                        <div class="largura40 borda2">
-                            <label>Bem Vindo, @HttpContextAccessor.HttpContext.Session.GetString("nome")</label><br>
-                            <label>Usuario: @HttpContextAccessor.HttpContext.Session.GetString("perfil")</label><br>
-                            <label>E-Mail: @HttpContextAccessor.HttpContext.Session.GetString("email")</label><br>
-                        </div>
-                        <div class="largura30 borda">
-                            gfdsfgsd
-                        </div>
-                    </div>
+<div class="container text-center">
+    <div class="row align-items-start">
+        <div class="col-9 backinfo">
+            <div class="backinfobg row">
+                <div class="col-2">
+                    <img id="iconedoperfil" src="~/assets/image/perfil-de-usuario.png" />
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Meus Pedidos</td>
-            <td>Meus Dados</td>
-            <td>Enderecos</td>
-        </tr>
-        <tr>
-            <td>Ultimo Pedido</td>
-        </tr>
-    </table>
+                <div class="col-6">
+                    <label>Bem Vindo, @HttpContextAccessor.HttpContext.Session.GetString("nome")</label>
+                    <br>
+                    <label>Usuario: @HttpContextAccessor.HttpContext.Session.GetString("perfil")</label>
+                    <br>
+                    <label>E-Mail: @HttpContextAccessor.HttpContext.Session.GetString("email")</label>
+                    <br>
+                </div>
+                <div class="col-4">nisadad</div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3">
+            pedidops
+        </div>
+        <div class="col-3">
+            dados
+        </div>
+        <div class="col-3">
+            enderecos
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col-9">
+            historioco
+        </div>
+    </div>
+
+
+
 </div>
