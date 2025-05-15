@@ -71,6 +71,34 @@
 
 }
 .opcoesmenu{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.backhistorico {
+    background-color: var(--colorbase1);
+    border-radius: 15px;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-bottom: 0;
+    padding-right: 0;
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,25%);
+}
+.fronthistorico {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--colorbase2);
+    border-radius: 15px;
+}
 
-
+   
+.pedido{
+    padding-left: 10px;
+    font-size:20px;
+}
+#imagemdohistorico {
+    width: 120px;
+    border: 1px solid var(--colorborder1);
+    border-radius: 15px;
 }
