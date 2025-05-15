@@ -9,6 +9,7 @@ Descricao_prod varchar(50),
 ValorCusto_prod numeric(10,2),
 ValorVenda_prod numeric(10,2),
 Desconto_prod numeric(10,2),
+Img_path varchar(300),
 Tipo_prod varchar(50),
 Marca_prod varchar(50),
 QuantidadeEstoque_prod int,
@@ -45,6 +46,7 @@ create table Tb_usuario(
 Cpf_cli char(11) not null,
 Usuario_cli varchar(50),
 Senha_cli varchar(50) not null,
+Img_path varchar(300),
 Cargo_cli varchar (50) default'Cliente',
 Ativo_cli bool default 1,
 primary key(Usuario_cli),
@@ -94,3 +96,4 @@ foreign key(Id_prod) references Tb_produto(Id_prod),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli),
 foreign key(Id_pag) references Tb_pagamento(Id_pag)
 );
+update Tb_usuario set Cargo_cli="ADMIN" where Cpf_cli='00000000000';
