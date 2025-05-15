@@ -2,6 +2,9 @@
     --colorbase: #FAFAFA;
     --colorbase1: #0079D6;
     --colorbase2: #FFFFFF;
+    --colorborder1: #D2D2D2;
+    --colorbasegold1: #FCFF97;
+    --colorbasegold2: #DFE600;
 }
 
 
@@ -26,4 +29,48 @@
 #iconedoperfil{
     width:100px;
     height:100px;
+}
+.alinhadireita{
+    justify-content:center;
+    flex-direction:column;
+    text-align:left;
+    padding-left: 40px;
+}
+
+@font-face {
+    font-family: 'jersey25';
+    src: url('../assets/font/jersey25-regular.ttf') format('truetype');
+}
+.fontpagina{
+    font-family: jersey25;
+}
+.boasvindas {
+    font-size:24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.referencia{
+    font-size:24px;
+}
+.respostatext{
+    font-size:18px;
+}
+.nivelconta {
+    background-color: var(--colorbasegold1);
+    border-radius: 10px;
+    border: 1px solid var(--colorbasegold2);
+}
+.imagemcontamenu{
+    width: 80px;
+}
+.opcoesdaconta {
+    background-color: var(--colorbase2);
+    border: 1px solid var(--colorborder1);
+    border-radius: 15px;
+    padding: 3%;
+
+}
+.opcoesmenu{
+
+
 }

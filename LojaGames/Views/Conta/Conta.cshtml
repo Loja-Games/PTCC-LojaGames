@@ -4,38 +4,54 @@
 <link href="~/css/conta.css" rel="stylesheet" />
 <div class="container text-center">
     <div class="row align-items-start">
-        <div class="col-9 backinfo">
+        <div class="col-9 backinfo w-100">
             <div class="backinfobg row">
                 <div class="col-2">
                     <img id="iconedoperfil" src="~/assets/image/perfil-de-usuario.png" />
                 </div>
-                <div class="col-6">
-                    <label>Bem Vindo, @HttpContextAccessor.HttpContext.Session.GetString("nome")</label>
-                    <br>
-                    <label>Usuario: @HttpContextAccessor.HttpContext.Session.GetString("perfil")</label>
-                    <br>
-                    <label>E-Mail: @HttpContextAccessor.HttpContext.Session.GetString("email")</label>
-                    <br>
+                <div class="col-6 align-content-center">
+                    <div class="alinhadireita d-flex">
+                        <label class="fontpagina boasvindas" style="padding-bottom: 1px;">Bem Vindo, @HttpContextAccessor.HttpContext.Session.GetString("nome")</label>
+                        <label class="respostatext"><strong class="fontpagina referencia">Usuario:</strong> @HttpContextAccessor.HttpContext.Session.GetString("perfil")</label>
+                        <label class="respostatext"><strong class="fontpagina referencia">E-Mail:</strong> @HttpContextAccessor.HttpContext.Session.GetString("email")</label>
+                    </div>
                 </div>
-                <div class="col-4">nisadad</div>
+                <div class="col-4 align-content-center">
+                    <div class="nivelconta">
+                        <h1>@HttpContextAccessor.HttpContext.Session.GetString("cargo_cli")</h1>
+                    </div>
+
+                </div>
 
             </div>
         </div>
     </div>
-    <div class="row align-items-center">
-        <div class="col-3">
-            pedidops
+    <div class="d-flex justify-content-between w-100 opcoesmenu">
+        <div class="opcoesdaconta d-flex flex-row align-items-center">
+            <img class="imagemcontamenu" src="~/assets/image/icons8-cesta-64.png" />
+            <div class="ps-2">
+                <h5>Meus Pedidos</h5>
+                <div>Dados do seu pedido</div>
+            </div>
         </div>
-        <div class="col-3">
-            dados
+        <div class="opcoesdaconta d-flex flex-row align-items-center">
+            <img class="imagemcontamenu" src="~/assets/image/do-utilizador.png" />
+            <div class="ps-2">
+                <h5>Meus Dados</h5>
+                <div>Meus Dados da conta</div>
+            </div>
         </div>
-        <div class="col-3">
-            enderecos
+        <div class="opcoesdaconta d-flex flex-row align-items-center">
+            <img class="imagemcontamenu" src="~/assets/image/icons8-em-trânsito-50.png" />
+            <div class="ps-2">
+                <h5>Meus Endereços</h5>
+                <div>Meus Endereços da conta</div>
+            </div>
         </div>
     </div>
     <div class="row align-items-end">
         <div class="col-9">
-            historioco
+			historico
         </div>
     </div>
 

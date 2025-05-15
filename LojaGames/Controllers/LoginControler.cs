@@ -87,6 +87,7 @@ namespace LojaGames.Controllers
                 HttpContext.Session.SetString("perfil", usuario.Usuario_cli);
                 HttpContext.Session.SetString("nome", _usuarioRepositorio.ObterNome(usuario));
                 HttpContext.Session.SetString("email", _usuarioRepositorio.ObterEmail(usuario));
+                HttpContext.Session.SetString("cargo_cli", usuario.Cargo_cli);
 
                 return RedirectToAction("Conta", "Conta"); /* Destino Após o login */
             }
