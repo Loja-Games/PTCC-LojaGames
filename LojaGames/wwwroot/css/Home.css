@@ -1,0 +1,10 @@
+﻿
+.carousel-item img {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* mantém proporção */
+    object-fit: cover;
+}
+.xfull {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}

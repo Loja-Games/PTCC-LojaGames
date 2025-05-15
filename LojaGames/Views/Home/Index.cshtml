@@ -2,7 +2,59 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link href="~/css/home.css" rel="stylesheet"/>
+
+<div class="carousel-container">
+    <div class="blur-side left"></div>
+    <div class="carousel-wrapper">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-inner">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                </div>
+                <div class="carousel-item active">
+                    <img class="d-block" src="@Url.Content("~/assets/image/exibicao/PS5carrosel.webp")">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="@Url.Content("~/assets/image/exibicao/imagemcarroselxbox.jpg")">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="@Url.Content("~/assets/image/exibicao/PS5carrosel2.webp")">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="@Url.Content("~/assets/image/exibicao/xboxcarrosel2.webp")">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="@Url.Content("~/assets/image/exibicao/PS5carrosel3.webp")">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="@Url.Content("~/assets/image/exibicao/Xboxcarrosel.webp")">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="@Url.Content("~/assets/image/exibicao/PS5carrosel5.jpg")">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+    </div>
+    <div class="blur-side right"></div>
 </div>
+
+
+
+
+
+
