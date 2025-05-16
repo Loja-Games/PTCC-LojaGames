@@ -4,7 +4,12 @@
     aspect-ratio: 16 / 9; /* mantém proporção */
     object-fit: cover;
 }
+
 .xfull {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
+}
+.divtrascarosel {
+    background-image: url("../assets/image/Fundo.jpg");
+    background-size: cover;
 }
