@@ -1,0 +1,46 @@
+﻿
+.wallpaperprodutos{
+    background-color: blue;
+}
+
+
+@font-face {
+    font-family: 'jersey25';
+    src: url('../assets/font/jersey25-regular.ttf') format('truetype');
+}
+
+.carousel-item img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.xfull {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+
+.divtrascarosel {
+    position: relative;
+    background-image: url("../assets/image/Fundo.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+    .divtrascarosel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(10px);
+        background-color: rgba(38, 37, 44, 0.3);
+        z-index: 1;
+    }
+
+    .divtrascarosel > * {
+        position: relative;
+        z-index: 2;
+    }
