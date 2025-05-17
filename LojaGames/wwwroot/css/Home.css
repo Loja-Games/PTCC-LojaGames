@@ -1,4 +1,9 @@
 ﻿
+@font-face {
+    font-family: 'jersey25';
+    src: url('../assets/font/jersey25-regular.ttf') format('truetype');
+}
+
 .carousel-item img {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -72,6 +77,7 @@
     width: 50px;
 }
 .backdosprodutos{
+    padding-bottom: 100px;
     display:flex;
     flex-direction:row
 }
@@ -84,4 +90,35 @@
 }
 .seta {
     transform: scaleX(-1);
+}
+.barradetitulo {
+    background-color: blue;
+    width: auto;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgb(0,0,0,0.25);
+}
+.titulodabarra {
+    font-family: jersey25;
+    padding-left: 80px;
+    padding-right: 80px;
+    width: 100%;
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 48px;
+}
+.banner{
+    height: 35vw;
+    background-size:cover;
+    background-position:center;
+    background-position-y: 0px;
+}
+.backgroundbanner1 {
+    background-image: url("/assets/image/exibicao/papelps5.jpg");
+}
+.backgroundbanner2{
+    background-image: url("/assets/image/exibicao/paperxbox.jpg");
 }
