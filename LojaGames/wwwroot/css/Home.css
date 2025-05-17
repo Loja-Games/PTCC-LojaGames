@@ -40,13 +40,48 @@
 
 
 .containerdoproduto {
-    width: 20%;
+    margin-top: 20px;
+    margin-bottom:20px;
+    margin-left: 50px;
+    margin-right:50px;
+    width: 250px;
     height: auto;
-    background-color: green;
-    display:flex;
-    flex-direction:column;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
     border-radius: 34px;
+    box-shadow: 0px -1px 4px rgb(0,0,0,0.25),0px 4px 4px rgb(0,0,0,0.25);
 }
 .imagemcotainerproduto{
-
+    border-radius: 34px;
+    width: 100%;
+}
+.preco {
+    font-size: 15px;
+    color: rgba(0,0,0,0.70)
+}
+.textoavista {
+    font-size: 12px;
+    color: #FFA600;
+}
+.precovista {
+    font-size: 24px;
+    color: #FF9E16;
+}
+.imagemdaseta{
+    width: 50px;
+}
+.backdosprodutos{
+    display:flex;
+    flex-direction:row
+}
+.containerdosentro{
+    padding-right: 50px;
+    padding-left: 50px;
+}
+.ultimaseta{
+    justify-content:right;
+}
+.seta {
+    transform: scaleX(-1);
 }
