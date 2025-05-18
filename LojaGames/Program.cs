@@ -1,3 +1,4 @@
+using System.Globalization;
 using LojaGames.Controllers;
 using LojaGames.Models;
 using LojaGames.Repositorios;
@@ -10,9 +11,11 @@ builder.Services.AddControllersWithViews();
 
 /* ADICIONANDO OS REPOSITORIOS COMO SERVIÇO */
 builder.Services.AddScoped<UsuarioRepositorio>();
-builder.Services.AddDistributedMemoryCache(); // Necessário para armazenar dados na memória
-builder.Services.AddSession(); // Habilita a funcionalidade de sessão
-builder.Services.AddHttpContextAccessor(); // Permite injetar HttpContext nas views
+builder.Services.AddScoped<ProdutoRepositorio>();
+builder.Services.AddDistributedMemoryCache(); /* Necessário para armazenar dados na memória*/
+builder.Services.AddSession(); /* Habilita a funcionalidade de sessão */
+builder.Services.AddHttpContextAccessor(); /* Permite injetar HttpContext nas views  */
+
 
 
 var app = builder.Build();
