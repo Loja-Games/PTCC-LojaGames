@@ -3,14 +3,15 @@
     public class Tb_produto
     {
         public int Id_prod {  get; set; }
-        public string? Nome_prod {  get; set; }
-        public string? Descricao_prod { get; set; }
-        public decimal ValorCusto_prod { get; set; }
-        public decimal ValorVenda_prod { get; set; }
-        public decimal Desconto_prod { get; set; }
-        public string? Tipo_prod { get; set; }
-        public string? Marca_prod { get; set; }
-        public int QuantidadeEstoque_prod { get; set; }
-        public bool VendaDisponivel_prod { get; set; }
+        public string Nome_prod { get; set; } = "Produto sem nome";
+        public string Descricao_prod { get; set; } = "Produto sem Descricao";
+        public decimal ValorCusto_prod { get; set; } = 0;
+        public decimal ValorVenda_prod { get; set; } = 0;
+        public decimal Desconto_prod { get; set; } = 1;
+        public string Tipo_prod { get; set; } = "Produto sem tipo";
+        public string Marca_prod { get; set; } = "Sem marca registrada";
+        public int QuantidadeEstoque_prod { get; set; } = 0;
+        public string img_path { get; set; } = "~/assets/image/icones/404.svg";
+        public bool VendaDisponivel_prod { get; set; } = true;
     }
 }
