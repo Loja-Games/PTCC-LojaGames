@@ -1,6 +1,38 @@
 ﻿const checkboxesTipo = document.querySelectorAll('.filtroTipo');
 const checkboxesMarca = document.querySelectorAll('.filtroMarca');
 
+function marcarCaixas(caixas) {
+    switch (caixas) {
+        case "playstation":
+            document.getElementsByName('cbmsony')[0].checked = true;
+            break;
+
+        case "xbox":
+            document.getElementsByName('cbmxbox')[0].checked = true;
+            break;
+
+        case "informatica":
+            document.getElementsByName('cbnotebook')[0].checked = true;
+            document.getElementsByName('cbcomputador')[0].checked = true;
+            document.getElementsByName('cbhardware')[0].checked = true;
+            document.getElementsByName('cbacessorio')[0].checked = true;
+            break;
+
+        case "smartphone":
+            document.getElementsByName('cbsmartphone')[0].checked = true;
+            break;
+
+        default:
+            break;
+    }
+}
+
+
+marcarCaixas(caixas);
+
+
+
+
 checkboxesTipo.forEach(cb => cb.addEventListener('change', filtrarProdutos));
 checkboxesMarca.forEach(cb => cb.addEventListener('change', filtrarProdutos));
 

@@ -12,8 +12,10 @@ namespace LojaGames.Controllers
             _produtoRepositorio = produtoRepositorio;
         }
 
-        public IActionResult Procura()
+        public IActionResult Procura(string pesquisa)
         {
+            HttpContext.Session.SetString("redirecionarpesquisa", pesquisa);
+
             return View(_produtoRepositorio.ListaProdutos());
         }
 

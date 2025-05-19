@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<LojaGames.Models.Tb_produto>;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
 <link href="~/css/produto.css" rel="stylesheet" />
-
-
+<script>
+    const caixas = '@HttpContextAccessor.HttpContext.Session.GetString("redirecionarpesquisa")';
+</script>
 <div id="carouselExampleControls" class="carousel slide xfull" data-bs-ride="carousel" data-bs-interval="6000">
     <div class="carousel-inner">
         <div class="carousel-indicators">
@@ -43,25 +45,26 @@
         <h1 class="fontpagina">Filtro:</h1>
         <div class="p-3 backfiltro">
             <h4 class="fontpagina pb-1">Tipo de Produtos:</h4>
-            <label><input type="checkbox" class="filtroTipo" name="name" value="Notebook" /> Notebook</label>
-            <label><input type="checkbox" class="filtroTipo" name="name" value="Computador" /> Computador - PC</label>
-            <label><input type="checkbox" class="filtroTipo" name="name" value="Hardware" /> Hardware</label>
-            <label><input type="checkbox" class="filtroTipo" name="name" value="Midia Digital" /> Midia Digital</label>
-            <label><input type="checkbox" class="filtroTipo" name="name" value="Midia Fisica" /> Midia Fisica</label>
-            <label><input type="checkbox" class="filtroTipo" name="name" value="Console" /> Console de Video Game</label>
-            <label><input type="checkbox" class="filtroTipo" name="name" value="Acessórios" /> Acessórios</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbsmartphone" value="Smartphone" /> Smartphone</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbnotebook" value="Notebook" /> Notebook</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbcomputador" value="Computador" /> Computador - PC</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbhardware" value="Hardware" /> Hardware</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbmdigital" value="Midia Digital" /> Midia Digital</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbmfisica" value="Midia Fisica" /> Midia Fisica</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbconsole" value="Console" /> Console de Video Game</label>
+            <label><input type="checkbox" class="filtroTipo" name="cbacessorio" value="Acessórios" /> Acessórios</label>
         </div>
         <div class="p-3 mt-3 backfiltro">
             <h4 class="fontpagina pb-1">Marcas:</h4>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="Sony" /> Sony</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="Windows" /> Microsoft - Windows</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="Xbox" /> Microsoft - Xbox</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="Logitech" /> Logitech</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="Positivo" /> Positivo</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="NVIDIA" /> NVIDIA</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="AMD" /> AMD</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="Intel" /> Intel</label>
-            <label><input type="checkbox" class="filtroMarca" name="name" value="ASUS" /> ASUS</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmsony" value="Sony" /> Sony - Playstation</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmxbox" value="Xbox" /> Microsoft - Xbox</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmwindows" value="Windows" /> Microsoft - Windows</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmlogitech" value="Logitech" /> Logitech</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmpositivo" value="Positivo" /> Positivo</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmnvidia" value="NVIDIA" /> NVIDIA</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmamd" value="AMD" /> AMD</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmintel" value="Intel" /> Intel</label>
+            <label><input type="checkbox" class="filtroMarca" name="cbmasus" value="ASUS" /> ASUS</label>
         </div>
     </aside>
     <div class="p-4">
