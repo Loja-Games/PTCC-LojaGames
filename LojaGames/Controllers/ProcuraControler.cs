@@ -16,5 +16,10 @@ namespace LojaGames.Controllers
         {
             return View(_produtoRepositorio.ListaProdutos());
         }
+
+        public void Teste()
+        {
+           
+        }
     }
 }

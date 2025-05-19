@@ -43,25 +43,25 @@
         <h1 class="fontpagina">Filtro:</h1>
         <div class="p-3 backfiltro">
             <h4 class="fontpagina pb-1">Tipo de Produtos:</h4>
-            <label><input type="checkbox" name="name" value="" /> Notebook</label>
-            <label ><input type="checkbox" name="name" value="" /> Computador - PC</label>
-            <label><input type="checkbox" name="name" value="" /> Hardware</label>
-            <label><input type="checkbox" name="name" value="" /> Midia Digital</label>
-            <label><input type="checkbox" name="name" value="" /> Midia Fisica</label>
-            <label><input type="checkbox" name="name" value="" /> Console de Video Game</label>
-            <label><input type="checkbox" name="name" value="" /> Acessórios</label>
+            <label><input type="checkbox" class="filtroTipo" name="name" value="Notebook" /> Notebook</label>
+            <label><input type="checkbox" class="filtroTipo" name="name" value="Computador" /> Computador - PC</label>
+            <label><input type="checkbox" class="filtroTipo" name="name" value="Hardware" /> Hardware</label>
+            <label><input type="checkbox" class="filtroTipo" name="name" value="Midia Digital" /> Midia Digital</label>
+            <label><input type="checkbox" class="filtroTipo" name="name" value="Midia Fisica" /> Midia Fisica</label>
+            <label><input type="checkbox" class="filtroTipo" name="name" value="Console" /> Console de Video Game</label>
+            <label><input type="checkbox" class="filtroTipo" name="name" value="Acessórios" /> Acessórios</label>
         </div>
         <div class="p-3 mt-3 backfiltro">
             <h4 class="fontpagina pb-1">Marcas:</h4>
-            <label><input type="checkbox" name="name" value="" /> Sony</label>
-            <label><input type="checkbox" name="name" value="" /> Microsoft - Windows</label>
-            <label><input type="checkbox" name="name" value="" /> Microsoft - Xbox</label>
-            <label><input type="checkbox" name="name" value="" /> Logitech</label>
-            <label><input type="checkbox" name="name" value="" /> Positivo</label>
-            <label><input type="checkbox" name="name" value="" /> NVIDIA</label>
-            <label><input type="checkbox" name="name" value="" /> AMD</label>
-            <label><input type="checkbox" name="name" value="" /> Intel</label>
-            <label><input type="checkbox" name="name" value="" /> ASUS</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="Sony" /> Sony</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="Windows" /> Microsoft - Windows</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="Xbox" /> Microsoft - Xbox</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="Logitech" /> Logitech</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="Positivo" /> Positivo</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="NVIDIA" /> NVIDIA</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="AMD" /> AMD</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="Intel" /> Intel</label>
+            <label><input type="checkbox" class="filtroMarca" name="name" value="ASUS" /> ASUS</label>
         </div>
     </aside>
     <div class="p-4">
@@ -71,7 +71,7 @@
 
             @foreach (var item in Model)
             {
-                <section class="containerdoproduto p-3">
+                <section class="containerdoproduto p-3" data-tipo="@item.Tipo_prod" data-mark="@item.Marca_prod">
                     <img class="imagemcotainerproduto" src="@item.img_path">
                 <div class="conteudoproduto p-2">
                     <div class="nomedoitem pb-1">
@@ -92,3 +92,4 @@
     </div>
 
 </div>
+<script src="~/js/procura.js"></script>
