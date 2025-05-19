@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="~/LojaGames.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow d-flex flex-column borda">
+    <header class="">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow d-flex flex-column">
             <div class="container-fluid">
                 <a class="navbar-brand linklogo" asp-area="" asp-controller="Home" asp-action="Index"><img id="logo" src="~/assets/image/logopn-removebg-preview.png" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -39,7 +39,7 @@
                         </li>
                         <li>
                             <div class="divcarrinho">
-								<img src="~/assets/image/carrinho-de-compras.png" />
+                                <img src="~/assets/image/carrinho-de-compras.png" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" alt="Carrinho" style="cursor: pointer;" />
                             </div>
                         </li>
                     </ul>
@@ -56,6 +56,15 @@
     <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasCartLabel">Seu Carrinho</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <p>Seu carrinho está vazio.</p>
+                </div>
+            </div>
         </main>
     </div>
 

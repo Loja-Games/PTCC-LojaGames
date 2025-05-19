@@ -3,7 +3,6 @@
     background-color: blue;
 }
 
-
 @font-face {
     font-family: 'jersey25';
     src: url('../assets/font/jersey25-regular.ttf') format('truetype');
@@ -18,8 +17,9 @@
 }
 
 .xfull {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: calc(25px + 100%);
+    margin-left: -15px;
+    margin-top: -2.5px;
 }
 
 .backfiltro {
