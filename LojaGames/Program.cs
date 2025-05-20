@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 /* ADICIONANDO OS REPOSITORIOS COMO SERVIÇO */
 builder.Services.AddScoped<UsuarioRepositorio>();
 builder.Services.AddScoped<ProdutoRepositorio>();
+
 builder.Services.AddDistributedMemoryCache(); /* Necessário para armazenar dados na memória*/
 builder.Services.AddSession(); /* Habilita a funcionalidade de sessão */
 builder.Services.AddHttpContextAccessor(); /* Permite injetar HttpContext nas views  */

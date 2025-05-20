@@ -56,15 +56,45 @@
     <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasCartLabel">Seu Carrinho</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+            <!-- Carrinho retraido que esta a direita-->
+            <link rel="stylesheet" href="~/css/Carrinho.css" asp-append-version="true" />
+            <div class="offcanvas offcanvas-end barrasuperiorcr" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+                <div class="offcanvas-header bg-black">
+                    <h5 class="offcanvas-title text-white fontpagina titulocarrinho" id="offcanvasCartLabel">MEU CARRINHO</h5>
+                    <button type="button" class="btn-close carrinhobotao" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
                 </div>
+                <div class="w-100 linhatitulo pb-2"></div>
+                <h1 class="quantitenscar w-100 fontpagina">1 item na sua lista</h1>
+                <div class="w-100 linhahr pb-1"><hr class="p-0 m-0"></div>
                 <div class="offcanvas-body">
-                    <p>Seu carrinho está vazio.</p>
+                    <div class="container">
+                        <section class="row">
+                            <img class="col-4 imagemcari" src="~/assets/image/icones/404.svg"/>
+                            <div class="col-7 conteudocarrinho">
+                                <div class=" pb-2">
+                                    <div>Mouse Gamer de Alta Precisão - Logitech G502</div>
+                                </div>
+                                <div class="campobotao">
+                                    <div class="backbotum">
+                                        <div class="botaomenos">-</div>
+                                        <label class="valorbotao">1</label>
+                                        <div class="botaomais">+</div>
+                                    </div>
+                                    
+                                    <label class="p-1 fontbold">R$ 200</label>
+                                </div>
+                            </div>
+                            <img class="col-1 imagemlixo p-0 m-0" src="\assets\image\icones\lata-de-lixo.png" />
+
+
+                        </section>
+                    </div>
+
+
+
                 </div>
             </div>
+            <!--*******************************************-->
         </main>
     </div>
 
