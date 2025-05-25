@@ -34,8 +34,8 @@
                                 <img src="~/assets/image/perfil-de-usuario.png" />
                                 <label class="text-white nav-link">
                                     @(string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil"))
-                                                                        ? "Entrar na Conta"
-                                                                        : HttpContextAccessor.HttpContext.Session.GetString("perfil"))
+                                                                                            ? "Entrar na Conta"
+                                                                                            : HttpContextAccessor.HttpContext.Session.GetString("perfil"))
                                 </label>
                             </a>
                         </li>
@@ -69,19 +69,22 @@
                 <h1 class="quantitenscar w-100 fontpagina">1 item na sua lista</h1>
                 <div class="w-100 linhahr pb-1"><hr class="p-0 m-0"></div>
                 <div class="offcanvas-body">
-                    <div class="container">
+                    <div class="container alturacont">
 
                         @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil")) || HttpContextAccessor.HttpContext.Session.GetString("perfil") == "Entrar na Conta")
                         {
-                            <h1>Fasa login</h1>
+                            <label class="mensagemlog">Entre na conta, para usar o carrinho.</label>
                         }
                         else
                         {
                             if (Model.listacarrinho != null)
                             {
+                                HttpContextAccessor.HttpContext.Session.SetString("valortotalcarrinho", "");
                                 int a = 0;
+                                decimal valortotal = 0;
                                 @foreach (var item in Model.listacarrinho)
                                 {
+                                    valortotal = valortotal + item.preco_prod;
                                     a = a + 1;
                                     HttpContextAccessor.HttpContext.Session.SetString("produto" + a, "1");
                                     <section class="row pb-2">
@@ -102,6 +105,7 @@
                                         </div>
                                         <img class="col-1 imagemlixo p-0 m-0" src="\assets\image\icones\lata-de-lixo.png" />
                                     </section>
+                                    HttpContextAccessor.HttpContext.Session.SetString("valortotalcarrinho", valortotal.ToString("C", new System.Globalization.CultureInfo("pt-BR")));
                                 }
                             }
                             else
@@ -110,27 +114,34 @@
                             }
                         }
                     </div>
-                    <div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-7 fontpagina">CARRINHO: </div>
-                            <div class="col-3 ">R$ 200,00</div>
+
+                    @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil")) || HttpContextAccessor.HttpContext.Session.GetString("perfil") == "Entrar na Conta")
+                    {
+                        <div class="w-100 d-flex justify-content-center pt-3">
+                            <a class="btn btn-outline-success" asp-area="" asp-controller="LoginControler" asp-action="Login">Faça Login</a>
                         </div>
-                        <div class="row">
-                            <div class="col-7 fontpagina">DESCONTO: </div>
-                            <div class="col-3 ">R$ 20,00</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 fontpagina">TOTAL: </div>
-                            <div class="col-3 ">R$ 180,00</div>
-                        </div>
+                    }
+                    else
+                    {
                         <div>
-                            <a class="btn btn-success text-white">Comprar Items</a>
+                            <hr>
+                            <div class="row">
+                                <div class="col-7 fontpagina fontbold">CARRINHO: </div>
+                                <div class="col-5 d-flex justify-content-end">R$ 200,00</div>
+                            </div>
+                            <div class="row pb-3">
+                                <div class="col-7 fontpagina fontbold" style="color: red;">DESCONTO: </div>
+                                <div class="col-5 d-flex justify-content-end">R$ 20,00</div>
+                            </div>
+                            <div class="row pb-3">
+                                <div class="col-7 fontpagina fontbold" style="font-size: 25px;">TOTAL: </div>
+                                <div class="col-5 fontbold d-flex justify-content-end" style="font-size: 18px;">@HttpContextAccessor.HttpContext.Session.GetString("valortotalcarrinho")</div>
+                            </div>
+                            <div class="w-100 d-flex justify-content-center">
+                                <a class="btn btn-success text-black botaocompraritens fontbold">Finalizar a Compra</a>
+                            </div>
                         </div>
-                    </div>
-
-
-
+                    }
                 </div>
             </div>
             <!--*******************************************-->

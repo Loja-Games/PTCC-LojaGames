@@ -119,3 +119,22 @@ textdireita {
     display: flex;
     text-align: right;
 }
+.botaocompraritens {
+    font-size: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    background-color: #28F696;
+    border: none;
+}
+.mensagemlog{
+    text-align:center;
+    width: 100%;
+    padding-top: 200px;
+}
+.alturacont{
+    height: 70%;
+    overflow-y:auto;
+}
