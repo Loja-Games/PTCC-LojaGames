@@ -81,15 +81,17 @@ foreign key(Uf_est) references Tb_estado(Uf_est)
 
 create table Tb_carrinho(
 Id_carrinho int auto_increment,
+Id_pedido int,
 Cpf_cli char(11) not null,
 Id_prod int not null,
 Id_pag int not null,
+quantidade int default '1',
 preco_prod numeric(20,2) not null,
-Data_pedido_car date not null,
-Data_entrega_car date not null,
-Tipo_entrega_car varchar(100) not null,
-Cep varchar(8) not null,
-Numero_residencia varchar(10) not null,
+Data_pedido_car date,
+Data_entrega_car date,
+Tipo_entrega_car varchar(100),
+Cep varchar(8),
+Numero_residencia varchar(10),
 primary key(id_carrinho),
 foreign key(Cep, Numero_residencia) references Tb_endereco(Cep, Numero_residencia),
 foreign key(Id_prod) references Tb_produto(Id_prod),
@@ -98,6 +100,20 @@ foreign key(Id_pag) references Tb_pagamento(Id_pag)
 );
 
 
-select * from tb_usuario;
+insert into Tb_carrinho(Id_pedido, Cpf_cli, Id_prod, Id_pag, preco_prod, quantidade)
+values (1, '00000000000', 2, 1, 3000, 1);
+
+
+
+insert into Tb_carrinho(Id_pedido,Cpf_cli,Id_prod,Id_pag,preco_prod) values
+(0,'00000000000',1,1,3000);
+
+select * from Tb_pagamento;
+
+select max(Id_carrinho) as 'max' from Tb_carrinho;
+
+Select * from Tb_carrinho where Id_pedido='2';
+
+select * from Tb_carrinho;
 
 update Tb_usuario set Cargo_cli='ADMIN' where Cpf_cli='00000000000';

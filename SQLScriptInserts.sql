@@ -14,4 +14,22 @@ VALUES
 ('Jogo Forza Horizon 5', 'Mídia digital', 250.00, 200.00, 20.00, 'Midia Digital', 'Microsoft', 30, 1),
 ('Placa-Mãe B450', 'Compatível com Ryzen', 600.00, 480.00, 20.00, 'Hardware', 'ASUS', 18, 1);
 
+insert into Tb_pagamento(descricao_pag) values
+('sem forma de pagamento'),
+('Cartao de Debito'),
+('Cartao de Credito'),
+('Boleto'),
+('PIX'),
+('Outro');
+
+insert into Tb_cliente values('00000000000','Admin');
+insert into Tb_usuario(Cpf_cli,Usuario_cli,Senha_cli,Cargo_cli) values
+('00000000000','admin','admin','ADMIN');
+
+
+
+
+
+
+
 select * from tb_produto;

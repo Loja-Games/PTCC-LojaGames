@@ -30,21 +30,28 @@ namespace LojaGames.Controllers
         [HttpPost]
         public IActionResult adicionarCarrinho(string Id)
         {
-            Tb_produto produto = _produtoRepositorio.ObterProduto(Convert.ToInt32(Id));
-
-            Tb_carrinho carrinho = new Tb_carrinho
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("perfil")) || HttpContext.Session.GetString("perfil") == "Entrar na Conta")
             {
-                Cpf_cli = HttpContext.Session.GetString("cpf"),
-                Id_pedido = Convert.ToInt32(HttpContext.Session.GetString("Pedido")),
-                Id_prod = produto.Id_prod,
-                preco_prod = produto.ValorVenda_prod,
-                Id_pag = 1,
-                quantidade = 1,
-            };
+                return RedirectToAction("Login", "LoginControler");
+            }
+            else
+            {
+                Tb_produto produto = _produtoRepositorio.ObterProduto(Convert.ToInt32(Id));
 
-            _produtoRepositorio.carrinhoNovoProd(carrinho);
+                Tb_carrinho carrinho = new Tb_carrinho
+                {
+                    Cpf_cli = HttpContext.Session.GetString("cpf"),
+                    Id_pedido = Convert.ToInt32(HttpContext.Session.GetString("Pedido")),
+                    Id_prod = produto.Id_prod,
+                    preco_prod = produto.ValorVenda_prod,
+                    Id_pag = 1,
+                    quantidade = 1,
+                };
 
-            return RedirectToAction("Procura");
+                _produtoRepositorio.carrinhoNovoProd(carrinho);
+
+                return RedirectToAction("Procura");
+            }
         }
 
     }
