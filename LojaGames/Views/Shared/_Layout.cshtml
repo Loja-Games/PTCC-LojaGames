@@ -138,7 +138,7 @@
                                 <div class="col-5 fontbold d-flex justify-content-end" style="font-size: 18px;">@HttpContextAccessor.HttpContext.Session.GetString("valortotalcarrinho")</div>
                             </div>
                             <div class="w-100 d-flex justify-content-center">
-                                <a class="btn btn-success text-black botaocompraritens fontbold">Finalizar a Compra</a>
+                                <a asp-area="" asp-controller="PagamentoControler" asp-action="Pagamento" class="btn btn-success text-black botaocompraritens fontbold">Finalizar a Compra</a>
                             </div>
                         </div>
                     }

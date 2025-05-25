@@ -1,0 +1,42 @@
+﻿body{
+    background-color: #FAFAFA;
+}
+.fundocontainerpagamento{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.divendereco {
+    border-radius: 16px;
+    box-shadow: 0px -1px 4px rgb(0,0,0,0.25),0px 4px 4px rgb(0,0,0,0.25);
+    width: 215px
+}
+.formulario {
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    border: 1px solid rgb(0,0,0,0.25);
+    border-radius: 50px;
+}
+.botaoselecionarpag{
+    border-radius: 8px;
+    font-size: 16px;
+    border: 1px solid rgba(0,0,0,0.25);
+}
+.iconespag{
+    width: 25px;
+    padding-right: 5px;
+}
+.btboleto {
+    background-color: rgba(249,249,249,0.27);
+}
+.btpix {
+    background-color: rgba(48,255,72,0.40);
+}
+.btcartaocred {
+    background-color: rgba(255,251,120,0.27);
+}
+.btcartaodebt {
+    background-color: rgba(40,234,255,0.40);
+}
