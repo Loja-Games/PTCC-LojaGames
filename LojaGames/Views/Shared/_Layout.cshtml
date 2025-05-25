@@ -73,9 +73,7 @@
 
                         @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil")) || HttpContextAccessor.HttpContext.Session.GetString("perfil") == "Entrar na Conta")
                         {
-
                             <h1>Fasa login</h1>
-                            
                         }
                         else
                         {
@@ -110,15 +108,25 @@
                             {
                                 <h3>Adicione um Pedido a sua lista</h3>
                             }
-
-                            
                         }
-
-
-                        
-
-
-
+                    </div>
+                    <div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-7 fontpagina">CARRINHO: </div>
+                            <div class="col-3 fontpagina">R$ 200,00</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 fontpagina">DESCONTO: </div>
+                            <div class="col-3 fontpagina">R$ 20,00</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 fontpagina">TOTAL: </div>
+                            <div class="col-3 fontpagina">R$ 180,00</div>
+                        </div>
+                        <div>
+                            <a class="btn btn-success text-white">Comprar Items</a>
+                        </div>
                     </div>
 
 
