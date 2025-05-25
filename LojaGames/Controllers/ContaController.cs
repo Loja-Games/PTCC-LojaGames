@@ -7,10 +7,12 @@ namespace LojaGames.Controllers
     public class ContaController : Controller
     {
         private readonly UsuarioRepositorio _usuarioRepositorio;
+        private readonly ProdutoRepositorio _produtoRepositorio;
 
-        public ContaController(UsuarioRepositorio usuarioRepositorio)
+        public ContaController(UsuarioRepositorio usuarioRepositorio, ProdutoRepositorio produtoRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _produtoRepositorio = produtoRepositorio;
         }
 
         public IActionResult Index()
@@ -19,7 +21,9 @@ namespace LojaGames.Controllers
         }
         public IActionResult Conta()
         {
-            return View();
+            _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos();
+            _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
+            return View(_produtoRepositorio.listadeprodutoserdados);
         }
     }
 }

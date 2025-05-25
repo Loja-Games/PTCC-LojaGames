@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LojaGames.Models.Tb_produto>;
+﻿@model LojaGames.Models.ListasProdutos;
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
 <link href="~/css/produto.css" rel="stylesheet" />
@@ -73,11 +73,13 @@
         <h1 class="fontpagina">Lista de Produtos:</h1>
         <div class="lista">
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.listadeprodutos)
             {
-                <section class="containerdoproduto p-3" data-tipo="@item.Tipo_prod" data-mark="@item.Marca_prod">
+                <form asp-action="adicionarCarrinho" method="post">
+                    <section class="containerdoproduto p-3" data-tipo="@item.Tipo_prod" data-mark="@item.Marca_prod">
                     <img class="imagemcotainerproduto" src="@item.img_path">
-                <div class="conteudoproduto p-2">
+                    <input type="hidden" name="Id" value="@item.Id_prod">
+                    <div class="conteudoproduto p-2">
                     <div class="nomedoitem pb-1">
                         @Html.DisplayFor(modelItem => item.Nome_prod) - @Html.DisplayFor(modelItem => item.Descricao_prod)
                     </div>
@@ -88,8 +90,10 @@
                         <div class="textoavista">A Vista no PIX</div>
                         <div class="precovista">@Html.DisplayFor(modelItem => item.ValorVenda_prod)</div>
                     </div>
-                </div>
-                </section>
+                        <button class="btn btn-success" type="submit">Adicionar ao Carrinho</button>
+                    </div>
+                    </section>
+                </form>
             }
         </div>
         </div>

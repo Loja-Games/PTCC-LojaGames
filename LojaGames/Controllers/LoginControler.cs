@@ -9,10 +9,12 @@ namespace LojaGames.Controllers
     public class LoginControler : Controller
     {
         private readonly UsuarioRepositorio _usuarioRepositorio;
+        private readonly ProdutoRepositorio _produtoRepositorio;
 
-        public LoginControler(UsuarioRepositorio usuarioRepositorio)
+        public LoginControler(UsuarioRepositorio usuarioRepositorio, ProdutoRepositorio produtoRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _produtoRepositorio = produtoRepositorio;
         }
         
 
@@ -30,6 +32,7 @@ namespace LojaGames.Controllers
             
             if (HttpContext.Session.GetString("perfil") != "Entrar na Conta")
             {
+                
                 return RedirectToAction("Conta", "Conta");
             }
             else
@@ -88,6 +91,8 @@ namespace LojaGames.Controllers
                 HttpContext.Session.SetString("nome", _usuarioRepositorio.ObterNome(usuario));
                 HttpContext.Session.SetString("email", _usuarioRepositorio.ObterEmail(usuario));
                 HttpContext.Session.SetString("cargo_cli", usuario.Cargo_cli);
+                HttpContext.Session.SetString("cpf", usuario.Cpf_cli);
+                HttpContext.Session.SetString("Pedido", _produtoRepositorio.novoPedido());
 
                 return RedirectToAction("Conta", "Conta"); /* Destino Após o login */
             }

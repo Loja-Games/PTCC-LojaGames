@@ -1,7 +1,9 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@model LojaGames.Models.ListasProdutos;
+
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,8 +34,8 @@
                                 <img src="~/assets/image/perfil-de-usuario.png" />
                                 <label class="text-white nav-link">
                                     @(string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil"))
-                                        ? "Entrar na Conta"
-                                        : HttpContextAccessor.HttpContext.Session.GetString("perfil"))
+                                                                        ? "Entrar na Conta"
+                                                                        : HttpContextAccessor.HttpContext.Session.GetString("perfil"))
                                 </label>
                             </a>
                         </li>
@@ -68,26 +70,55 @@
                 <div class="w-100 linhahr pb-1"><hr class="p-0 m-0"></div>
                 <div class="offcanvas-body">
                     <div class="container">
-                        <section class="row">
-                            <img class="col-4 imagemcari" src="~/assets/image/icones/404.svg"/>
-                            <div class="col-7 conteudocarrinho">
-                                <div class=" pb-2">
-                                    <div>Mouse Gamer de Alta Precisão - Logitech G502</div>
-                                </div>
-                                <div class="campobotao">
-                                    <div class="backbotum">
-                                        <div class="botaomenos">-</div>
-                                        <label class="valorbotao">1</label>
-                                        <div class="botaomais">+</div>
-                                    </div>
-                                    
-                                    <label class="p-1 fontbold">R$ 200</label>
-                                </div>
-                            </div>
-                            <img class="col-1 imagemlixo p-0 m-0" src="\assets\image\icones\lata-de-lixo.png" />
+
+                        @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil")) || HttpContextAccessor.HttpContext.Session.GetString("perfil") == "Entrar na Conta")
+                        {
+
+                            <h1>Fasa login</h1>
+                            
+                        }
+                        else
+                        {
+                            if (Model.listacarrinho != null)
+                            {
+                                int a = 0;
+                                @foreach (var item in Model.listacarrinho)
+                                {
+                                    a = a + 1;
+                                    HttpContextAccessor.HttpContext.Session.SetString("produto" + a, "1");
+                                    <section class="row pb-2">
+                                        <img class="col-4 imagemcari" src="~/assets/image/icones/404.svg" />
+                                        <div class="col-7 conteudocarrinho">
+                                            <div class=" pb-2">
+                                                <div>@item.tb_Produto.Nome_prod - @item.tb_Produto.Descricao_prod</div>
+                                            </div>
+                                            <div class="campobotao">
+                                                <div class="backbotum">
+                                                    <div class="botaomenos">-</div>
+                                                    <label class="valorbotao">@HttpContextAccessor.HttpContext.Session.GetString("produto" + a)</label>
+                                                    <div class="botaomais">+</div>
+                                                </div>
+
+                                                <label class="p-1 fontbold">@item.tb_Produto.ValorVenda_prod</label>
+                                            </div>
+                                        </div>
+                                        <img class="col-1 imagemlixo p-0 m-0" src="\assets\image\icones\lata-de-lixo.png" />
+                                    </section>
+                                }
+                            }
+                            else
+                            {
+                                <h3>Adicione um Pedido a sua lista</h3>
+                            }
+
+                            
+                        }
 
 
-                        </section>
+                        
+
+
+
                     </div>
 
 
