@@ -20,6 +20,7 @@
     border-radius: 50px;
 }
 .botaoselecionarpag{
+    min-width:60%;
     border-radius: 8px;
     font-size: 16px;
     border: 1px solid rgba(0,0,0,0.25);
@@ -39,4 +40,31 @@
 }
 .btcartaodebt {
     background-color: rgba(40,234,255,0.40);
+}
+.listaopc{
+    display:flex;
+    flex-direction:column;
+    justify-content:left;
+}
+.backcartao {
+    border: 1px solid rgba(0,0,0,0.25);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 16px;
+    width: 380px;
+}
+.imgcart{
+    width: 10%;
+}
+.botaodesucesso {
+    font-size: 25px;
+    background-color: #9DB1FF;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+
 }

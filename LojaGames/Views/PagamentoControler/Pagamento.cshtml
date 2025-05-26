@@ -19,8 +19,8 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<label>Metodos de Pagamento</label>
-				<div>
+				<label style="padding-left:25px;" class="w-100 pb-1 fontpagina">METODOS DE PAGAMENTO:</label>
+				<div class="listadebotoes">
 					<button type="button" class="fontbold fontpagina w-100 botaoselecionarpag btboleto p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconeboleto.png" />Boleto</button>
 					<button type="button" class="fontbold fontpagina w-100 botaoselecionarpag btpix p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconepix.svg" />PIX</button>
 					<button type="button" class="fontbold fontpagina w-100 botaoselecionarpag btcartaocred p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconecartao.png" />Cartão de Credito</button>
@@ -28,11 +28,36 @@
 				</div>
 			</div>
 			<div class="col">
+				<label>Dados de Pagamento:</label>
+				<div class="backcartao">
+					<div class="row">
+						<div class="listaopc w-100">
+							<label>Numero do cartão:</label>
+							<input class="w-100" type="text">
+						</div>
+					</div>
+					<div class="row">
+						<div class="listaopc w-50">
+								<label>Data do vencimento:</label>
+								<input type="date">
+						</div>
+						<div class="listaopc w-50">
+								<label>CVC</label>
+								<input type="text">
+						</div>
 
+					</div>
+					<div class="row">
+						<div class="listaopc">
+							<label>Nome do cartão:</label>
+							<input class="w-100" type="text">
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col">
-
-			</div>
+		</div>
+		<div class="w-100 d-flex justify-content-center p-3">
+			<button class="fontbold fontpagina text-black btn btn-success botaodesucesso">FINALIZAR PEDIDO</button>
 		</div>
 		
 	
