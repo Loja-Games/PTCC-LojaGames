@@ -139,18 +139,19 @@ namespace LojaGames.Repositorios
             }
         }
 
+
         public string novoPedido()
         {
             using (var db = new Conexao(_connectionString))
             {
                 var Prompt = db.MySqlCommand();
-                Prompt.CommandText = "select max(Id_carrinho) as 'max' from Tb_carrinho";
+                Prompt.CommandText = "select max(Id_pedido) as 'max' from Tb_carrinho";
 
                 using (var reader = Prompt.ExecuteReader())
                 {
-                    if (reader.Read())
+                    if (reader.Read() && reader.IsDBNull("max") == false)
                     {
-                        return Convert.ToString(reader.GetInt32("max") + 1);
+                        return Convert.ToString(reader.GetInt32("max") + 1); 
                     }
                     else
                     {

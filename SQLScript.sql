@@ -110,10 +110,16 @@ insert into Tb_carrinho(Id_pedido,Cpf_cli,Id_prod,Id_pag,preco_prod) values
 
 select * from Tb_pagamento;
 
+
+/*
 select max(Id_carrinho) as 'max' from Tb_carrinho;
+*/
+
+select max(Id_pedido) as 'max' from Tb_carrinho;
 
 Select * from Tb_carrinho where Id_pedido='2';
 
 select * from Tb_carrinho;
 
 update Tb_usuario set Cargo_cli='ADMIN' where Cpf_cli='00000000000';
+
