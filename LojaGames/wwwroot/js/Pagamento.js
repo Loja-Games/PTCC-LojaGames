@@ -23,24 +23,37 @@ function TrocarBandeira(bandeira, local) {
             break;
 
         case "MasterCard":
+
+            local.src = "~/assets/image/icones/mastercard.svg";
             break;
 
         case "American Express":
+
+            local.src = "~/assets/image/icones/americaexpress.svg";
             break;
 
         case "Diners Club / Hipercard":
+
+            local.src = "";
             break;
 
         case "Discover":
+
+            local.src = "~/assets/image/icones/visa.svg";
             break;
 
         case "Elo":
+
+            local.src = "~/assets/image/icones/visa.svg";
             break;
 
         case "Hipercard":
+
+            local.src = "~/assets/image/icones/visa.svg";
             break;
 
         default:
+            local.src = "~/assets/image/icones/visa.svg";
 
             break;
     }

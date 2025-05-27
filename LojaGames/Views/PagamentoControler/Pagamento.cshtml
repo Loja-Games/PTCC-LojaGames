@@ -30,28 +30,29 @@
 			<div class="col">
 				<label>Dados de Pagamento:</label>
 				<div class="backcartao">
-					<img id="bande"/><div id="saida"></div>
+					
 					<div class="row">
 						<div class="listaopc w-100">
 							<label>Numero do cartão:</label>
-							<input id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
+							<input name="numerocartao" id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
 						</div>
 					</div>
 					<div class="row">
 						<div class="listaopc w-50">
 							<label>Data do vencimento:</label>
-							<input type="month">
+							<input name="datacartao" type="month">
 						</div>
 						<div class="listaopc w-50">
 							<label>CVC</label>
-							<input maxlength="3" minlength="3" type="text">
+							<input name="cvccartao" maxlength="3" minlength="3" type="text">
 						</div>
 
 					</div>
 					<div class="row">
 						<div class="listaopc">
 							<label>Nome do cartão:</label>
-							<input class="w-100" type="text">
+							<input type="text" name="nomecartao">
+							<img id="bande" class="bandeira" src="" />
 						</div>
 					</div>
 				</div>
