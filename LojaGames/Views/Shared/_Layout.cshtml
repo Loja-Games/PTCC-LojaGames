@@ -74,6 +74,9 @@
                         @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil")) || HttpContextAccessor.HttpContext.Session.GetString("perfil") == "Entrar na Conta")
                         {
                             <label class="mensagemlog">Entre na conta, para usar o carrinho.</label>
+                            <div class="w-100 d-flex justify-content-center pt-3">
+                                <a class="btn btn-outline-success" asp-area="" asp-controller="LoginControler" asp-action="Login">Faça Login</a>
+                            </div>
                         }
                         else
                         {
@@ -116,11 +119,7 @@
                     </div>
 
                     @if (string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil")) || HttpContextAccessor.HttpContext.Session.GetString("perfil") == "Entrar na Conta")
-                    {
-                        <div class="w-100 d-flex justify-content-center pt-3">
-                            <a class="btn btn-outline-success" asp-area="" asp-controller="LoginControler" asp-action="Login">Faça Login</a>
-                        </div>
-                    }
+                    {}
                     else
                     {
                         <div>

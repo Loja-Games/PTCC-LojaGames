@@ -30,20 +30,21 @@
 			<div class="col">
 				<label>Dados de Pagamento:</label>
 				<div class="backcartao">
+					<img id="bande"/><div id="saida"></div>
 					<div class="row">
 						<div class="listaopc w-100">
 							<label>Numero do cartão:</label>
-							<input class="w-100" type="text">
+							<input id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
 						</div>
 					</div>
 					<div class="row">
 						<div class="listaopc w-50">
-								<label>Data do vencimento:</label>
-								<input type="date">
+							<label>Data do vencimento:</label>
+							<input type="month">
 						</div>
 						<div class="listaopc w-50">
-								<label>CVC</label>
-								<input type="text">
+							<label>CVC</label>
+							<input maxlength="3" minlength="3" type="text">
 						</div>
 
 					</div>
@@ -66,3 +67,4 @@
 	
 	
 </div>
+<script src="~/js/pagamento.js"></script>
