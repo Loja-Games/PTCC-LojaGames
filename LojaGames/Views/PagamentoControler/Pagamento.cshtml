@@ -1,10 +1,13 @@
-﻿<link href="~/css/pagamento.css" rel="stylesheet" />
+﻿
+
+
+<link href="~/css/pagamento.css" rel="stylesheet" />
 
 
 
 
 <div class="borda fundocontainerpagamento">
-	<form class="bg-white formulario" action="/" method="post">
+	<form asp-action="Pagamento" class="bg-white formulario" method="post">
 		<div class="row">
 			<label>Endereço de Entrega:</label>
 		</div>
@@ -21,45 +24,46 @@
 			<div class="col">
 				<label style="padding-left:25px;" class="w-100 pb-1 fontpagina">METODOS DE PAGAMENTO:</label>
 				<div class="listadebotoes">
-					<button type="button" class="fontbold fontpagina w-100 botaoselecionarpag btboleto p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconeboleto.png" />Boleto</button>
-					<button type="button" class="fontbold fontpagina w-100 botaoselecionarpag btpix p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconepix.svg" />PIX</button>
-					<button type="button" class="fontbold fontpagina w-100 botaoselecionarpag btcartaocred p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconecartao.png" />Cartão de Credito</button>
-					<button type="button" class="fontbold fontpagina w-100 botaoselecionarpag background-color p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconecartao.png" />Cartão de Debito</button>
+					<button type="button" id="btboleto" class="fontbold fontpagina w-100 botaoselecionarpag btboleto p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconeboleto.png" />Boleto</button>
+					<button type="button" id="btpix" class="fontbold fontpagina w-100 botaoselecionarpag btpix p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconepix.svg" />PIX</button>
+					<button type="button" id="btcartaocredito" class="fontbold fontpagina w-100 botaoselecionarpag btcartaocred p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconecartao.png" />Cartão de Credito</button>
+					<button type="button" id="btcartaodebito" class="fontbold fontpagina w-100 botaoselecionarpag background-color p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconecartao.png" />Cartão de Debito</button>
 				</div>
 			</div>
-			<div class="col">
-				<label>Dados de Pagamento:</label>
-				<div class="backcartao">
-					
+			<div class="col" id="listadeformulario">
+				@*-----------------------------------*@
+				<label>Dados do Cartão de Credito:</label>
+				<div class="backcartao credito">
 					<div class="row">
 						<div class="listaopc w-100">
-							<label>Numero do cartão:</label>
+							<label for="numerocartao">Numero do cartão:</label>
 							<input name="numerocartao" id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
 						</div>
 					</div>
 					<div class="row">
 						<div class="listaopc w-50">
-							<label>Data do vencimento:</label>
+							<label for="datacartao">Data do vencimento:</label>
 							<input name="datacartao" type="month">
 						</div>
 						<div class="listaopc w-50">
-							<label>CVC</label>
+							<label for="cvccartao">CVC</label>
 							<input name="cvccartao" maxlength="3" minlength="3" type="text">
 						</div>
-
 					</div>
+					<input type="hidden" name="formulario" value="cartaocredito">
 					<div class="row">
 						<div class="listaopc">
-							<label>Nome do cartão:</label>
+							<label for="nomecartao">Nome do cartão:</label>
 							<input type="text" name="nomecartao">
 							<img id="bande" class="bandeira" src="" />
 						</div>
 					</div>
 				</div>
+				@*-----------------------------------*@
 			</div>
 		</div>
 		<div class="w-100 d-flex justify-content-center p-3">
-			<button class="fontbold fontpagina text-black btn btn-success botaodesucesso">FINALIZAR PEDIDO</button>
+			<button type="submit" class="fontbold fontpagina text-black btn btn-success botaodesucesso">FINALIZAR PEDIDO</button>
 		</div>
 		
 	

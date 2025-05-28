@@ -27,9 +27,18 @@
 }
 
 .botaoselecionarpag:hover {
-    transition: ease 1s;
-    transform: scale(50%);
+    transition: ease 0.2s;
+    transform: scale(1.03);
 }
+.botaoselecionarpag:not(:hover) {
+    transition: ease 0.2s;
+    transform: scale(1);
+}
+.botaoselecionarpag:active {
+    transition: ease 0.3s;
+    transform: scale(0.98);
+}
+
 
 .iconespag{
     width: 25px;
@@ -81,4 +90,16 @@
 .bandeira{
     width: 50px;
     margin-left:85%;
+}
+.divbotaoboleto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.credito{
+    background-color: rgba(253, 255, 14, 0.36);
+}
+.debito{
+    background-color: rgba(125, 255, 223, 0.90);
 }

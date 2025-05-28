@@ -8,6 +8,12 @@ namespace LojaGames.Models
 
         public IEnumerable<Tb_carrinho>? listacarrinho { get; set; }
 
+        public string numerocartao { get; set; }
+        public string datacartao { get; set; }
+        public string cvccartao { get; set; }
+        public string formulario { get; set; }
+        public string nomecartao { get; set; }
+
         public void teste()
         {
 
