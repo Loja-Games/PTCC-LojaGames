@@ -25,7 +25,6 @@ namespace LojaGames.Controllers
         [HttpPost]
         public IActionResult Pagamento(string numerocartao, string datacartao, string cvccartao,string formulario,string nomecartao)
         {
-            Console.WriteLine("Numero: "+numerocartao+" data do catao: "+datacartao+" cvc: "+cvccartao+" formulario: "+formulario+" nomecatao: "+nomecartao);
 
             string pedido = HttpContext.Session.GetString("Pedido");
             switch (formulario)
@@ -55,10 +54,8 @@ namespace LojaGames.Controllers
                     return RedirectToAction("Conta", "Conta");
 
                 default:
-                    Console.WriteLine("erro na seleção do formulario");
                     return View();
             }
-            return View();
         }
 
     }
