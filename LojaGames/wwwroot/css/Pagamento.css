@@ -25,6 +25,12 @@
     font-size: 16px;
     border: 1px solid rgba(0,0,0,0.25);
 }
+
+.botaoselecionarpag:hover {
+    transition: ease 1s;
+    transform: scale(50%);
+}
+
 .iconespag{
     width: 25px;
     padding-right: 5px;
@@ -54,7 +60,11 @@
     padding-left: 30px;
     border-radius: 16px;
     width: 380px;
+    box-shadow: 0px -1px 4px rgb(0,0,0,0.25),0px 4px 4px rgb(0,0,0,0.25);
+
 }
+
+
 .imgcart{
     width: 10%;
 }

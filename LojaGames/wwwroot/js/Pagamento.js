@@ -7,53 +7,53 @@ inputCartao.addEventListener("input", () => {
 
     const numero = inputCartao.value.replace(/\D/g, '');
     const bandeira = detectarBandeira(numero);
-    logobandeira.value = bandeira ? `Bandeira: ${bandeira}` : "";
-    saida.innerHTML = bandeira ? `Bandeira: ${bandeira}` : "";
-    TrocarBandeira(logobandeira.value, logobandeira);
+
+    TrocarBandeira(bandeira);
+
+
 });
 
+function TrocarBandeira(a) {
 
-
-function TrocarBandeira(bandeira, local) {
-    switch (bandeira) {
+    switch (a) {
         case "Visa":
-            alert(visa);
-            local.src = "~/assets/image/icones/visa.svg";
+            alert('visa');
+            logobandeira.src = "/assets/image/icones/visa.svg";
 
             break;
 
         case "MasterCard":
-
-            local.src = "~/assets/image/icones/mastercard.svg";
+            alert("master");
+            logobandeira.src = "/assets/image/icones/mastercard.svg";
             break;
 
         case "American Express":
 
-            local.src = "~/assets/image/icones/americaexpress.svg";
+            logobandeira.src = "/assets/image/icones/americaexpress.svg";
             break;
 
         case "Diners Club / Hipercard":
 
-            local.src = "";
+            logobandeira.src = "/assets/image/icones/icons8-diners-club.svg";
             break;
 
         case "Discover":
 
-            local.src = "~/assets/image/icones/visa.svg";
+            logobandeira.src = "/assets/image/icones/discovery.svg";
             break;
 
         case "Elo":
 
-            local.src = "~/assets/image/icones/visa.svg";
+            logobandeira.src = "/assets/image/icones/elologo.png";
             break;
 
         case "Hipercard":
 
-            local.src = "~/assets/image/icones/visa.svg";
+            logobandeira.src = "/assets/image/icones/hipercardlogo.png";
             break;
 
         default:
-            local.src = "~/assets/image/icones/visa.svg";
+            logobandeira.src = "/assets/image/icones/cartaoazu.png";
 
             break;
     }
