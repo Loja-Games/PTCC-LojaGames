@@ -25,5 +25,8 @@ namespace LojaGames.Controllers
             _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
+
+
+
     }
 }

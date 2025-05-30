@@ -77,7 +77,7 @@
             {
                 <form asp-action="adicionarCarrinho" method="post">
                     <section class="containerdoproduto p-3" data-tipo="@item.Tipo_prod" data-mark="@item.Marca_prod">
-                    <img class="imagemcotainerproduto" src="@item.img_path">
+                    <img style="height:230px;" class="imagemcotainerproduto" src="@item.img_path">
                     <input type="hidden" name="Id" value="@item.Id_prod">
                     <div class="conteudoproduto p-2">
                     <div class="nomedoitem pb-1">

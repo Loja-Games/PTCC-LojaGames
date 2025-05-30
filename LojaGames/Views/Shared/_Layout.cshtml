@@ -91,7 +91,7 @@
                                     a = a + 1;
                                     HttpContextAccessor.HttpContext.Session.SetString("produto" + a, "1");
                                     <section class="row pb-2">
-                                        <img class="col-4 imagemcari" src="~/assets/image/icones/404.svg" />
+                                        <img style="height: 110px;" class="col-4 imagemcari" src="@item.tb_Produto.img_path"/>
                                         <div class="col-7 conteudocarrinho">
                                             <div class=" pb-2">
                                                 <div>@item.tb_Produto.Nome_prod - @item.tb_Produto.Descricao_prod</div>

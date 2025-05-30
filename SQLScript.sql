@@ -13,7 +13,7 @@ Desconto_prod numeric(10,2),
 Tipo_prod varchar(50),
 Marca_prod varchar(50),
 QuantidadeEstoque_prod int,
-img_path varchar(200) default '/assets/image/icones/404.svg',
+img_path varchar(500) default '/assets/image/icones/404.svg',
 VendaDisponivel_prod bool default 1,
 primary key(Id_prod)
 );
