@@ -72,6 +72,7 @@ Cidade varchar(100) not null
 );
 
 create table Tb_endereco(
+Cpf_cli varchar(11),
 Cep varchar(8) not null,
 Numero_residencia varchar(10) not null,
 Uf_est char(2),
@@ -79,7 +80,8 @@ Endereco varchar(100) not null,
 Complemento varchar(50) not null,
 primary key(Cep, Numero_residencia),
 foreign key(Cep) references Tb_cep(Cep),
-foreign key(Uf_est) references Tb_estado(Uf_est)
+foreign key(Uf_est) references Tb_estado(Uf_est),
+foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
 
 create table Tb_carrinho(
