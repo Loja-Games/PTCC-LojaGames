@@ -24,10 +24,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 d-flex align-items-center w-100">
                         <li class="nav-item barradepesquisa mx-auto">
-                            <div class="fundopesquisa">
-                                <img class="lupa" src="~/assets/image/lupa.png">
-                                <input class="form-control barraentradapesquisa" placeholder="Faça sua pesquisa aqui...">
-                            </div>
+                            <form asp-controller="ProcuraControler" asp-action="Procura" method="post">
+                                <div class="fundopesquisa">
+                                    <img class="lupa" src="~/assets/image/lupa.png">
+                                    <input name="pesquisa" class="form-control barraentradapesquisa" placeholder="Faça sua pesquisa aqui...">
+                                </div>
+                            </form>
                         </li>
                         <li class="conta">
                             <a asp-area="" asp-controller="LoginControler" asp-action="Login" class="conjuntominhaconta">

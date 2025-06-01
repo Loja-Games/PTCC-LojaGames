@@ -17,8 +17,10 @@ namespace LojaGames.Controllers
         public IActionResult Procura(string pesquisa)
         {
             if (pesquisa == null) { pesquisa = "Xbox"; }
+
+
             HttpContext.Session.SetString("redirecionarpesquisa", pesquisa);
-            _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos();
+            _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos(pesquisa);
 
             if (HttpContext.Session.GetString("perfil") != "Entrar na Conta" && string.IsNullOrEmpty(HttpContext.Session.GetString("perfil")) == false)
             {

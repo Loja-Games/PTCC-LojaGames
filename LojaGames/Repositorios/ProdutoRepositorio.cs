@@ -36,40 +36,81 @@ namespace LojaGames.Repositorios
             }
         }
 
-        public IEnumerable<Tb_produto> ListaProdutos()
+        public IEnumerable<Tb_produto> ListaProdutos(string pesquisa)
         {
-            using (var db = new Conexao(_connectionString))
+
+            if (pesquisa == "Xbox" || pesquisa == "Playstation" || pesquisa == "Informatica" || pesquisa == "Smartphone" || pesquisa == "xbox" || pesquisa == "playstation" || pesquisa == "informatica" || pesquisa == "smartphone")
             {
-                List<Tb_produto> listaproduto = new List<Tb_produto>();
-                var Prompt = db.MySqlCommand();
-                Prompt.CommandText = "Select * from Tb_produto";
-
-                using (var reader = Prompt.ExecuteReader())
+                using (var db = new Conexao(_connectionString))
                 {
-                    while (reader.Read())
-                    {
-                        Tb_produto produto = new Tb_produto
-                        {
-                            Id_prod = reader.GetInt32("Id_prod"),
-                            Nome_prod = reader.GetString("Nome_prod"),
-                            Descricao_prod = reader.GetString("Descricao_prod"),
-                            ValorCusto_prod = reader.GetDecimal("ValorCusto_prod"),
-                            ValorVenda_prod = reader.GetDecimal("ValorVenda_prod"),
-                            Desconto_prod = reader.GetDecimal("Desconto_prod"),
-                            Tipo_prod = reader.GetString("Tipo_prod"),
-                            Marca_prod = reader.GetString("Marca_prod"),
-                            QuantidadeEstoque_prod = reader.GetInt32("QuantidadeEstoque_prod"),
-                            VendaDisponivel_prod = reader.GetBoolean("VendaDisponivel_prod"),
-                            img_path = reader.GetString("img_path"),
-                        };
+                    List<Tb_produto> listaproduto = new List<Tb_produto>();
+                    var Prompt = db.MySqlCommand();
+                    Prompt.CommandText = "Select * from Tb_produto";
 
-                        listaproduto.Add(produto);
+                    using (var reader = Prompt.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Tb_produto produto = new Tb_produto
+                            {
+                                Id_prod = reader.GetInt32("Id_prod"),
+                                Nome_prod = reader.GetString("Nome_prod"),
+                                Descricao_prod = reader.GetString("Descricao_prod"),
+                                ValorCusto_prod = reader.GetDecimal("ValorCusto_prod"),
+                                ValorVenda_prod = reader.GetDecimal("ValorVenda_prod"),
+                                Desconto_prod = reader.GetDecimal("Desconto_prod"),
+                                Tipo_prod = reader.GetString("Tipo_prod"),
+                                Marca_prod = reader.GetString("Marca_prod"),
+                                QuantidadeEstoque_prod = reader.GetInt32("QuantidadeEstoque_prod"),
+                                VendaDisponivel_prod = reader.GetBoolean("VendaDisponivel_prod"),
+                                img_path = reader.GetString("img_path"),
+                            };
+
+                            listaproduto.Add(produto);
+                        }
+
+                        return listaproduto;
                     }
 
-                    return listaproduto;
                 }
-
             }
+            else
+            {
+                using (var db = new Conexao(_connectionString))
+                {
+                    List<Tb_produto> listaproduto = new List<Tb_produto>();
+                    var Prompt = db.MySqlCommand();
+                    Prompt.CommandText = $"select * from Tb_produto where Nome_prod like '%{pesquisa}%' or Descricao_prod like '%{pesquisa}%';";
+
+                    using (var reader = Prompt.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Tb_produto produto = new Tb_produto
+                            {
+                                Id_prod = reader.GetInt32("Id_prod"),
+                                Nome_prod = reader.GetString("Nome_prod"),
+                                Descricao_prod = reader.GetString("Descricao_prod"),
+                                ValorCusto_prod = reader.GetDecimal("ValorCusto_prod"),
+                                ValorVenda_prod = reader.GetDecimal("ValorVenda_prod"),
+                                Desconto_prod = reader.GetDecimal("Desconto_prod"),
+                                Tipo_prod = reader.GetString("Tipo_prod"),
+                                Marca_prod = reader.GetString("Marca_prod"),
+                                QuantidadeEstoque_prod = reader.GetInt32("QuantidadeEstoque_prod"),
+                                VendaDisponivel_prod = reader.GetBoolean("VendaDisponivel_prod"),
+                                img_path = reader.GetString("img_path"),
+                            };
+
+                            listaproduto.Add(produto);
+                        }
+
+                        return listaproduto;
+                    }
+
+                }
+            }
+
+
         }
 
         public Tb_produto ObterProduto(int id)

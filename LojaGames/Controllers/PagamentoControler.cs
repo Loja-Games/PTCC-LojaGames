@@ -17,7 +17,7 @@ namespace LojaGames.Controllers
         public IActionResult Pagamento()
         {
 
-            _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos();
+            _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
             _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
