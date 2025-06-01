@@ -28,7 +28,8 @@ namespace LojaGames.Controllers
             }
             else
             {
-                return View();
+                _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
+                return View(_produtoRepositorio.listadeprodutoserdados);
             }
             
         }
