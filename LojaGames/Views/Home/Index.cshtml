@@ -63,7 +63,16 @@
                     a = a + 1;
                     if (a <= 3)
                     {
-                        <section class="containerdoproduto p-3">
+                        <section class="containerdoproduto p-3 position-relative">
+
+                            @if (item.Desconto_prod > 0)
+                            {
+                                <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
+                                    -@item.Desconto_prod.ToString("0")%
+                                </span>
+                            }
+                            
+
                             <img class="imagemcotainerproduto" src="@item.img_path">
                             <div class="conteudoproduto p-2">
                                 <div class="nomedoitem pb-1">
@@ -117,7 +126,16 @@
                         b = b + 1;
                         if (b <= 3)
                         {
-                            <section class="containerdoproduto p-3">
+                            <section class="containerdoproduto p-3 position-relative">
+
+
+                                @if (item.Desconto_prod > 0)
+                                {
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
+                                        -@item.Desconto_prod.ToString("0")%
+                                    </span>
+                                }
+
                                 <img class="imagemcotainerproduto" src="@item.img_path">
                                 <div class="conteudoproduto p-2">
                                     <div class="nomedoitem pb-1">
@@ -171,7 +189,14 @@
                         c = c + 1;
                         if (c <= 3)
                         {
-                            <section class="containerdoproduto p-3">
+                            <section class="containerdoproduto p-3 position-relative">
+
+                                @if (item.Desconto_prod > 0)
+                                {
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
+                                        -@item.Desconto_prod.ToString("0")%
+                                    </span>
+                                }
                                 <img class="imagemcotainerproduto" src="@item.img_path">
                                 <div class="conteudoproduto p-2">
                                     <div class="nomedoitem pb-1">

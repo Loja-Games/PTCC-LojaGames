@@ -70,13 +70,19 @@
     </aside>
     <div class="p-4">
         <div class="backpr">
-        <h1 class="fontpagina">Lista de Produtos:</h1>
-        <div class="lista">
+            <h1 class="fontpagina">Lista de Produtos:</h1>
+            <div class="lista">
 
-            @foreach (var item in Model.listadeprodutos)
-            {
-                <form asp-action="adicionarCarrinho" method="post">
-                    <section class="containerdoproduto p-3" data-tipo="@item.Tipo_prod" data-mark="@item.Marca_prod">
+                @foreach (var item in Model.listadeprodutos)
+                {
+                    <form asp-action="adicionarCarrinho" method="post">
+                        <section class="containerdoproduto p-3 position-relative" data-tipo="@item.Tipo_prod" data-mark="@item.Marca_prod">
+                            @if (item.Desconto_prod>0)
+                            {
+                                <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
+                                    -@item.Desconto_prod.ToString("0")%
+                                </span>
+                            }
                     <img style="height:230px;" class="imagemcotainerproduto" src="@item.img_path">
                     <input type="hidden" name="Id" value="@item.Id_prod">
                     <div class="conteudoproduto p-2">
