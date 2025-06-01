@@ -3,6 +3,7 @@ using LojaGames.Models;
 using System.Configuration;
 using System.Data;
 using LojaGames.Repositorios;
+using System.ComponentModel;
 
 
 namespace LojaGames.Repositorios
@@ -11,6 +12,108 @@ namespace LojaGames.Repositorios
     {
 
         private readonly string _connectionString = configuration.GetConnectionString("MySQLConnection");
+
+        private bool adicionarEstado(string uf, string nome)
+        {
+            try
+            {
+                var banco = new Conexao(_connectionString);
+                var query = banco.MySqlCommand();
+
+                query.CommandText = "Select * from Tb_estado where Uf_est=@uf";
+                query.Parameters.AddWithValue("@uf", uf);
+                using (var reader = query.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                }
+                query.Parameters.Clear();
+                query.CommandText = $"insert into Tb_estado(Uf_est,Nome_est) values(@uf,@nome)";
+                query.Parameters.AddWithValue("@uf",uf);
+                query.Parameters.AddWithValue("@nome", nome);
+                query.ExecuteNonQuery();
+                banco.Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool adicionarCep(string cep, string cidade, string bairro)
+        {
+            try
+            {
+                var banco = new Conexao(_connectionString);
+                var query = banco.MySqlCommand();
+
+                query.CommandText = "Select * from Tb_cep where Cep=@cep";
+                query.Parameters.AddWithValue("@cep", cep);
+                using (var reader = query.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                }
+                query.Parameters.Clear();
+                query.CommandText = $"insert into Tb_cep(Cep,Bairro,Cidade) values(@cep,@bairro,@cidade)";
+                query.Parameters.AddWithValue("@cep", cep);
+                query.Parameters.AddWithValue("@bairro", bairro);
+                query.Parameters.AddWithValue("@cidade", cidade);
+                query.ExecuteNonQuery();
+                banco.Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public void adicionarEndereco(string cpf, string cep,string numero,string uf,string endereco, string complemento, string cidade, string bairro,string estado)
+        {
+            try
+            {
+                if (adicionarEstado(uf, estado))
+                {
+                    Console.WriteLine("Estado Adicionado com Sucesso");
+                }
+                else
+                {
+                    Console.WriteLine("O Estado nao pode ser adicionado ao banco");
+                }
+                if (adicionarCep(cep, cidade, bairro))
+                {
+                    Console.WriteLine("Novo Cep cadastrado no banco com sucesso");
+                }
+                else
+                {
+                    Console.WriteLine("O Cep nao pode ser adicionado ao banco");
+                }
+
+                var banco = new Conexao(_connectionString);
+                var query = banco.MySqlCommand();
+
+                query.CommandText = $"insert into Tb_endereco(Cpf_cli,Cep,Numero_residencia,Uf_est,Endereco,Complemento) values(@cpf,@cep,@numero,@uf,@endereco,@complemento);";
+                query.Parameters.AddWithValue("@cpf", cpf);
+                query.Parameters.AddWithValue("@cep", cep);
+                query.Parameters.AddWithValue("@numero", numero);
+                query.Parameters.AddWithValue("@uf", uf);
+                query.Parameters.AddWithValue("@endereco", endereco);
+                query.Parameters.AddWithValue("@complemento", complemento);
+                Console.WriteLine("Novo Endereco cadastrado com sucesso");
+                query.ExecuteNonQuery();
+                banco.Dispose();
+            }
+            catch
+            {
+                Console.WriteLine("Nao foi possivel cadastrar o endereco");
+            }
+        }
 
         public void AdicionarUsuario(Tb_usuario usuario, Tb_cliente cliente, Tb_email email)
         {

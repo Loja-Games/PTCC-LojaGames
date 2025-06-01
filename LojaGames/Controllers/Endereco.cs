@@ -7,13 +7,25 @@ namespace LojaGames.Controllers
     {
 
         private readonly ProdutoRepositorio _produtoRepositorio;
+        private readonly UsuarioRepositorio _usuarioRepositorio;
 
-        public Endereco(ProdutoRepositorio produtoRepositorio)
+        public Endereco(ProdutoRepositorio produtoRepositorio,UsuarioRepositorio usuarioRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
         public IActionResult EnderecoLista()
         {
+            return View(_produtoRepositorio.listadeprodutoserdados);
+        }
+
+
+
+        [HttpPost]
+        public IActionResult EnderecoLista(string cep,string numero, string endereco, string complemento, string bairro,string estado,string uf, string localidade)
+        {
+            string cpf = HttpContext.Session.GetString("cpf");
+            _usuarioRepositorio.adicionarEndereco(cpf,cep,numero,uf,endereco,complemento,localidade,bairro,estado);
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
     }

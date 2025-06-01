@@ -77,12 +77,16 @@ Cep varchar(8) not null,
 Numero_residencia varchar(10) not null,
 Uf_est char(2),
 Endereco varchar(100) not null,
-Complemento varchar(50) not null,
+Complemento varchar(50),
 primary key(Cep, Numero_residencia),
 foreign key(Cep) references Tb_cep(Cep),
 foreign key(Uf_est) references Tb_estado(Uf_est),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
+
+select * from Tb_estado;
+select * from Tb_cep;
+select * from Tb_endereco;
 
 create table Tb_carrinho(
 Id_carrinho int auto_increment,

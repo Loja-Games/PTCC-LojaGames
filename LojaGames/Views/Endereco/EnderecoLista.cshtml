@@ -28,23 +28,27 @@
             </tbody>
         </table>
         <hr class="w-100" style="border: 1px solid #146FAD;" />
-        <form class="w-100">
+        <form class="w-100" asp-action="EnderecoLista" method="post">
             <h3 class="fontpagina fontbold w-100" style="text-align:center;">NOVO ENDEREÇO</h3>
             <div class="w-100 d-flex justify-content-center align-items-center">
                 <div class="col-auto p-1">
-                    <div class="w-100"><label class="fontpagina" style="font-size: 20px;">CEP: <input maxlength="8" minlength="8" id="inputcep" type="text" class="form-control" required/></label></div>
-                    <div class="w-100"><label class="fontpagina" style="font-size: 20px;">Numero: <input id="inputnumero" type="text" class="form-control" /></label></div>
+                    <div class="w-100"><label class="fontpagina" style="font-size: 20px;">CEP: <input name="cep" maxlength="8" minlength="8" id="inputcep" type="text" class="form-control" required/></label></div>
+                    <div class="w-100"><label class="fontpagina" style="font-size: 20px;">Numero: <input name="numero" id="inputnumero" type="text" class="form-control" required/></label></div>
                 </div>
                 <div class="col-auto p-1">
-                    <div class=""><label class="w-100 fontpagina" style="font-size: 20px;">Endereço: <input id="inputendereco" type="text" class="form-control" style="width:260px;" /></label></div>
-                    <div class=""><label class="w-100 fontpagina" style="font-size: 20px;">Bairro: <input id="inputbairro" type="text" class="form-control" style="width:260px;" /></label></div>
+                    <div class=""><label class="w-100 fontpagina" style="font-size: 20px;">Endereço: <input name="endereco" required readonly id="inputendereco" type="text" class="form-control" style="width:260px;" /></label></div>
+                    <div class=""><label class="w-100 fontpagina" style="font-size: 20px;">Bairro: <input name="bairro" required readonly id="inputbairro" type="text" class="form-control" style="width:260px;" /></label></div>
                 </div>
             </div>
             <div class="col-auto p-1 d-flex justify-content-center">
-                <label class="fontpagina" style="font-size: 20px;">Complemento: <input id="inputcomplemento" type="text" class="form-control" style="width:440px;" /></label>
+                <label class="fontpagina" style="font-size: 20px;">Complemento: <input name="complemento" id="inputcomplemento" type="text" class="form-control" style="width:440px;" /></label>
             </div>
             <div class="w-100 p-2 d-flex justify-content-center align-items-center"><button class="btn btn-success">Cadastrar Endereço</button></div>
+            <div id="camposauxiliares">
 
+                <input type="hidden" value="">
+
+            </div>
         </form>
     </div>
 </div>
