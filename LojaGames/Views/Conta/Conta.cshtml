@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@model LojaGames.Models.ListasProdutos;
 
 
 <link href="~/css/conta.css" rel="stylesheet" />
@@ -51,28 +52,43 @@
     </div>
     <div class="row align-items-end">
         <div class="w-100 backhistorico">
-			<div class="fronthistorico p-4">
+            <div class="fronthistorico p-4">
+
+
+                @{
+                    var pedidoMaisRecente = Model.listadohistorico.Max(p => p.Id_pedido);
+                    var itensDoPedidoMaisRecente = Model.listadohistorico.Where(p => p.Id_pedido == pedidoMaisRecente);
+                    var primeiroItem = itensDoPedidoMaisRecente.First(); // para exibir dados gerais do pedido
+                }
+
                 <div class="d-flex justify-content-start">
-                    <span class="fontpagina referencia">PEDIDO - ID:</span><span class="pedido">46465465456</span>
-                </div>
-                <hr/>
-                <div class="d-flex justify-content-start">
-                    <span class="fontpagina referencia">PAGAMENTO:</span><span class="pedido">Cartao de debito</span>
+                    <span class="fontpagina referencia">PEDIDO - ID:</span><span class="pedido">@primeiroItem.Id_pedido</span>
                 </div>
                 <hr />
-                <div class="d-flex justify-content-start align-items-center">
-					<img id="imagemdohistorico" src="~/assets/image/fonte.webp" />
-                    <div class="p-4">
-                        <div id="nomehistorico" class="d-flex justify-content-start">
-                            <span class="fontpagina referencia">NOME:</span>
-                            <span class="pedido">fonte talt atal:</span>
-                        </div>
-                        <div id="quantidadehistorico" class="d-flex justify-content-start">
-                            <span class="fontpagina referencia">QUANTIDADE:</span>
-                            <span class="pedido">1000</span>
+                <div class="d-flex justify-content-start">
+                    <span class="fontpagina referencia">PAGAMENTO:</span><span class="pedido">@primeiroItem.Inforamacaoad_pag</span>
+                </div>
+                <hr />
+
+                @foreach (var item in itensDoPedidoMaisRecente)
+                {
+                    <div class="d-flex justify-content-start align-items-center">
+                        <img id="imagemdohistorico" src="@item.Img_path" />
+                        <div class="p-4">
+                            <div id="nomehistorico" class="d-flex justify-content-start">
+                                <span class="fontpagina referencia">NOME:</span>
+                                <span class="pedido">@item.Nome_prod - @item.Descricao_prod</span>
+                            </div>
+                            <div id="quantidadehistorico" class="d-flex justify-content-start">
+                                <span class="fontpagina referencia">QUANTIDADE:</span>
+                                <span class="pedido">@item.Quantidade</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <hr />
+                }
+
+
             </div>
         </div>
     </div>

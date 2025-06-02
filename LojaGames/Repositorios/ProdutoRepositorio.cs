@@ -7,6 +7,7 @@ using MySqlX.XDevAPI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Mysqlx.Crud;
+using System.Runtime.ConstrainedExecution;
 
 
 namespace LojaGames.Repositorios
@@ -156,7 +157,7 @@ namespace LojaGames.Repositorios
 
                 List<Tb_carrinho> listacarrinho = new List<Tb_carrinho>();
                 var Prompt = db.MySqlCommand();
-                Prompt.CommandText = $"Select * from Tb_carrinho where Id_pedido={pedido}";
+                Prompt.CommandText = $"Select * from Tb_carrinho where Id_pedido={pedido};";
 
                 using (var reader = Prompt.ExecuteReader())
                 {
@@ -221,50 +222,114 @@ namespace LojaGames.Repositorios
         }
 
 
-        public void registrarPagBoleto(string id)
+        public void registrarPagBoleto(string id, string cepSelecionado, string numeroSelecionado)
         {
             string Idpedido = id;
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Id_pag=4,inforamacaoad_pag='Pagamento de Boleto Online', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=4,inforamacaoad_pag='Pagamento de Boleto Online', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
+                cmd.Parameters.AddWithValue("@cep", cepSelecionado);
+                cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
                 cmd.ExecuteNonQuery();
             }
         }
-        public void registrarPagDebt(string id, string numero, string nome)
+        public void registrarPagDebt(string id, string numero, string nome, string cepSelecionado, string numeroSelecionado)
         {
             string Idpedido = id;
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Id_pag=2,inforamacaoad_pag='(Cartao de Debito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=2,inforamacaoad_pag='(Cartao de Debito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
+                cmd.Parameters.AddWithValue("@cep", cepSelecionado);
+                cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
                 cmd.ExecuteNonQuery();
             }
             
         }
-        public void registrarPagCred(string id, string numero, string nome)
+        public void registrarPagCred(string id, string numero, string nome, string cepSelecionado, string numeroSelecionado)
         {
             string Idpedido = id;
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Id_pag=3,inforamacaoad_pag='(Cartao de credito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=3,inforamacaoad_pag='(Cartao de credito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
+                cmd.Parameters.AddWithValue("@cep", cepSelecionado);
+                cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
                 cmd.ExecuteNonQuery();
             }
         }
-        public void registrarPagQrcode(string id)
+        public void registrarPagQrcode(string id, string cepSelecionado, string numeroSelecionado)
         {
             string Idpedido = id;
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Id_pag=5,inforamacaoad_pag='PIX Online', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=5,inforamacaoad_pag='PIX Online', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
+                cmd.Parameters.AddWithValue("@cep", cepSelecionado);
+                cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public IEnumerable<Historico> getHistorico(string cpf)
+        {
+            return GetBDHistorico(cpf);
+        }
+
+        private IEnumerable<Historico> GetBDHistorico(string cpf)
+        {
+
+            using (var db = new Conexao(_connectionString))
+            {
+                List<Historico> listaHistorico = new List<Historico>();
+                var prompt = db.MySqlCommand();
+                prompt.CommandText = $"SELECT tcar.Id_carrinho, tcar.Id_pedido, tped.Nome_prod, tped.Descricao_prod, tped.Tipo_prod, tped.Marca_prod, tped.img_path, tcar.quantidade, tcar.preco_prod, tped.Desconto_prod, tcar.inforamacaoad_pag, tcar.Data_pedido_car, tcar.Data_entrega_car, tcar.Tipo_entrega_car, tend.Cep, tend.Endereco, tend.Complemento, tend.Numero_residencia, test.Uf_est, test.Nome_est FROM Tb_carrinho tcar INNER JOIN Tb_produto tped ON tcar.Id_prod = tped.Id_prod INNER JOIN Tb_pagamento tpag ON tcar.Id_pag = tpag.Id_pag INNER JOIN Tb_cliente tcli ON tcar.Cpf_cli = tcli.Cpf_cli INNER JOIN Tb_endereco tend ON tcar.Cep = tend.Cep AND tcar.Numero_residencia = tend.Numero_residencia INNER JOIN Tb_cep tcep ON tend.Cep = tcep.Cep INNER JOIN Tb_estado test ON test.Uf_est = tend.Uf_est WHERE tcar.Cpf_cli = @cpf";
+                prompt.Parameters.AddWithValue("@cpf", cpf);
+                using (var reader = prompt.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Historico historico = new Historico
+                        {
+                            Id_carrinho = reader.GetInt32("Id_carrinho"),
+                            Id_pedido = reader.GetInt32("Id_pedido"),
+                            Nome_prod = reader.GetString("Nome_prod"),
+                            Descricao_prod = reader.GetString("Descricao_prod"),
+                            Tipo_prod = reader.GetString("Tipo_prod"),
+                            Marca_prod = reader.GetString("Marca_prod"),
+                            Img_path = reader.GetString("img_path"),
+                            Quantidade = reader.GetInt32("quantidade"),
+                            Preco_prod = reader.GetDecimal("preco_prod"),
+                            Desconto_prod = reader.GetDecimal("Desconto_prod"),
+                            Inforamacaoad_pag = reader.IsDBNull(reader.GetOrdinal("inforamacaoad_pag"))? null : reader.GetString("inforamacaoad_pag"),
+                            Data_pedido_car = reader.GetDateTime("Data_pedido_car"),
+                            Data_entrega_car = reader.GetDateTime("Data_entrega_car"),
+                            Tipo_entrega_car = reader.GetString("Tipo_entrega_car"),
+                            Cep = reader.GetString("Cep"),
+                            Endereco = reader.GetString("Endereco"),
+                            Complemento = reader.IsDBNull(reader.GetOrdinal("Complemento"))? null : reader.GetString("Complemento"),
+                            Numero_residencia = reader.GetString("Numero_residencia"),
+                            Uf_est = reader.GetString("Uf_est"),
+                            Nome_est = reader.GetString("Nome_est")
+                        };
+          
+
+                        listaHistorico.Add(historico);
+                    }
+                    Console.WriteLine();
+                    return listaHistorico;
+                }
+            }
+
+
+
+
+
         }
 
 

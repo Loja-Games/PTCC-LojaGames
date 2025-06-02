@@ -21,6 +21,7 @@ namespace LojaGames.Controllers
         }
         public IActionResult Conta()
         {
+            _produtoRepositorio.listadeprodutoserdados.listadohistorico = _produtoRepositorio.getHistorico(HttpContext.Session.GetString("cpf"));
             _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
             _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
             return View(_produtoRepositorio.listadeprodutoserdados);

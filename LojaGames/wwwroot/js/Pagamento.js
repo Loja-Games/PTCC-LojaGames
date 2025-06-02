@@ -19,24 +19,24 @@ botaocardcred.addEventListener('click', () => {
 			<div class="row">
 				<div class="listaopc w-100">
 					<label for="numerocartao">Numero do cartão:</label>
-					<input name="numerocartao" id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
+					<input required name="numerocartao" id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
 				</div>
 			</div>
 			<div class="row">
 				<div class="listaopc w-50">
 					<label for="datacartao">Data do vencimento:</label>
-					<input name="datacartao" type="month">
+					<input required name="datacartao" type="month">
 				</div>
 				<div class="listaopc w-50">
 					<label for="cvccartao">CVC</label>
-					<input name="cvccartao" maxlength="3" minlength="3" type="text">
+					<input required name="cvccartao" maxlength="3" minlength="3" type="text">
 				</div>
 			</div>
 			<input type="hidden" name="formulario" value="cartaocredito">
 			<div class="row">
 				<div class="listaopc">
 					<label for="nomecartao">Nome do cartão:</label>
-					<input type="text" name="nomecartao">
+					<input required type="text" name="nomecartao">
 					<img id="bande" class="bandeira" src="" />
 				</div>
 			</div>
@@ -60,24 +60,24 @@ botaocarddebt.addEventListener('click', () => {
 			<div class="row">
 				<div class="listaopc w-100">
 					<label for="numerocartao">Numero do cartão:</label>
-					<input name="numerocartao" id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
+					<input required name="numerocartao" id="numerocartao" maxlength="16" minlength="16" class="w-100" type="text">
 				</div>
 			</div>
 			<div class="row">
 				<div class="listaopc w-50">
 					<label for="datacartao">Data do vencimento:</label>
-					<input name="datacartao" type="month">
+					<input required name="datacartao" type="month">
 				</div>
 				<div class="listaopc w-50">
 					<label for="cvccartao">CVC</label>
-					<input name="cvccartao" maxlength="3" minlength="3" type="text">
+					<input required name="cvccartao" maxlength="3" minlength="3" type="text">
 				</div>
 			</div>
 			<input type="hidden" name="formulario" value="cartaodebito">
 			<div class="row">
 				<div class="listaopc">
 					<label for="nomecartao">Nome do cartão:</label>
-					<input type="text" name="nomecartao">
+					<input required type="text" name="nomecartao">
 					<img id="bande" class="bandeira" src="" />
 				</div>
 			</div>
@@ -140,3 +140,22 @@ function detectarBandeira(numero) {
 	if (/^606282|3841/.test(numero)) return "Hipercard";
 	return "Bandeira desconhecida";
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+	const enderecos = document.querySelectorAll(".divendereco");
+	const selecionadoDiv = document.getElementById("itemselecionado");
+
+	enderecos.forEach(function (endereco) {
+		endereco.addEventListener("click", function () {
+			enderecos.forEach(e => e.classList.remove("selecionado"));
+			this.classList.add("selecionado");
+			const cep = this.getAttribute("data-cep");
+			const numero = this.getAttribute("data-numero");
+			selecionadoDiv.innerHTML = `
+                <input type="hidden" name="cepSelecionado" value="${cep}" required/>
+                <input type="hidden" name="numeroSelecionado" value="${numero}" required/>
+            `;
+		});
+	});
+});
