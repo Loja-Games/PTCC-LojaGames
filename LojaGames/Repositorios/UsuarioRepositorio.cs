@@ -13,6 +13,57 @@ namespace LojaGames.Repositorios
 
         private readonly string _connectionString = configuration.GetConnectionString("MySQLConnection");
 
+        public IEnumerable<Tb_endereco> getEnderecoList(string cpf)
+        {
+            return ReceberEnderecos(cpf);
+        }
+
+        private IEnumerable<Tb_endereco> ReceberEnderecos(string cpf)
+        {
+            using (var db = new Conexao(_connectionString))
+            {
+
+                List<Tb_endereco> listacarrinho = new List<Tb_endereco>();
+                var Prompt = db.MySqlCommand();
+                Prompt.CommandText = $"Select * from Tb_endereco where Cpf_cli={cpf}";
+                using (var reader = Prompt.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.IsDBNull("Complemento"))
+                        {
+                            Tb_endereco carrinho1 = new Tb_endereco
+                            {
+                                Cep = reader.GetString("Cep"),
+                                Numero_residencia = reader.GetString("Numero_residencia"),
+                                Uf_est = reader.GetString("Uf_est"),
+                                Endereco = reader.GetString("Endereco"),
+                                Complemento = "",
+                            };
+                            listacarrinho.Add(carrinho1);
+                        }
+                        else
+                        {
+                            Tb_endereco carrinho = new Tb_endereco
+                            {
+                                Cep = reader.GetString("Cep"),
+                                Numero_residencia = reader.GetString("Numero_residencia"),
+                                Uf_est = reader.GetString("Uf_est"),
+                                Endereco = reader.GetString("Endereco"),
+                                Complemento = reader.GetString("Complemento"),
+                            };
+
+                            listacarrinho.Add(carrinho);
+                        }
+                            
+                    }
+
+                    return listacarrinho;
+                }
+
+            }
+        }
+
         private bool adicionarEstado(string uf, string nome)
         {
             try

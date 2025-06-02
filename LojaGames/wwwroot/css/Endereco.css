@@ -3,6 +3,7 @@
 }
 
 .bordadosenderecos {
+    box-shadow: 0px -1px 4px rgb(0,0,0,0.25),0px 4px 4px rgb(0,0,0,0.25);
     margin-top: 20px;
     border: 1px solid rgba(0,0,0,0.25);
     border-radius: 51px;

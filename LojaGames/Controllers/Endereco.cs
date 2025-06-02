@@ -16,6 +16,7 @@ namespace LojaGames.Controllers
         }
         public IActionResult EnderecoLista()
         {
+            _produtoRepositorio.listadeprodutoserdados.listadeenderecos = _usuarioRepositorio.getEnderecoList(HttpContext.Session.GetString("cpf"));
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
 
@@ -26,6 +27,7 @@ namespace LojaGames.Controllers
         {
             string cpf = HttpContext.Session.GetString("cpf");
             _usuarioRepositorio.adicionarEndereco(cpf,cep,numero,uf,endereco,complemento,localidade,bairro,estado);
+            _produtoRepositorio.listadeprodutoserdados.listadeenderecos = _usuarioRepositorio.getEnderecoList(HttpContext.Session.GetString("cpf"));
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
     }

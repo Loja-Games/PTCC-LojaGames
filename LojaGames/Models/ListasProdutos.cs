@@ -4,8 +4,8 @@ namespace LojaGames.Models
 {
     public class ListasProdutos
     {
-        public IEnumerable<Tb_produto> listadeprodutos { get; set; }
-
+        public IEnumerable<Tb_produto>? listadeprodutos { get; set; }
+        public IEnumerable<Tb_endereco>? listadeenderecos { get; set; }
         public IEnumerable<Tb_carrinho>? listacarrinho { get; set; }
 
         public string numerocartao { get; set; }

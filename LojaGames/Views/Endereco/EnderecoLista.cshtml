@@ -7,6 +7,7 @@
     <div class="bordadosenderecos p-3">
         <h1 class="fontpagina fontbold w-100" style="text-align:center;">SEUS ENDEREÇOS</h1>
         <hr class="w-100" style="border: 1px solid #146FAD;">
+        <div class="w-100" style="overflow-y:auto; height: 200px;">
         <table class="tabelaedere">
             <thead>
                 <tr>
@@ -17,16 +18,35 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>110</td>
-                    <td>110</td>
-                    <td>110</td>
-                    <td>110</td>
-                    <td>Excluir</td>
-                </tr>
+        
+            <tbody class="listaderesu" style="max-height:100px; overflow:auto;">
+
+                @{
+                    foreach(var item in Model.listadeenderecos)
+                    {
+                        <tr>
+                            <td>@item.Cep</td>
+                            <td>@item.Endereco</td>
+                            <td>@item.Numero_residencia</td>
+                            @if (item.Complemento == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>@item.Complemento</td>
+                            }
+                            
+                            <td><button class="btn btn-warning" type="button">Excluir</button></td>
+                        </tr>
+
+                    }
+
+
+                }
             </tbody>
         </table>
+        </div>
         <hr class="w-100" style="border: 1px solid #146FAD;" />
         <form class="w-100" asp-action="EnderecoLista" method="post">
             <h3 class="fontpagina fontbold w-100" style="text-align:center;">NOVO ENDEREÇO</h3>
@@ -43,7 +63,7 @@
             <div class="col-auto p-1 d-flex justify-content-center">
                 <label class="fontpagina" style="font-size: 20px;">Complemento: <input name="complemento" id="inputcomplemento" type="text" class="form-control" style="width:440px;" /></label>
             </div>
-            <div class="w-100 p-2 d-flex justify-content-center align-items-center"><button class="btn btn-success">Cadastrar Endereço</button></div>
+            <div class="w-100 p-2 d-flex justify-content-center align-items-center"><button id="form" class="btn btn-success">Cadastrar Endereço</button></div>
             <div id="camposauxiliares">
 
                 <input type="hidden" value="">

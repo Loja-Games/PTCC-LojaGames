@@ -1,6 +1,26 @@
 ﻿const checkboxesTipo = document.querySelectorAll('.filtroTipo');
 const checkboxesMarca = document.querySelectorAll('.filtroMarca');
 
+
+
+
+document.querySelectorAll(".botaoenv").forEach(botao => {
+    botao.addEventListener("click", () => {
+        localStorage.setItem("scrollY", window.scrollY);
+    });
+});
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    const scrollY = localStorage.getItem("scrollY");
+if (scrollY !== null) {
+    document.documentElement.style.scrollBehavior = "auto"; 
+window.scrollTo(0, parseInt(scrollY));
+localStorage.removeItem("scrollY");
+    }
+});
+
+
 function marcarCaixas(caixas) {
     switch (caixas) {
         case "playstation":

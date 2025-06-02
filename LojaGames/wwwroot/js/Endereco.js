@@ -21,6 +21,22 @@ inputcep.addEventListener('input', async () => {
     }
 });
 
+document.getElementById("form").addEventListener("click", () => {
+    localStorage.setItem("scrollY", window.scrollY);
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    const scrollY = localStorage.getItem("scrollY");
+    if (scrollY !== null) {
+        setTimeout(() => {
+            window.scrollTo(0, parseInt(scrollY));
+            localStorage.removeItem("scrollY");
+        }, 100); 
+    }
+});
+
+
+
 async function contatarAPICorreios(cep) {
     try {
         const API = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
