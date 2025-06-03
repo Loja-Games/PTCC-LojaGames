@@ -83,22 +83,22 @@
                                     -@item.Desconto_prod.ToString("0")%
                                 </span>
                             }
-                    <img style="height:230px;" class="imagemcotainerproduto" src="@item.img_path">
-                    <input type="hidden" name="Id" value="@item.Id_prod">
-                    <div class="conteudoproduto p-2">
-                    <div class="nomedoitem pb-1">
-                        @Html.DisplayFor(modelItem => item.Nome_prod) - @Html.DisplayFor(modelItem => item.Descricao_prod)
-                    </div>
-                    <div class="preco pb-1">
-                        @Html.DisplayFor(modelItem => item.ValorCusto_prod)
-                    </div>
-                    <div class="precoavista">
-                        <div class="textoavista">A Vista no PIX</div>
-                        <div class="precovista">@Html.DisplayFor(modelItem => item.ValorVenda_prod)</div>
-                    </div>
-                        <button class="btn btn-success botaoenv" type="submit">Adicionar ao Carrinho</button>
-                    </div>
-                    </section>
+                            <img style="height:230px;" class="imagemcotainerproduto" src="@item.img_path">
+                            <input type="hidden" name="Id" value="@item.Id_prod">
+                            <div class="conteudoproduto p-2">
+                                <div class="nomedoitem pb-1">
+                                    @Html.DisplayFor(modelItem => item.Nome_prod) - @Html.DisplayFor(modelItem => item.Descricao_prod)
+                                </div>
+                                <div class="preco pb-1">
+                                    @Html.DisplayFor(modelItem => item.ValorCusto_prod)
+                                </div>
+                                <div class="precoavista">
+                                    <div class="textoavista">A Vista no PIX</div>
+                                    <div class="precovista">@Html.DisplayFor(modelItem => item.ValorVenda_prod)</div>
+                                </div>
+                                <button class="btn btn-success botaoenv w-100" type="submit" style="border-radius: 10px;">Adicionar ao Carrinho</button>
+                            </div>
+                        </section>
                     </form>
             }
         </div>
