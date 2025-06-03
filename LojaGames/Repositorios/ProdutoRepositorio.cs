@@ -283,7 +283,6 @@ namespace LojaGames.Repositorios
 
         private IEnumerable<Historico> GetBDHistorico(string cpf)
         {
-
             using (var db = new Conexao(_connectionString))
             {
                 List<Historico> listaHistorico = new List<Historico>();
@@ -292,36 +291,45 @@ namespace LojaGames.Repositorios
                 prompt.Parameters.AddWithValue("@cpf", cpf);
                 using (var reader = prompt.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        Historico historico = new Historico
+                        while (reader.Read())
                         {
-                            Id_carrinho = reader.GetInt32("Id_carrinho"),
-                            Id_pedido = reader.GetInt32("Id_pedido"),
-                            Nome_prod = reader.GetString("Nome_prod"),
-                            Descricao_prod = reader.GetString("Descricao_prod"),
-                            Tipo_prod = reader.GetString("Tipo_prod"),
-                            Marca_prod = reader.GetString("Marca_prod"),
-                            Img_path = reader.GetString("img_path"),
-                            Quantidade = reader.GetInt32("quantidade"),
-                            Preco_prod = reader.GetDecimal("preco_prod"),
-                            Desconto_prod = reader.GetDecimal("Desconto_prod"),
-                            Inforamacaoad_pag = reader.IsDBNull(reader.GetOrdinal("inforamacaoad_pag"))? null : reader.GetString("inforamacaoad_pag"),
-                            Data_pedido_car = reader.GetDateTime("Data_pedido_car"),
-                            Data_entrega_car = reader.GetDateTime("Data_entrega_car"),
-                            Tipo_entrega_car = reader.GetString("Tipo_entrega_car"),
-                            Cep = reader.GetString("Cep"),
-                            Endereco = reader.GetString("Endereco"),
-                            Complemento = reader.IsDBNull(reader.GetOrdinal("Complemento"))? null : reader.GetString("Complemento"),
-                            Numero_residencia = reader.GetString("Numero_residencia"),
-                            Uf_est = reader.GetString("Uf_est"),
-                            Nome_est = reader.GetString("Nome_est")
-                        };
-          
+                            Console.WriteLine("READER ESTA LENDO");
+                            Historico historico = new Historico
+                            {
+                                Id_carrinho = reader.GetInt32("Id_carrinho"),
+                                Id_pedido = reader.GetInt32("Id_pedido"),
+                                Nome_prod = reader.GetString("Nome_prod"),
+                                Descricao_prod = reader.GetString("Descricao_prod"),
+                                Tipo_prod = reader.GetString("Tipo_prod"),
+                                Marca_prod = reader.GetString("Marca_prod"),
+                                Img_path = reader.GetString("img_path"),
+                                Quantidade = reader.GetInt32("quantidade"),
+                                Preco_prod = reader.GetDecimal("preco_prod"),
+                                Desconto_prod = reader.GetDecimal("Desconto_prod"),
+                                Inforamacaoad_pag = reader.IsDBNull(reader.GetOrdinal("inforamacaoad_pag")) ? null : reader.GetString("inforamacaoad_pag"),
+                                Data_pedido_car = reader.GetDateTime("Data_pedido_car"),
+                                Data_entrega_car = reader.GetDateTime("Data_entrega_car"),
+                                Tipo_entrega_car = reader.GetString("Tipo_entrega_car"),
+                                Cep = reader.GetString("Cep"),
+                                Endereco = reader.GetString("Endereco"),
+                                Complemento = reader.IsDBNull(reader.GetOrdinal("Complemento")) ? null : reader.GetString("Complemento"),
+                                Numero_residencia = reader.GetString("Numero_residencia"),
+                                Uf_est = reader.GetString("Uf_est"),
+                                Nome_est = reader.GetString("Nome_est")
+                            };
 
+
+                            listaHistorico.Add(historico);
+                        }
+                    }
+                    else
+                    {
+                        Historico historico = new Historico();
                         listaHistorico.Add(historico);
                     }
-                    Console.WriteLine();
+                    
                     return listaHistorico;
                 }
             }

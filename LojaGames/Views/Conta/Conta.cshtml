@@ -54,40 +54,60 @@
         <div class="w-100 backhistorico">
             <div class="fronthistorico p-4">
 
-
                 @{
                     var pedidoMaisRecente = Model.listadohistorico.Max(p => p.Id_pedido);
                     var itensDoPedidoMaisRecente = Model.listadohistorico.Where(p => p.Id_pedido == pedidoMaisRecente);
-                    var primeiroItem = itensDoPedidoMaisRecente.First(); // para exibir dados gerais do pedido
+                    var primeiroItem = itensDoPedidoMaisRecente.First();
                 }
 
-                <div class="d-flex justify-content-start">
-                    <span class="fontpagina referencia">PEDIDO - ID:</span><span class="pedido">@primeiroItem.Id_pedido</span>
-                </div>
-                <hr />
-                <div class="d-flex justify-content-start">
-                    <span class="fontpagina referencia">PAGAMENTO:</span><span class="pedido">@primeiroItem.Inforamacaoad_pag</span>
-                </div>
-                <hr />
-
-                @foreach (var item in itensDoPedidoMaisRecente)
+                @if (@primeiroItem.Id_pedido != -1)
                 {
-                    <div class="d-flex justify-content-start align-items-center">
-                        <img id="imagemdohistorico" src="@item.Img_path" />
-                        <div class="p-4">
-                            <div id="nomehistorico" class="d-flex justify-content-start">
-                                <span class="fontpagina referencia">NOME:</span>
-                                <span class="pedido">@item.Nome_prod - @item.Descricao_prod</span>
-                            </div>
-                            <div id="quantidadehistorico" class="d-flex justify-content-start">
-                                <span class="fontpagina referencia">QUANTIDADE:</span>
-                                <span class="pedido">@item.Quantidade</span>
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-start">
+                        <span class="fontpagina referencia">PEDIDO - ID:</span><span class="pedido">@primeiroItem.Id_pedido</span>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-start">
+                        <span class="fontpagina referencia">PAGAMENTO:</span><span class="pedido">@primeiroItem.Inforamacaoad_pag</span>
+                    </div>
+                    <hr />
+                }
+                else
+                {
+                    <div class="d-flex justify-content-start">
                     </div>
                     <hr />
                 }
 
+
+                @foreach (var item in itensDoPedidoMaisRecente)
+                {
+                    if(item.Id_pedido != -1)
+                    {
+                        <div class="d-flex justify-content-start align-items-center">
+                            <img id="imagemdohistorico" src="@item.Img_path" />
+                            <div class="p-4">
+                                <div id="nomehistorico" class="d-flex justify-content-start">
+                                    <span class="fontpagina referencia">NOME:</span>
+                                    <span class="pedido">@item.Nome_prod - @item.Descricao_prod</span>
+                                </div>
+                                <div id="quantidadehistorico" class="d-flex justify-content-start">
+                                    <span class="fontpagina referencia">QUANTIDADE:</span>
+                                    <span class="pedido">@item.Quantidade</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                    else
+                    {
+                        <div class="d-flex justify-content-start align-items-center">
+                            <h1 class="text-center w-100">Acompanhe seus ultimos pedidos</h1>
+                        </div>
+                        <hr />
+                    }
+
+                }
+                
 
             </div>
         </div>
