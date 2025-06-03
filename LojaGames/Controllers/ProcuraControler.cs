@@ -14,6 +14,13 @@ namespace LojaGames.Controllers
             _produtoRepositorio = produtoRepositorio;
         }
 
+        public IActionResult Quantidade(string id, string acao)
+        {
+            Console.WriteLine($"o ID = {id} e a ação é: {acao}");
+
+            return View();
+        }
+
         public IActionResult Procura(string pesquisa)
         {
             if (pesquisa == null) { pesquisa = "Xbox"; }

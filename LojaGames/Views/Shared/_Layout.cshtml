@@ -100,9 +100,10 @@
                                             </div>
                                             <div class="campobotao">
                                                 <div class="backbotum">
-                                                    <div class="botaomenos">-</div>
+
+                                                    <div class="botaomenos">@Html.ActionLink("-", "EditarCliente", new { id = item.Id_carrinho })</div>
                                                     <label class="valorbotao">@HttpContextAccessor.HttpContext.Session.GetString("produto" + a)</label>
-                                                    <div class="botaomais">+</div>
+                                                    <div class="botaomais">@Html.ActionLink("+", "EditarCliente", new { id = item.Id_carrinho })</div>
                                                 </div>
 
                                                 <label class="p-1 fontbold">@item.tb_Produto.ValorVenda_prod</label>
