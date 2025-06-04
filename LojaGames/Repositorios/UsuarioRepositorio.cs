@@ -335,13 +335,15 @@ namespace LojaGames.Repositorios
             }
         }
 
-        public void ApagarEndereco(string cep,string numero,string cpf)
+        public void ApagarEndereco(string cep, string numero, string cpf)
         {
-            Console.WriteLine($"Cep: {cep} Numero: {numero} CFP: {cpf}");
-            try{
+            Console.WriteLine($"Cep: {cep} Numero: {numero} CPF: {cpf}");
+
+            try
+            {
                 var db = new Conexao(_connectionString);
                 var query = db.MySqlCommand();
-                query.CommandText = @"UPDATE tb_carrinho SET Cep = NULL, Numero_residencia = NULL WHERE Cep = '@Cep' AND Numero_residencia = '@Numero' and Cpf_cli = '@Cpf';";
+                query.CommandText = @"UPDATE tb_carrinho SET Cep = NULL, Numero_residencia = NULL WHERE Cep = @Cep AND Numero_residencia = @Numero AND Cpf_cli = @Cpf;";
                 query.Parameters.AddWithValue("@Cpf", cpf);
                 query.Parameters.AddWithValue("@Numero", numero);
                 query.Parameters.AddWithValue("@Cep", cep);
@@ -350,7 +352,7 @@ namespace LojaGames.Repositorios
             }
             catch
             {
-                Console.WriteLine("carrinho não foi atualizado");
+                Console.WriteLine("a Tb_carrinho nao foi atualizada");
             }
 
             try
@@ -366,7 +368,7 @@ namespace LojaGames.Repositorios
             }
             catch
             {
-                Console.WriteLine("Endereco não foi atualizado");
+                Console.WriteLine("Endereço nao foi excluído");
             }
         }
 

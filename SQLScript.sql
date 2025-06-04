@@ -71,7 +71,6 @@ Bairro varchar(100) not null,
 Cidade varchar(100) not null
 );
 
-
 create table Tb_endereco(
 Cpf_cli varchar(11),
 Cep varchar(8) not null,
@@ -85,28 +84,6 @@ foreign key(Uf_est) references Tb_estado(Uf_est),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
 
-select * from Tb_estado;
-select * from Tb_cep;
-select * from Tb_endereco;
-select * from Tb_carrinho;
-
-Select 
-tcar.Id_carrinho,tcar.Id_pedido,
-tped.Nome_prod, tped.Descricao_prod, tped.Tipo_prod, tped.Marca_prod, tped.img_path,
-tcar.quantidade, tcar.preco_prod,
-tped.Desconto_prod,
-tcar.inforamacaoad_pag,
-tcar.Data_pedido_car, tcar.Data_entrega_car, tcar.Tipo_entrega_car,
-tend.Cep, tend.Endereco, tend.Complemento, tend.Numero_residencia,
-test.Uf_est,test.Nome_est
-from Tb_carrinho tcar
-inner join Tb_produto tped on tcar.Id_prod=tped.Id_prod
-inner join Tb_pagamento tpag on tcar.Id_pag=tpag.Id_pag
-inner join Tb_cliente tcli on tcar.Cpf_cli=tcli.Cpf_cli
-inner join Tb_endereco tend on tcar.Cep = tend.Cep and tcar.Numero_residencia = tend.Numero_residencia
-inner join Tb_cep tcep on tend.Cep = tcep.Cep
-inner join Tb_estado test on test.Uf_est = tend.Uf_est where tcar.Cpf_cli='00000000000';
-
 create table Tb_carrinho(
 Id_carrinho int auto_increment,
 Id_pedido int,
@@ -116,8 +93,8 @@ Id_pag int not null,
 inforamacaoad_pag varchar(300) default 'Não informado',
 quantidade int default '1',
 preco_prod numeric(20,2) not null,
-Data_pedido_car date,
-Data_entrega_car date,
+Data_pedido_car datetime,
+Data_entrega_car datetime,
 Tipo_entrega_car varchar(100),
 Cep varchar(8),
 Numero_residencia varchar(10),
@@ -128,6 +105,7 @@ foreign key(Cpf_cli) references Tb_cliente(Cpf_cli),
 foreign key(Id_pag) references Tb_pagamento(Id_pag)
 );
 
+update Tb_carrinho set quantidade=quantidade+1 where Id_carrinho=1;
 
 select * from Tb_carrinho;
 select * from Tb_pagamento;

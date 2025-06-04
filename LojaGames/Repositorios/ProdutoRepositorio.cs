@@ -229,7 +229,7 @@ namespace LojaGames.Repositorios
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=4,inforamacaoad_pag='Pagamento de Boleto Online', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=4,inforamacaoad_pag='Pagamento de Boleto Online', Data_pedido_car=current_timestamp(), Data_entrega_car=DATE_ADD(current_timestamp(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
                 cmd.Parameters.AddWithValue("@cep", cepSelecionado);
                 cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
@@ -242,7 +242,7 @@ namespace LojaGames.Repositorios
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=2,inforamacaoad_pag='(Cartao de Debito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=2,inforamacaoad_pag='(Cartao de Debito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=current_timestamp(), Data_entrega_car=DATE_ADD(current_timestamp(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
                 cmd.Parameters.AddWithValue("@cep", cepSelecionado);
                 cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
@@ -256,7 +256,7 @@ namespace LojaGames.Repositorios
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=3,inforamacaoad_pag='(Cartao de credito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = $"SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=3,inforamacaoad_pag='(Cartao de credito) Dono: {nome}, Cartao: {numero}', Data_pedido_car=current_timestamp(), Data_entrega_car=DATE_ADD(current_timestamp(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
                 cmd.Parameters.AddWithValue("@cep", cepSelecionado);
                 cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
@@ -269,7 +269,7 @@ namespace LojaGames.Repositorios
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=5,inforamacaoad_pag='PIX Online', Data_pedido_car=curdate(), Data_entrega_car=DATE_ADD(CURDATE(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
+                cmd.CommandText = "SET SQL_SAFE_UPDATES = 0;Update Tb_carrinho set Cep=@cep, Numero_residencia=@numero, Id_pag=5,inforamacaoad_pag='PIX Online', Data_pedido_car=current_timestamp(), Data_entrega_car=DATE_ADD(current_timestamp(), INTERVAL 3 DAY),Tipo_entrega_car='Premium' where Id_pedido=@ID;SET SQL_SAFE_UPDATES = 1;";
                 cmd.Parameters.AddWithValue("@ID", Idpedido);
                 cmd.Parameters.AddWithValue("@cep", cepSelecionado);
                 cmd.Parameters.AddWithValue("@numero", numeroSelecionado);
