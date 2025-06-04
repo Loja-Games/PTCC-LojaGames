@@ -28,7 +28,7 @@ function executarQuantidade(id, acao) {
 }
 function AtualizarQuantidade() {
     let itensquantidade = document.querySelectorAll("[data-quantidadeitem]");
-
+    let brutofinal = 0;
     let quantidadefinal = 0;
     let descontofinal = 0;
 
@@ -40,6 +40,7 @@ function AtualizarQuantidade() {
         console.log("a = " + b);
         quantidadefinal = quantidadefinal + (a * b);
         descontofinal = descontofinal + ((c - a) * b);
+        brutofinal = brutofinal + c * b;
 
 
         console.log("a = " + quantidadefinal);
@@ -47,4 +48,5 @@ function AtualizarQuantidade() {
 
     document.getElementById("saidavalortotal").innerHTML = quantidadefinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     document.getElementById("saidadesconto").innerHTML = descontofinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    document.getElementById("saidapresobruto").innerHTML = brutofinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }

@@ -36,8 +36,8 @@
                             {
                                 <td>@item.Complemento</td>
                             }
-                            
-                            <td><button class="btn btn-warning" type="button">Excluir</button></td>
+
+                            <td><a asp-action="ExcluirEndereco" asp-route-cep="@item.Cep" asp-route-numero="@item.Numero_residencia" class="btn btn-warning" type="button">Excluir</a></td>
                         </tr>
 
                     }

@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using LojaGames.Repositorios;
 using System.ComponentModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Runtime.ConstrainedExecution;
 
 
 namespace LojaGames.Repositorios
@@ -332,5 +334,43 @@ namespace LojaGames.Repositorios
                 }
             }
         }
+
+        public void ApagarEndereco(string cep,string numero,string cpf)
+        {
+            Console.WriteLine($"Cep: {cep} Numero: {numero} CFP: {cpf}");
+            try{
+                var db = new Conexao(_connectionString);
+                var query = db.MySqlCommand();
+                query.CommandText = @"UPDATE tb_carrinho SET Cep = NULL, Numero_residencia = NULL WHERE Cep = '@Cep' AND Numero_residencia = '@Numero' and Cpf_cli = '@Cpf';";
+                query.Parameters.AddWithValue("@Cpf", cpf);
+                query.Parameters.AddWithValue("@Numero", numero);
+                query.Parameters.AddWithValue("@Cep", cep);
+                query.ExecuteNonQuery();
+                db.Dispose();
+            }
+            catch
+            {
+                Console.WriteLine("carrinho não foi atualizado");
+            }
+
+            try
+            {
+                var db = new Conexao(_connectionString);
+                var query = db.MySqlCommand();
+                query.CommandText = @"DELETE FROM Tb_endereco WHERE Cpf_cli = @Cpf AND Cep = @Cep AND Numero_residencia = @Numero;";
+                query.Parameters.AddWithValue("@Cpf", cpf);
+                query.Parameters.AddWithValue("@Numero", numero);
+                query.Parameters.AddWithValue("@Cep", cep);
+                query.ExecuteNonQuery();
+                db.Dispose();
+            }
+            catch
+            {
+                Console.WriteLine("Endereco não foi atualizado");
+            }
+        }
+
+
+
     }
 }

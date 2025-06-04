@@ -30,5 +30,11 @@ namespace LojaGames.Controllers
             _produtoRepositorio.listadeprodutoserdados.listadeenderecos = _usuarioRepositorio.getEnderecoList(HttpContext.Session.GetString("cpf"));
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
+
+        public IActionResult ExcluirEndereco(string cep, string numero)
+        {
+            _usuarioRepositorio.ApagarEndereco(cep,numero,HttpContext.Session.GetString("cpf"));
+            return RedirectToAction("EnderecoLista", "Endereco");
+        }
     }
 }
