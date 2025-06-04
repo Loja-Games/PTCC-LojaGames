@@ -100,13 +100,12 @@
                                             </div>
                                             <div class="campobotao">
                                                 <div class="backbotum">
-
-                                                    <div class="botaomenos">@Html.ActionLink("-", "EditarCliente", new { id = item.Id_carrinho })</div>
-                                                    <label class="valorbotao">@HttpContextAccessor.HttpContext.Session.GetString("produto" + a)</label>
-                                                    <div class="botaomais">@Html.ActionLink("+", "EditarCliente", new { id = item.Id_carrinho })</div>
+                                                    <button type="button" onclick="executarQuantidade('@item.Id_carrinho','-')" class="botaomenos">-</button>
+                                                    <label data-desconto="@item.tb_Produto.ValorCusto_prod" class="valorbotao" data-valoritemc="@(item.tb_Produto.ValorVenda_prod)" data-quantidadeitem="1"  data-listacar="@item.Id_carrinho">1</label>
+                                                    <button class="botaomais" onclick="executarQuantidade('@item.Id_carrinho','+')">+</button>
                                                 </div>
 
-                                                <label class="p-1 fontbold">@item.tb_Produto.ValorVenda_prod</label>
+                                                <label class="p-1 fontbold" data-valoritem="@item.tb_Produto.ValorVenda_prod" data-saidavaloritem="@item.Id_carrinho">@item.tb_Produto.ValorVenda_prod.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</label>
                                             </div>
                                         </div>
                                         <img class="col-1 imagemlixo p-0 m-0" src="\assets\image\icones\lata-de-lixo.png" />
@@ -133,11 +132,11 @@
                             </div>
                             <div class="row pb-3">
                                 <div class="col-7 fontpagina fontbold" style="color: red;">DESCONTO: </div>
-                                <div class="col-5 d-flex justify-content-end">R$ 20,00</div>
+                                <div id="saidadesconto" class="col-5 d-flex justify-content-end" style="color: red;">R$ 0</div>
                             </div>
                             <div class="row pb-3">
                                 <div class="col-7 fontpagina fontbold" style="font-size: 25px;">TOTAL: </div>
-                                <div class="col-5 fontbold d-flex justify-content-end" style="font-size: 18px;">@HttpContextAccessor.HttpContext.Session.GetString("valortotalcarrinho")</div>
+                                <div class="col-5 fontbold d-flex justify-content-end" id="saidavalortotal" style="font-size: 18px;">R$ 0</div>
                             </div>
                             <div class="w-100 d-flex justify-content-center">
                                 <a asp-area="" asp-controller="PagamentoControler" asp-action="Pagamento" class="btn btn-success text-black botaocompraritens fontbold">Finalizar a Compra</a>

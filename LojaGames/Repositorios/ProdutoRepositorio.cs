@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Mysqlx.Crud;
 using System.Runtime.ConstrainedExecution;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace LojaGames.Repositorios
@@ -340,8 +341,92 @@ namespace LojaGames.Repositorios
 
         }
 
+        public int MudarQuantidade(int id, string operacao)
+        {
 
+            switch (operacao)
+            {
+                case "-":
+                    return subQuantidade(id);
 
+                case "+":
+                    return incrementQuantidade(id);
+
+                default:
+                    Console.WriteLine("Nenhuma das operações de subtração ou incremento foram acionadas. Retornando a Quantidade.");
+                    return getCarQuantidade(id);
+
+            }
+        }
+
+        private int getCarQuantidade(int id)
+        {
+            using (var db = new Conexao(_connectionString))
+            {
+                var Prompt = db.MySqlCommand();
+                Prompt.CommandText = $"Select quantidade from Tb_carrinho where Id_carrinho=@ID";
+                Prompt.Parameters.AddWithValue("@ID", id);
+                using (var reader = Prompt.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader.GetInt32("quantidade");
+                    }
+
+                    Console.WriteLine("O Metodo getCarQuantidade não conseguiu obter um valor");
+                    return 0;
+                }
+
+            }
+        }
+
+        private int subQuantidade(int id)
+        {
+            try
+            {
+                if (getCarQuantidade(id) > 1)
+                {
+                    var db = new Conexao(_connectionString);
+                    var cmd = db.MySqlCommand();
+                    cmd.CommandText = $"update Tb_carrinho set quantidade=quantidade-1 where Id_carrinho=@ID and quantidade>0;";
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.ExecuteNonQuery();
+                    db.Dispose();
+                    Console.WriteLine($" Quantidade do Produto ID: {id} subtraida com sucesso");
+                    
+                    return getCarQuantidade(id);
+                }
+                else 
+                {
+                    return getCarQuantidade(id);
+                }
+
+            }catch
+            {
+                Console.WriteLine($"Ocorreu um erro, o Metodo subQuantidade não conseguiu subtrair a quantidade do produto ID: {id}");
+                return getCarQuantidade(id);
+            }
+        }
+        private int incrementQuantidade(int id)
+        {
+            try
+            {
+                var db = new Conexao(_connectionString);
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = $"update Tb_carrinho set quantidade=quantidade+1 where Id_carrinho=@ID;";
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.ExecuteNonQuery();
+                db.Dispose();
+                Console.WriteLine($" Quantidade do Produto ID: {id} incrementada com sucesso");
+                return getCarQuantidade(id);
+
+            }
+            catch
+            {
+                Console.WriteLine($"Ocorreu um erro, o Metodo incrementQuantidade não conseguiu incrementar a quantidade do produto ID: {id}");
+                return getCarQuantidade(id);
+            }
+        }
 
 
 

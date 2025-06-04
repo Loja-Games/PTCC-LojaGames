@@ -2,6 +2,7 @@
 using LojaGames.Repositorios;
 using LojaGames.Models;
 using System.Reflection.PortableExecutable;
+using Microsoft.AspNetCore.Components.RenderTree;
 
 namespace LojaGames.Controllers
 {
@@ -14,11 +15,16 @@ namespace LojaGames.Controllers
             _produtoRepositorio = produtoRepositorio;
         }
 
-        public IActionResult Quantidade(string id, string acao)
-        {
-            Console.WriteLine($"o ID = {id} e a ação é: {acao}");
 
-            return View();
+        [HttpPost]
+        public IActionResult Quantidade([FromBody] JsReceptor js)
+        {
+            Console.WriteLine($"o ID = {js.id} e a ação é: {js.acao}");
+
+            
+
+
+            return Json(new {quantidadefinal = Convert.ToString(_produtoRepositorio.MudarQuantidade(Convert.ToInt32(js.id),js.acao))});
         }
 
         public IActionResult Procura(string pesquisa)
