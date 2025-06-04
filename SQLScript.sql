@@ -2,11 +2,10 @@ drop database db_vxgames;
 create database db_vxgames;
 use db_vxgames;
 
-
 create table Tb_produto(
 Id_prod int auto_increment,
 Nome_prod varchar(50),
-Descricao_prod varchar(50),
+Descricao_prod varchar(250),
 ValorCusto_prod numeric(10,2),
 ValorVenda_prod numeric(10,2),
 Desconto_prod numeric(10,2),
