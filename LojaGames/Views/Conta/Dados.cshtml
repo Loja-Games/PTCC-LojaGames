@@ -5,15 +5,55 @@
 
 <div class="w-100 h-100 d-flex justify-content-center align-items-center">
     <div class="bordadosenderecos p-3">
-        <h1 class="fontpagina fontbold w-100" style="text-align:center;">Meus Pedidos</h1>
+        <h1 class="fontpagina fontbold w-100" style="text-align:center;">Meus Dados</h1>
         <hr class="w-100" style="border: 1px solid #146FAD;">
         <div class="w-100" style="overflow-y:auto; height: 400px;">
-            <div class="d-flex flex-column justify-content-center align-items-center editarimagem borda w-100">
+            <div class="d-flex flex-column justify-content-center align-items-center editarimagem w-100">
                 <img id="imagemdeeditar" src="@Model.usuario.Img_caminho" style="width: 150px; margin-bottom: 10px; border: 1px solid rgba(0,0,0,0.25);border-radius: 100px;">
-
                 <label for="inputimage" class="btn btn-primary mb-2" style="border-radius: 10px;">Selecionar Imagem</label>
                 <input type="file" id="inputimage" name="imagemform" accept="image/*" style="display: none;">
             </div>
+            <form class="w-100" asp-action="AtualizarDados">
+                <div class="mb-3 row formput" style="width:96%;">
+                    <label for="excpf" class="col-sm-2 col-form-label">CPF:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="excpf" readonly class="form-control-plaintext" id="staticEmail" value="00000000000">
+                    </div>
+                </div>
+                <div class="mb-3 row formput" style="width:96%;">
+                    <label for="exnome" class="col-sm-2 col-form-label">Nome:</label>
+                    <div class="col-sm-10">
+                        <input name="exnome" type="text" class="form-control" id="staticEmail" value="nome">
+                    </div>
+                </div>
+                <div class="mb-3 row formput" style="width:96%;">
+                    <label for="exemail" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-sm-10">
+                        <input name="exemail" type="email" class="form-control" id="inputPassword">
+                    </div>
+                </div>
+                <div class="mb-3 row formput" style="width:96%;">
+                    <label for="exusuario" class="col-sm-2 col-form-label">Usuario:</label>
+                    <div class="col-sm-10">
+                        <input name="exusuario" type="text" class="form-control" id="inputPassword">
+                    </div>
+                </div>
+                <div class="mb-3 row formput" style="width:96%;">
+                    <label for="exsenha" class="col-sm-2 col-form-label">Senha:</label>
+                    <div class="col-sm-10">
+                        <input name="exsenha" type="password" class="form-control" id="inputPassword">
+                    </div>
+                </div>
+
+                <div class="mb-3 row formput" style="width:96%;">
+                    <label for="extelefone" class="col-sm-2 col-form-label">Telefone:</label>
+                    <div class="col-sm-10">
+                        <input name="extelefone" type="text" class="form-control" id="staticEmail" value="1111111111">
+                    </div>
+                </div>
+
+
+            </form>
             
 
 
