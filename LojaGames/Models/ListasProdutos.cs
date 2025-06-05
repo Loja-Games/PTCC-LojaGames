@@ -8,6 +8,7 @@ namespace LojaGames.Models
         public IEnumerable<Tb_endereco>? listadeenderecos { get; set; }
         public IEnumerable<Tb_carrinho>? listacarrinho { get; set; }
         public IEnumerable<Historico> listadohistorico { get; set; } = new List<Historico>() { new Historico(), };
+        public Tb_usuario usuario { get; set; }
 
         public string numerocartao { get; set; }
         public string datacartao { get; set; }

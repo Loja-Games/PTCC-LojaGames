@@ -17,8 +17,6 @@ VendaDisponivel_prod bool default 1,
 primary key(Id_prod)
 );
 
-
-
 create table Tb_pagamento(
 Id_pag int auto_increment primary key,
 descricao_pag varchar(100)
@@ -48,12 +46,15 @@ create table Tb_usuario(
 Cpf_cli char(11) not null,
 Usuario_cli varchar(50),
 Senha_cli varchar(50) not null,
-Img_path varchar(200),
+Img_path longblob,
+Img_caminho varchar(500) default '/assets/image/perfil-de-usuario.png',
 Cargo_cli varchar (50) default'Cliente',
 Ativo_cli bool default 1,
 primary key(Usuario_cli),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
+
+select Img_path from Tb_usuario where Cpf_cli='00000000000';
 
 create table Tb_telefone(
 Id_telefone int auto_increment,

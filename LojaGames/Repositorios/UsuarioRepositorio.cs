@@ -6,6 +6,8 @@ using LojaGames.Repositorios;
 using System.ComponentModel;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Runtime.ConstrainedExecution;
+using System.IO;
+using System.Reflection.Metadata.Ecma335;
 
 
 namespace LojaGames.Repositorios
@@ -258,6 +260,7 @@ namespace LojaGames.Repositorios
                             Senha_cli = reader.GetString("Senha_cli"),
                             Cargo_cli = reader.GetString("Cargo_cli"),
                             Ativo_cli = reader.GetBoolean("Ativo_cli"),
+                            Img_caminho = reader.GetString("Img_caminho"),
                         };
                     }
                     else
@@ -286,6 +289,7 @@ namespace LojaGames.Repositorios
                             Senha_cli = reader.GetString("Senha_cli"),
                             Cargo_cli = reader.GetString("Cargo_cli"),
                             Ativo_cli = reader.GetBoolean("Ativo_cli"),
+                            Img_caminho = reader.GetString("Img_caminho"),
                         };
                     }
                 }
@@ -335,6 +339,29 @@ namespace LojaGames.Repositorios
             }
         }
 
+
+
+
+
+        public bool enviarImgBD(byte[] imgbyte,string cpf)
+        {
+            try
+            {
+                var db = new Conexao(_connectionString);
+                var query = db.MySqlCommand();
+                query.CommandText = $"Update Tb_usuario Set Img_path=@arquivo where Cpf_cli=@Cpf;";
+                query.Parameters.AddWithValue("@Cpf", cpf);
+                query.Parameters.AddWithValue("@arquivo", imgbyte);
+                query.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Não foi possivel colocar a imagem no banco");
+                return false;
+            }
+        }
+
         public void ApagarEndereco(string cep, string numero, string cpf)
         {
             Console.WriteLine($"Cep: {cep} Numero: {numero} CPF: {cpf}");
@@ -372,6 +399,66 @@ namespace LojaGames.Repositorios
             }
         }
 
+
+        public string salvarByteLocal(byte[] bytes,string nome,string formato)
+        {
+            try
+            {
+                string nomedoarquivo = $"{nome}."+formato;
+                string caminhoFinal = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "image", "fromdb", nomedoarquivo);
+                System.IO.File.WriteAllBytes(caminhoFinal, bytes);
+                string caminhoParaRetorno = "/assets/image/fromdb/" + nomedoarquivo;
+                return caminhoParaRetorno;
+            }
+            catch
+            {
+                Console.WriteLine("Erro ao salvar localmente a imagem");
+                return "erro";
+            }
+        }
+
+        public byte[] receberImgBD(string cpf)
+        {
+            try
+            {
+                var db = new Conexao(_connectionString);
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "select img_path from Tb_usuario where Cpf_cli = @cpf";
+                cmd.Parameters.AddWithValue("@cpf", cpf);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader["Img_path"] as byte[];
+                    }
+                }
+
+                return null;
+            }
+            catch
+            {
+                Console.WriteLine("Não foi possivel obter a imagem do banco");
+                return null;
+            }
+        }
+
+        public void salvarCaminhoBd(string caminho,string cpf)
+        {
+            try
+            {
+                var db = new Conexao(_connectionString);
+                var query = db.MySqlCommand();
+                query.CommandText = @"UPDATE Tb_usuario SET Img_caminho = @caminho WHERE Cpf_cli = @Cpf;";
+                query.Parameters.AddWithValue("@caminho", caminho);
+                query.ExecuteNonQuery();
+                db.Dispose();
+            }
+            catch
+            {
+                Console.WriteLine("O caminho da imagem nao foi atualizada");
+            }
+        }
 
 
     }

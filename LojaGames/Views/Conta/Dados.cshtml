@@ -1,14 +1,20 @@
 ﻿@model LojaGames.Models.ListasProdutos;
 
 <link href="@Url.Content("~/css/endereco.css")" rel="stylesheet" />
-
+<link href="@Url.Content("~/css/dados.css")" rel="stylesheet" />
 
 <div class="w-100 h-100 d-flex justify-content-center align-items-center">
     <div class="bordadosenderecos p-3">
         <h1 class="fontpagina fontbold w-100" style="text-align:center;">Meus Pedidos</h1>
         <hr class="w-100" style="border: 1px solid #146FAD;">
         <div class="w-100" style="overflow-y:auto; height: 400px;">
-            @* <img src="~/assets/image/icones/404.svg">*@
+            <div class="d-flex flex-column justify-content-center align-items-center editarimagem borda w-100">
+                <img id="imagemdeeditar" src="@Model.usuario.Img_caminho" style="width: 150px; margin-bottom: 10px; border: 1px solid rgba(0,0,0,0.25);border-radius: 100px;">
+
+                <label for="inputimage" class="btn btn-primary mb-2" style="border-radius: 10px;">Selecionar Imagem</label>
+                <input type="file" id="inputimage" name="imagemform" accept="image/*" style="display: none;">
+            </div>
+            
 
 
         </div>
@@ -19,3 +25,4 @@
     </div>
 </div>
 <script src="~/js/endereco.js"></script>
+<script src="~/js/dados.js"></script>

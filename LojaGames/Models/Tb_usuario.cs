@@ -7,7 +7,7 @@
         public string? Senha_cli { get; set; }
         public string? Cargo_cli { get; set; }
 
-
+        public string? Img_caminho { get; set; }
 
 
         public void alterarEmail(string email)
