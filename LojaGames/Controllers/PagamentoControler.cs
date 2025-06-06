@@ -58,7 +58,7 @@ namespace LojaGames.Controllers
                     return RedirectToAction("Conta", "Conta");
 
                 default:
-                    return View();
+                    return RedirectToAction("Conta", "Conta");
             }
         }
 
