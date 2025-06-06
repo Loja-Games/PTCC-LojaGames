@@ -22,7 +22,7 @@ VALUES
 ('Smartphone Positivo', 'Android 10, 64GB e Câmera 13MP', 2803.24, 2522.92, 10.00, 'Smartphone', 'Positivo', 29, 1, '/assets/image/itens/SmartphonePOSITIVO-4.png'),
 ('Smartphone Microsoft', 'Tela de 6.5", 128GB e desempenho aprimorado', 2415.80, 2415.80, 0.00, 'Smartphone', 'Microsoft', 28, 1, '/assets/image/itens/SmartphoneASUS-2.png'),
 ('Smartphone Positivo', 'Compacto com 32GB, ideal para uso diário', 732.64, 732.64, 0.00, 'Smartphone', 'Positivo', 31, 1, '/assets/image/itens/TabletPOSITIVO-2.png'),
-('Smartphone Sony', 'Smartphone com qualidade de som premium e 128GB de armazenamento', 1971.71, 1774.54, 10.00, 'Smartphone', 'Sony', 19, 1, '/assets/image/itens/SonyProdutoremoto2.png'),
+('Console Sony', ' qualidade de som premium e 128GB de armazenamento', 1971.71, 1774.54, 10.00, 'Smartphone', 'Sony', 19, 1, '/assets/image/itens/SonyProdutoremoto2.png'),
 
 -- Computadores
 ('Computador Asus', 'Monitor LED 21", 8GB RAM e SSD 256GB', 2817.65, 2817.65, 0.00, 'Computador', 'Asus', 35, 1, '/assets/image/itens/ComputadorCompleto.png'),
@@ -45,8 +45,8 @@ VALUES
 
 -- Softwares
 ('Pacote Windows e Office', 'Windows 11 Pro e Office 2021 para uso profissional', 799.90, 999.90, 15.00, 'Software', 'Microsoft', 100, 1, '/assets/image/itens/PacoteWindowsEOffice-5.png'),
-('Windows 10', 'Windows 10 Home para uso doméstico', 199.90, 199.90, 0.00, 'Software', 'Microsoft', 200, 1, '/assets/image/itens/Window10-2.png'),
-('Windows 11', 'Windows 11 Home com interface moderna', 249.90, 249.90, 0.00, 'Software', 'Microsoft', 150, 1, '/assets/image/itens/Window11-1.png');
+('Windows 10', 'Windows 10 Home para uso doméstico', 199.90, 199.90, 0.00, 'Software', 'Windows', 200, 1, '/assets/image/itens/Window10-2.png'),
+('Windows 11', 'Windows 11 Home com interface moderna', 249.90, 249.90, 0.00, 'Software', 'Windows', 150, 1, '/assets/image/itens/Window11-1.png');
 
 insert into Tb_pagamento(descricao_pag) values
 ('sem forma de pagamento'),
