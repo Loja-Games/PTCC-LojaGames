@@ -1,6 +1,13 @@
 ﻿@model LojaGames.Models.ListasProdutos;
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
+
+
+@{
+    ViewData["Title"] = "Lista de Produtos";
+}
+
+
 <link href="~/css/produto.css" rel="stylesheet" />
 <script>
     const caixas = '@HttpContextAccessor.HttpContext.Session.GetString("redirecionarpesquisa")';
