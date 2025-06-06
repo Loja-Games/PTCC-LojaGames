@@ -20,7 +20,7 @@ namespace LojaGames.Controllers
 
         public IActionResult Cadastro()
         {
-            return View();
+            return View(_produtoRepositorio.listadeprodutoserdados);
         }
 
         public IActionResult Login()
@@ -29,7 +29,10 @@ namespace LojaGames.Controllers
             {
                 HttpContext.Session.SetString("perfil", "Entrar na Conta");
             }
-            
+
+            Console.WriteLine(HttpContext.Session.GetString("perfil"));
+
+
             if (HttpContext.Session.GetString("perfil") != "Entrar na Conta")
             {
                 
@@ -37,7 +40,7 @@ namespace LojaGames.Controllers
             }
             else
             {
-                return View();
+                return View(_produtoRepositorio.listadeprodutoserdados);
             }
         }
 
@@ -65,7 +68,7 @@ namespace LojaGames.Controllers
             else
             {
                 ModelState.AddModelError("", "Esse CPF e esse Usuario ja estao cadastrados");
-                return View();
+                return View(_produtoRepositorio.listadeprodutoserdados);
             }
 
 
@@ -98,7 +101,7 @@ namespace LojaGames.Controllers
             }
 
             ModelState.AddModelError("", "Os dados de Login são invalidos.");
-            return View();
+            return View(_produtoRepositorio.listadeprodutoserdados);
         }
     }
 }

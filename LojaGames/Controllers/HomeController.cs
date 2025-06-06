@@ -9,11 +9,13 @@ namespace LojaGames.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ProdutoRepositorio _produtoRepositorio;
+        private readonly UsuarioRepositorio _usuarioRepositorio;
 
-        public HomeController(ILogger<HomeController> logger, ProdutoRepositorio produtoRepositorio)
+        public HomeController(ILogger<HomeController> logger, ProdutoRepositorio produtoRepositorio,UsuarioRepositorio usuarioRepositorio)
         {
             _logger = logger;
             _produtoRepositorio = produtoRepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
         public IActionResult Index()
@@ -22,6 +24,7 @@ namespace LojaGames.Controllers
 
             if (HttpContext.Session.GetString("perfil") != "Entrar na Conta" && string.IsNullOrEmpty(HttpContext.Session.GetString("perfil")) == false)
             {
+                _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(new Tb_usuario() { Cpf_cli = HttpContext.Session.GetString("cpf") });
                 _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
                 _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
                 return View(_produtoRepositorio.listadeprodutoserdados);

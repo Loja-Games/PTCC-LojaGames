@@ -25,6 +25,9 @@ insert into Tb_pagamento(descricao_pag) values
 insert into Tb_cliente values('00000000000','Admin');
 insert into Tb_usuario(Cpf_cli,Usuario_cli,Senha_cli,Cargo_cli) values
 ('00000000000','admin','admin','ADMIN');
+insert into Tb_telefone(Cpf_cli) values ('00000000000');
+insert into Tb_Email(Cpf_cli) values ('00000000000');
+
 
 select * from Tb_produto where Nome_prod like '%Jogo%' or Descricao_prod like '%Compatível com Ryzen%';
 

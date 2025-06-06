@@ -37,7 +37,7 @@ primary key(Cpf_cli)
 create table Tb_email(
 Id_Email int auto_increment,
 Cpf_cli char(11) not null,
-Email varchar(50) not null,
+Email varchar(50) not null default 'Sem Email',
 primary key(Id_Email),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
@@ -54,13 +54,12 @@ primary key(Usuario_cli),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
 
-select Img_path from Tb_usuario where Cpf_cli='00000000000';
 
 create table Tb_telefone(
 Id_telefone int auto_increment,
 Cpf_cli char(11) not null,
-Telefone varchar(50) not null,
-DD varchar(10) not null,
+Telefone varchar(50) not null default 'Sem Telefone',
+DD varchar(10) not null default 'Sem DD',
 primary key(Id_telefone),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
@@ -104,6 +103,16 @@ foreign key(Id_prod) references Tb_produto(Id_prod),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli),
 foreign key(Id_pag) references Tb_pagamento(Id_pag)
 );
+
+
+select * from Tb_usuario;
+SELECT t1.*, t2.Email, t3.DD,t3.Telefone,t4.Nome_cli FROM Tb_usuario t1 left join Tb_Email t2 on t1.Cpf_cli = t2.Cpf_cli left join Tb_telefone t3 on t1.Cpf_cli = t3.Cpf_cli left join Tb_cliente t4 on t1.Cpf_cli = t4.Cpf_cli where t1.Cpf_cli = '77777777777';
+
+
+
+
+
+
 
 update Tb_carrinho set quantidade=quantidade+1 where Id_carrinho=1;
 

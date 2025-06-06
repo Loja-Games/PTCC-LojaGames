@@ -1,4 +1,5 @@
-﻿using LojaGames.Repositorios;
+﻿using LojaGames.Models;
+using LojaGames.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaGames.Controllers
@@ -16,6 +17,7 @@ namespace LojaGames.Controllers
         }
         public IActionResult EnderecoLista()
         {
+            _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(new Tb_usuario() { Cpf_cli = HttpContext.Session.GetString("cpf") });
             _produtoRepositorio.listadeprodutoserdados.listadeenderecos = _usuarioRepositorio.getEnderecoList(HttpContext.Session.GetString("cpf"));
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
@@ -28,11 +30,13 @@ namespace LojaGames.Controllers
             string cpf = HttpContext.Session.GetString("cpf");
             _usuarioRepositorio.adicionarEndereco(cpf,cep,numero,uf,endereco,complemento,localidade,bairro,estado);
             _produtoRepositorio.listadeprodutoserdados.listadeenderecos = _usuarioRepositorio.getEnderecoList(HttpContext.Session.GetString("cpf"));
+            _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(new Tb_usuario() { Cpf_cli = HttpContext.Session.GetString("cpf") });
             return View(_produtoRepositorio.listadeprodutoserdados);
         }
 
         public IActionResult ExcluirEndereco(string cep, string numero)
         {
+            
             _usuarioRepositorio.ApagarEndereco(cep,numero,HttpContext.Session.GetString("cpf"));
             return RedirectToAction("EnderecoLista", "Endereco");
         }

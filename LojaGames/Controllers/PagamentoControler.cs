@@ -1,4 +1,5 @@
-﻿using LojaGames.Repositorios;
+﻿using LojaGames.Models;
+using LojaGames.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaGames.Controllers
@@ -18,6 +19,7 @@ namespace LojaGames.Controllers
 
         public IActionResult Pagamento()
         {
+            _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(new Tb_usuario() { Cpf_cli = HttpContext.Session.GetString("cpf") });
             _produtoRepositorio.listadeprodutoserdados.listadeenderecos = _usuarioRepositorio.getEnderecoList(HttpContext.Session.GetString("cpf"));
             _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
             _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));

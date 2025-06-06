@@ -8,6 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Runtime.ConstrainedExecution;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
+using System.Text.RegularExpressions;
 
 
 namespace LojaGames.Repositorios
@@ -203,6 +204,15 @@ namespace LojaGames.Repositorios
                 cmd.ExecuteNonQuery();
 
             }
+            using (var db = new Conexao(_connectionString))
+            {
+                var cmd = db.MySqlCommand();
+
+                cmd.CommandText = "INSERT INTO Tb_telefone (Cpf_cli) VALUES (@Cpf)";
+                cmd.Parameters.AddWithValue("@Cpf", email.Cpf_cli);
+                cmd.ExecuteNonQuery();
+
+            }
         }
 
         public bool ValidarExistenciaUsuario(Tb_usuario tb_Usuario)
@@ -246,7 +256,7 @@ namespace LojaGames.Repositorios
             using (var db = new Conexao(_connectionString))
             {
                 var cmd = db.MySqlCommand();
-                cmd.CommandText = "SELECT * FROM Tb_usuario WHERE Cpf_cli = @Cpf";
+                cmd.CommandText = "SELECT t1.*, t2.Email, t3.DD,t3.Telefone,t4.Nome_cli FROM Tb_usuario t1 left join Tb_Email t2 on t1.Cpf_cli = t2.Cpf_cli left join Tb_telefone t3 on t1.Cpf_cli = t3.Cpf_cli left join Tb_cliente t4 on t1.Cpf_cli = t4.Cpf_cli where t1.Cpf_cli = @Cpf;";
                 cmd.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
                 cmd.ExecuteNonQuery();
                 using (var reader = cmd.ExecuteReader())
@@ -261,6 +271,9 @@ namespace LojaGames.Repositorios
                             Cargo_cli = reader.GetString("Cargo_cli"),
                             Ativo_cli = reader.GetBoolean("Ativo_cli"),
                             Img_caminho = reader.GetString("Img_caminho"),
+                            telefones = new Tb_telefone { DD = reader.GetString("DD"), Telefone = reader.GetString("Telefone") },
+                            Nome = reader.GetString("Nome_cli"),
+                            Email = reader.GetString("Email"),
                         };
                     }
                     else
@@ -451,6 +464,7 @@ namespace LojaGames.Repositorios
                 var query = db.MySqlCommand();
                 query.CommandText = @"UPDATE Tb_usuario SET Img_caminho = @caminho WHERE Cpf_cli = @Cpf;";
                 query.Parameters.AddWithValue("@caminho", caminho);
+                query.Parameters.AddWithValue("@Cpf", cpf);
                 query.ExecuteNonQuery();
                 db.Dispose();
             }
@@ -460,6 +474,78 @@ namespace LojaGames.Repositorios
             }
         }
 
+
+        public bool atualizarUsuario(Tb_usuario tb_Usuario)
+        {
+            try
+            {
+                using (var db = new Conexao(_connectionString))
+                {
+                    var query = db.MySqlCommand();
+                    query.CommandText = @"UPDATE Tb_usuario SET Usuario_cli = @usuario, Senha_cli = @senha WHERE Cpf_cli = @Cpf;";
+                    query.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
+                    query.Parameters.AddWithValue("@senha", tb_Usuario.Senha_cli);
+                    query.Parameters.AddWithValue("@usuario", tb_Usuario.Usuario_cli);
+                    query.ExecuteNonQuery();
+                    db.Dispose();
+                }
+
+                using (var db = new Conexao(_connectionString))
+                {
+                    var query = db.MySqlCommand();
+                    query.CommandText = @"UPDATE Tb_email SET Email = @Email WHERE Cpf_cli = @Cpf;";
+                    query.Parameters.AddWithValue("@Email", tb_Usuario.Email);
+                    query.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
+                    query.ExecuteNonQuery();
+                    db.Dispose();
+                }
+
+                using (var db = new Conexao(_connectionString))
+                {
+                    var query = db.MySqlCommand();
+                    query.CommandText = @"UPDATE Tb_cliente SET Nome_cli = @Nome_cli WHERE Cpf_cli = @Cpf;";
+                    query.Parameters.AddWithValue("@Nome_cli", tb_Usuario.Nome);
+                    query.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
+                    query.ExecuteNonQuery();
+                    db.Dispose();
+                }
+
+                using (var db = new Conexao(_connectionString))
+                {
+                    var query = db.MySqlCommand();
+                    query.CommandText = @"UPDATE Tb_telefone SET Telefone = @Telefone, DD=@DD WHERE Cpf_cli = @Cpf;";
+                    query.Parameters.AddWithValue("@Telefone", tb_Usuario.telefones.Telefone);
+                    query.Parameters.AddWithValue("@DD", tb_Usuario.telefones.DD);
+                    query.Parameters.AddWithValue("@Cpf", tb_Usuario.Cpf_cli);
+                    query.ExecuteNonQuery();
+                    db.Dispose();
+                }
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Ocorreu um erro ao Atualizar os dados no metodo: atualizarUsuario");
+                return false;
+            }
+        }
+
+
+        public Tb_telefone ExtrairTelefone(string entrada)
+        {
+            var resultado = new Tb_telefone();
+
+            // Remove qualquer caractere que não seja número
+            entrada = new string(entrada.Where(char.IsDigit).ToArray());
+
+            // Verifica se tem pelo menos 10 ou 11 dígitos (DDD + número)
+            if (entrada.Length >= 10 && entrada.Length <= 11)
+            {
+                resultado.DD = entrada.Substring(0, 2);
+                resultado.Telefone = entrada.Substring(2);
+            }
+
+            return resultado;
+        }
 
     }
 }

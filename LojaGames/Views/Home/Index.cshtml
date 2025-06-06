@@ -71,9 +71,9 @@
                                     -@item.Desconto_prod.ToString("0")%
                                 </span>
                             }
-                            
 
-                            <img class="imagemcotainerproduto" src="@item.img_path">
+
+                            <img class="imagemcotainerproduto" style="height: 220px;" src="@item.img_path">
                             <div class="conteudoproduto p-2">
                                 <div class="nomedoitem pb-1">
                                     @item.Nome_prod - @item.Descricao_prod
@@ -128,7 +128,6 @@
                         {
                             <section class="containerdoproduto p-3 position-relative">
 
-
                                 @if (item.Desconto_prod > 0)
                                 {
                                     <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
@@ -136,7 +135,8 @@
                                     </span>
                                 }
 
-                                <img class="imagemcotainerproduto" src="@item.img_path">
+
+                                <img class="imagemcotainerproduto" style="height: 220px;" src="@item.img_path">
                                 <div class="conteudoproduto p-2">
                                     <div class="nomedoitem pb-1">
                                         @item.Nome_prod - @item.Descricao_prod
@@ -197,7 +197,7 @@
                                         -@item.Desconto_prod.ToString("0")%
                                     </span>
                                 }
-                                <img class="imagemcotainerproduto" src="@item.img_path">
+                                <img class="imagemcotainerproduto" style="height: 220px;" src="@item.img_path">
                                 <div class="conteudoproduto p-2">
                                     <div class="nomedoitem pb-1">
                                         @item.Nome_prod - @item.Descricao_prod

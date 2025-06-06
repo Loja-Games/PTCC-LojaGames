@@ -9,10 +9,12 @@ namespace LojaGames.Controllers
     public class ProcuraControler : Controller
     {
         private readonly ProdutoRepositorio _produtoRepositorio;
+        private readonly UsuarioRepositorio _usuarioRepositorio;
 
-        public ProcuraControler(ProdutoRepositorio produtoRepositorio)
+        public ProcuraControler(ProdutoRepositorio produtoRepositorio,UsuarioRepositorio usuarioRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
 
@@ -38,6 +40,7 @@ namespace LojaGames.Controllers
             if (HttpContext.Session.GetString("perfil") != "Entrar na Conta" && string.IsNullOrEmpty(HttpContext.Session.GetString("perfil")) == false)
             {
                 _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
+                _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(new Tb_usuario() { Cpf_cli = HttpContext.Session.GetString("cpf")});
             }
             return View(_produtoRepositorio.listadeprodutoserdados);
         }

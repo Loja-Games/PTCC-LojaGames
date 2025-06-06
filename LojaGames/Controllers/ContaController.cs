@@ -1,4 +1,5 @@
-﻿using LojaGames.Models;
+﻿using System.Reflection.Metadata;
+using LojaGames.Models;
 using LojaGames.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Cms;
@@ -25,6 +26,30 @@ namespace LojaGames.Controllers
             _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
             _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
             return View(_produtoRepositorio.listadeprodutoserdados);
+        }
+
+        [HttpPost]
+        public IActionResult AtualizarDados(string exnome, string exemail, string exusuario, string exsenha, string extelefone)
+        {
+            Console.WriteLine($"exnome: {exnome} - exemail: {exemail} - exusuario: {exusuario} - exsenha: {exsenha} - extelefone: {extelefone}");
+            Tb_usuario usuario = new Tb_usuario();
+            usuario.Nome = exnome;
+            usuario.Email = exemail;
+            usuario.Usuario_cli = exusuario;
+            usuario.Senha_cli = exsenha;
+            usuario.telefones = _usuarioRepositorio.ExtrairTelefone(extelefone);
+            usuario.Cpf_cli = HttpContext.Session.GetString("cpf");
+            if (_usuarioRepositorio.atualizarUsuario(usuario))
+            {
+                Console.WriteLine("Usuario atualizado com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("Ocorreu um erro ao atualizar o cadastro");
+            }
+
+
+                return RedirectToAction("Dados", "Conta");
         }
 
 
@@ -62,7 +87,6 @@ namespace LojaGames.Controllers
                 byte[] imagemvolta = _usuarioRepositorio.receberImgBD(cpf);
                 string caminhoimagem = _usuarioRepositorio.salvarByteLocal(imagemvolta,nomeimagem,"jpg");
                 _usuarioRepositorio.salvarCaminhoBd(caminhoimagem,cpf);
-
                 return Ok(caminhoimagem);
             }
             else
