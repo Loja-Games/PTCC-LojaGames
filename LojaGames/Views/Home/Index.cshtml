@@ -47,182 +47,230 @@
 <div class="d-flex justify-content-center" style="padding-top: 50px; padding-bottom: 30px;">
     <div class="barradetitulo"><div class="titulodabarra">Destaques</div></div>
 </div>
-<div class="backdosprodutos row xfull justify-content-center">
 
-    <div class="col-1 d-flex align-items-center">
-        <img class="imagemdaseta seta" src="/assets/image/icones/seta-direita.png" />
+<div class="position-relative d-flex justify-content-center align-items-center" style="height: 33.3vw;">
+
+    <div class="position-absolute start-0 top-50 translate-middle-y" style="z-index: 2; cursor: pointer;" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+        <img src="/assets/image/icones/seta-direita.png" alt="Anterior" style="width: 40px;transform:rotate(180deg);">
     </div>
 
-    <div class="col-8 containerdosentro">
-        <div class="p-3 row justify-content-center">
+    <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000" style="width: 80%;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleControls2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleControls2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleControls2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
 
+        <div class="carousel-inner">
             @{
-                int a = 0;
-                foreach (var item in Model.listadeprodutos.OrderByDescending(p => p.Desconto_prod))
+                var produtosComDesconto = Model.listadeprodutos
+                    .Where(p => p.Desconto_prod > 0)
+                    .OrderByDescending(p => p.Desconto_prod)
+                    .ToList();
+                
+                int totalSlides = (int)Math.Ceiling(produtosComDesconto.Count / 3.0);
+                
+                totalSlides = Math.Min(totalSlides, 3);
+                
+                for (int slide = 0; slide < totalSlides; slide++)
                 {
-                    a = a + 1;
-                    if (a <= 3)
-                    {
-                        <section class="containerdoproduto p-3 position-relative">
+                    <div class="carousel-item @(slide == 0 ? "active" : "")">
+                        <div class="row justify-content-center">
+                            <div class="col-12 containerdosentro">
+                                <div class="p-3 row justify-content-center">
+                                    @{
+                                        var produtosSlide = produtosComDesconto
+                                            .Skip(slide * 3)
+                                            .Take(3);
+                                        
+                                        foreach (var item in produtosSlide)
+                                        {
+                                            <section class="containerdoproduto p-3 position-relative">
+                                                <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
+                                                    -@item.Desconto_prod.ToString("0")%
+                                                </span>
 
-                            @if (item.Desconto_prod > 0)
-                            {
-                                <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
-                                    -@item.Desconto_prod.ToString("0")%
-                                </span>
-                            }
-
-
-                            <img class="imagemcotainerproduto" style="height: 220px;" src="@item.img_path">
-                            <div class="conteudoproduto p-2">
-                                <div class="nomedoitem pb-1">
-                                    @item.Nome_prod - @item.Descricao_prod
-                                </div>
-                                <div class="preco pb-1">
-                                    @item.ValorCusto_prod.ToString("C", new CultureInfo("pt-br"))
-                                </div>
-                                <div class="precoavista">
-                                    <div class="textoavista">A Vista no PIX</div>
-                                    <div class="precovista">@item.ValorVenda_prod.ToString("C", new CultureInfo("pt-br"))</div>
+                                                <img class="imagemcotainerproduto w-100 object-fit-cover" style="height: 220px;" src="@item.img_path">
+                                                <div class="conteudoproduto p-2">
+                                                    <div class="nomedoitem pb-1">
+                                                        @item.Nome_prod - @item.Descricao_prod
+                                                    </div>
+                                                    <div class="preco pb-1">
+                                                        @item.ValorCusto_prod.ToString("C", new CultureInfo("pt-br"))
+                                                    </div>
+                                                    <div class="precoavista">
+                                                        <div class="textoavista">A Vista no PIX</div>
+                                                        <div class="precovista">@item.ValorVenda_prod.ToString("C", new CultureInfo("pt-br"))</div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        }
+                                    }
                                 </div>
                             </div>
-                        </section>
-                    }
+                        </div>
+                    </div>
                 }
             }
-
-
         </div>
     </div>
 
-    <div class="col-1 d-flex align-items-center ultimaseta">
-        <img class="imagemdaseta" src="/assets/image/icones/seta-direita.png" />
+    <div class="position-absolute end-0 top-50 translate-middle-y" style="z-index: 2; cursor: pointer;" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+        <img src="/assets/image/icones/seta-direita.png" alt="Próximo" style="width: 40px;">
     </div>
-
+</div>
 
 </div>
 <div class="banner backgroundbanner1 xfull"></div>
 
-@*-----------------*@
-
 <div class="d-flex justify-content-center" style="padding-top: 50px; padding-bottom: 30px;">
     <div class="barradetitulo"><div class="titulodabarra">Novidades do PlayStation</div></div>
 </div>
-<div class="backdosprodutos row xfull justify-content-center">
 
-    <div class="col-1 d-flex align-items-center">
-        <img class="imagemdaseta seta" src="/assets/image/icones/seta-direita.png" />
+<div class="position-relative d-flex justify-content-center align-items-center" style="height: 33.3vw;">
+    <div class="position-absolute start-0 top-50 translate-middle-y" style="z-index: 2; cursor: pointer;" data-bs-target="#carouselPlayStation" data-bs-slide="prev">
+        <img src="/assets/image/icones/seta-direita.png" alt="Anterior" style="width: 40px;transform:rotate(180deg);">
     </div>
-
-    <div class="col-8 containerdosentro">
-        <div class="p-3 row justify-content-center">
-
+    <div id="carouselPlayStation" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000" style="width: 80%;">
+        <div class="carousel-indicators">
             @{
-                int b = 0;
-                foreach (var item in Model.listadeprodutos.OrderByDescending(p => p.Desconto_prod))
+                var produtosPlayStation = Model.listadeprodutos
+                    .Where(p => p.Marca_prod == "Sony" && p.Desconto_prod > 0)
+                    .OrderByDescending(p => p.Desconto_prod)
+                    .ToList();
+                
+                int totalSlidesPS = (int)Math.Ceiling(produtosPlayStation.Count / 3.0);
+                totalSlidesPS = Math.Min(totalSlidesPS, 3);
+                
+                for (int i = 0; i < totalSlidesPS; i++)
                 {
-                    if (item.Marca_prod == "Sony")
-                    {
-                        b = b + 1;
-                        if (b <= 3)
-                        {
-                            <section class="containerdoproduto p-3 position-relative">
-
-                                @if (item.Desconto_prod > 0)
-                                {
-                                    <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
-                                        -@item.Desconto_prod.ToString("0")%
-                                    </span>
-                                }
-
-
-                                <img class="imagemcotainerproduto" style="height: 220px;" src="@item.img_path">
-                                <div class="conteudoproduto p-2">
-                                    <div class="nomedoitem pb-1">
-                                        @item.Nome_prod - @item.Descricao_prod
-                                    </div>
-                                    <div class="preco pb-1">
-                                        @item.ValorCusto_prod.ToString("C", new CultureInfo("pt-br"))
-                                    </div>
-                                    <div class="precoavista">
-                                        <div class="textoavista">A Vista no PIX</div>
-                                        <div class="precovista">@item.ValorVenda_prod.ToString("C", new CultureInfo("pt-br"))</div>
-                                    </div>
-                                </div>
-                            </section>
-                        }
-                    }
-                    
+                    <button type="button" data-bs-target="#carouselPlayStation" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-label="Slide @(i+1)"></button>
                 }
             }
+        </div>
 
+        <div class="carousel-inner">
+            @{
+                for (int slide = 0; slide < totalSlidesPS; slide++)
+                {
+                    <div class="carousel-item @(slide == 0 ? "active" : "")">
+                        <div class="row justify-content-center">
+                            <div class="col-12 containerdosentro">
+                                <div class="p-3 row justify-content-center">
+                                    @{
+                                        var produtosSlidePS = produtosPlayStation
+                                            .Skip(slide * 3)
+                                            .Take(3);
+                                        
+                                        foreach (var item in produtosSlidePS)
+                                        {
+                                            <section class="containerdoproduto p-3 position-relative">
+                                                <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
+                                                    -@item.Desconto_prod.ToString("0")%
+                                                </span>
 
+                                                <img class="imagemcotainerproduto w-100 object-fit-cover" style="height: 220px;" src="@item.img_path">
+                                                <div class="conteudoproduto p-2">
+                                                    <div class="nomedoitem pb-1">
+                                                        @item.Nome_prod - @item.Descricao_prod
+                                                    </div>
+                                                    <div class="preco pb-1">
+                                                        @item.ValorCusto_prod.ToString("C", new CultureInfo("pt-br"))
+                                                    </div>
+                                                    <div class="precoavista">
+                                                        <div class="textoavista">A Vista no PIX</div>
+                                                        <div class="precovista">@item.ValorVenda_prod.ToString("C", new CultureInfo("pt-br"))</div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
-
-    <div class="col-1 d-flex align-items-center ultimaseta">
-        <img class="imagemdaseta" src="/assets/image/icones/seta-direita.png" />
+    <div class="position-absolute end-0 top-50 translate-middle-y" style="z-index: 2; cursor: pointer;" data-bs-target="#carouselPlayStation" data-bs-slide="next">
+        <img src="/assets/image/icones/seta-direita.png" alt="Próximo" style="width: 40px;">
     </div>
-
-
 </div>
+
 <div class="banner backgroundbanner2 xfull"></div>
 
 <div class="d-flex justify-content-center" style="padding-top: 50px; padding-bottom: 30px;">
     <div class="barradetitulo"><div class="titulodabarra">Novidades do Xbox</div></div>
 </div>
-<div class="backdosprodutos row xfull justify-content-center">
 
-    <div class="col-1 d-flex align-items-center">
-        <img class="imagemdaseta seta" src="/assets/image/icones/seta-direita.png" />
+<div class="position-relative d-flex justify-content-center align-items-center" style="height: 33.3vw;">
+    <div class="position-absolute start-0 top-50 translate-middle-y" style="z-index: 2; cursor: pointer;" data-bs-target="#carouselXbox" data-bs-slide="prev">
+        <img src="/assets/image/icones/seta-direita.png" alt="Anterior" style="width: 40px;transform:rotate(180deg);">
     </div>
-
-    <div class="col-8 containerdosentro">
-        <div class="p-3 row justify-content-center">
-            
+    <div id="carouselXbox" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000" style="width: 80%;">
+        <div class="carousel-indicators">
             @{
-                int c = 0;
-                foreach (var item in Model.listadeprodutos.OrderByDescending(p => p.Desconto_prod))
+                var produtosXbox = Model.listadeprodutos
+                    .Where(p => p.Marca_prod == "Xbox" && p.Desconto_prod > 0)
+                    .OrderByDescending(p => p.Desconto_prod)
+                    .ToList();
+                
+                int totalSlidesXbox = (int)Math.Ceiling(produtosXbox.Count / 3.0);
+                totalSlidesXbox = Math.Min(totalSlidesXbox, 3);
+                
+                for (int i = 0; i < totalSlidesXbox; i++)
                 {
-                    if (item.Marca_prod == "Xbox")
-                    {
-                        c = c + 1;
-                        if (c <= 3)
-                        {
-                            <section class="containerdoproduto p-3 position-relative">
-
-                                @if (item.Desconto_prod > 0)
-                                {
-                                    <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
-                                        -@item.Desconto_prod.ToString("0")%
-                                    </span>
-                                }
-                                <img class="imagemcotainerproduto" style="height: 220px;" src="@item.img_path">
-                                <div class="conteudoproduto p-2">
-                                    <div class="nomedoitem pb-1">
-                                        @item.Nome_prod - @item.Descricao_prod
-                                    </div>
-                                    <div class="preco pb-1">
-                                        @item.ValorCusto_prod.ToString("C", new CultureInfo("pt-br"))
-                                    </div>
-                                    <div class="precoavista">
-                                        <div class="textoavista">A Vista no PIX</div>
-                                        <div class="precovista">@item.ValorVenda_prod.ToString("C", new CultureInfo("pt-br"))</div>
-                                    </div>
-                                </div>
-                            </section>
-                        }
-                    }
-
+                    <button type="button" data-bs-target="#carouselXbox" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-label="Slide @(i+1)"></button>
                 }
             }
+        </div>
 
+        <div class="carousel-inner">
+            @{
+                for (int slide = 0; slide < totalSlidesXbox; slide++)
+                {
+                    <div class="carousel-item @(slide == 0 ? "active" : "")">
+                        <div class="row justify-content-center">
+                            <div class="col-12 containerdosentro">
+                                <div class="p-3 row justify-content-center">
+                                    @{
+                                        var produtosSlideXbox = produtosXbox
+                                            .Skip(slide * 3)
+                                            .Take(3);
+                                        
+                                        foreach (var item in produtosSlideXbox)
+                                        {
+                                            <section class="containerdoproduto p-3 position-relative">
+                                                <span class="position-absolute top-0 end-0 m-2 badge bg-danger fs-6" style="transform: rotate(45deg);">
+                                                    -@item.Desconto_prod.ToString("0")%
+                                                </span>
+
+                                                <img class="imagemcotainerproduto w-100 object-fit-cover" style="height: 220px;" src="@item.img_path">
+                                                <div class="conteudoproduto p-2">
+                                                    <div class="nomedoitem pb-1">
+                                                        @item.Nome_prod - @item.Descricao_prod
+                                                    </div>
+                                                    <div class="preco pb-1">
+                                                        @item.ValorCusto_prod.ToString("C", new CultureInfo("pt-br"))
+                                                    </div>
+                                                    <div class="precoavista">
+                                                        <div class="textoavista">A Vista no PIX</div>
+                                                        <div class="precovista">@item.ValorVenda_prod.ToString("C", new CultureInfo("pt-br"))</div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
-
-    <div class="col-1 d-flex align-items-center ultimaseta">
-        <img class="imagemdaseta" src="/assets/image/icones/seta-direita.png" />
+    <div class="position-absolute end-0 top-50 translate-middle-y" style="z-index: 2; cursor: pointer;" data-bs-target="#carouselXbox" data-bs-slide="next">
+        <img src="/assets/image/icones/seta-direita.png" alt="Próximo" style="width: 40px;">
     </div>
-
-
 </div>
