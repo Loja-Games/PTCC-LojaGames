@@ -93,7 +93,7 @@
                             <img style="height:230px;" class="imagemcotainerproduto" src="@item.img_path">
                             <input type="hidden" name="Id" value="@item.Id_prod">
                             <div class="conteudoproduto p-2">
-                                <div class="nomedoitem pb-1">
+                                <div class="nomedoitem pb-1" style="overflow:auto;height:80px;">
                                     @Html.DisplayFor(modelItem => item.Nome_prod) - @Html.DisplayFor(modelItem => item.Descricao_prod)
                                 </div>
                                 <div class="preco pb-1">
