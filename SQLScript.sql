@@ -43,6 +43,7 @@ foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
 
 create table Tb_usuario(
+Id_usuario int auto_increment,
 Cpf_cli char(11) not null,
 Usuario_cli varchar(50),
 Senha_cli varchar(50) not null,
@@ -50,7 +51,7 @@ Img_path longblob,
 Img_caminho varchar(500) default '/assets/image/perfil-de-usuario.png',
 Cargo_cli varchar (50) default'Cliente',
 Ativo_cli bool default 1,
-primary key(Usuario_cli),
+primary key(Id_usuario),
 foreign key(Cpf_cli) references Tb_cliente(Cpf_cli) on delete cascade
 );
 

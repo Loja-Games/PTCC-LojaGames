@@ -67,6 +67,7 @@ namespace LojaGames.Controllers
             }
             else
             {
+                HttpContext.Session.SetString("cadastrorep", "CPF ja cadastrado");
                 ModelState.AddModelError("", "Esse CPF e esse Usuario ja estao cadastrados");
                 return View(_produtoRepositorio.listadeprodutoserdados);
             }
@@ -97,9 +98,17 @@ namespace LojaGames.Controllers
                 HttpContext.Session.SetString("cpf", usuario.Cpf_cli);
                 HttpContext.Session.SetString("Pedido", _produtoRepositorio.novoPedido());
 
+
+                Tb_usuario usuario2 = new Tb_usuario();
+                usuario2.Cpf_cli = HttpContext.Session.GetString("cpf");
+                _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(usuario2);
+                _produtoRepositorio.listadeprodutoserdados.listadohistorico = _produtoRepositorio.getHistorico(usuario2.Cpf_cli);
+                _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
+                _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(usuario2.Cpf_cli);
+
                 return RedirectToAction("Conta", "Conta"); /* Destino Após o login */
             }
-
+            HttpContext.Session.SetString("logL","Dados de Login Invalidos");
             ModelState.AddModelError("", "Os dados de Login são invalidos.");
             return View(_produtoRepositorio.listadeprodutoserdados);
         }

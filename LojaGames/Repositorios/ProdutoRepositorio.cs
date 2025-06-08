@@ -152,6 +152,7 @@ namespace LojaGames.Repositorios
 
         public IEnumerable<Tb_carrinho> listaCarrinho(string id)
         {
+            Console.WriteLine(id);
             using (var db = new Conexao(_connectionString))
             {
                 string pedido = id;

@@ -24,31 +24,31 @@
                 <div class="mb-3 row formput" style="width:96%;">
                     <label for="excpf" class="col-sm-2 col-form-label">CPF:</label>
                     <div class="col-sm-10">
-                        <input type="text" name="excpf" readonly class="form-control-plaintext" value="@Model.usuario.Cpf_cli">
+                        <input type="text" maxlength="11" name="excpf" readonly class="form-control-plaintext" value="@Model.usuario.Cpf_cli">
                     </div>
                 </div>
                 <div class="mb-3 row formput" style="width:96%;">
                     <label for="exnome" class="col-sm-2 col-form-label">Nome:</label>
                     <div class="col-sm-10">
-                        <input name="exnome" type="text" class="form-control" value="@Model.usuario.Nome">
+                        <input name="exnome" maxlength="99" type="text" class="form-control" value="@Model.usuario.Nome">
                     </div>
                 </div>
                 <div class="mb-3 row formput" style="width:96%;">
                     <label for="exemail" class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-10">
-                        <input name="exemail" type="email" class="form-control" value="@Model.usuario.Email">
+                        <input name="exemail" maxlength="49" type="email" class="form-control" value="@Model.usuario.Email">
                     </div>
                 </div>
                 <div class="mb-3 row formput" style="width:96%;">
                     <label for="exusuario" class="col-sm-2 col-form-label">Usuario:</label>
                     <div class="col-sm-10">
-                        <input name="exusuario" type="text" class="form-control" value="@Model.usuario.Usuario_cli">
+                        <input name="exusuario" maxlength="49" type="text" class="form-control" value="@Model.usuario.Usuario_cli">
                     </div>
                 </div>
                 <div class="mb-3 row formput" style="width:96%;">
                     <label for="exsenha" class="col-sm-2 col-form-label">Senha:</label>
                     <div class="col-sm-10">
-                        <input name="exsenha" type="password" class="form-control" value="@Model.usuario.Senha_cli">
+                        <input name="exsenha" maxlength="49" type="password" class="form-control" value="@Model.usuario.Senha_cli">
                     </div>
                 </div>
 

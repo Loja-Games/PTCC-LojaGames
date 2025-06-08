@@ -55,8 +55,10 @@ namespace LojaGames.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_produtoRepositorio.listadeprodutoserdados);
         }
+
+
         public IActionResult Conta()
         {
             Tb_usuario usuario = new Tb_usuario();
@@ -64,7 +66,7 @@ namespace LojaGames.Controllers
             _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(usuario);
             _produtoRepositorio.listadeprodutoserdados.listadohistorico = _produtoRepositorio.getHistorico(usuario.Cpf_cli);
             _produtoRepositorio.listadeprodutoserdados.listadeprodutos = _produtoRepositorio.ListaProdutos("Xbox");
-            _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(usuario.Cpf_cli);
+            _produtoRepositorio.listadeprodutoserdados.listacarrinho = _produtoRepositorio.listaCarrinho(HttpContext.Session.GetString("Pedido"));
 
             return View(_produtoRepositorio.listadeprodutoserdados);
         }

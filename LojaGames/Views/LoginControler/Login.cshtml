@@ -1,4 +1,6 @@
 ﻿@model LojaGames.Models.ListasProdutos;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
 
 @{
     ViewData["Title"] = "Login";
@@ -11,7 +13,7 @@
 
 @* Alterado a entrada principal de Email para CPF, para ficar mais seguro *@
 
-<h1 class="login-title">Login</h1>
+<h1 class="login-title fontpagina">Login</h1>
 
 <form asp-action="Login" method="post" class="login-form">
     <div class="from-group">
@@ -21,11 +23,19 @@
 
     <div class="from-group">
         <label>Senha:</label>
-        <input type="password" name="senha" required class="form-control" />
+        <input type="password" name="senha" maxlength="49" required class="form-control" />
     </div>
+
     <br />
-   
-    <button type="submit" class="btn btn-primary">Login</button>
+
+    <button type="submit" style="font-size: 20px;" class="text-white fontpagina btn btn-primary">Login</button>
+    <label class="text-danger">@HttpContextAccessor.HttpContext.Session.GetString("logL")</label>
 </form>
-<br /><br />
-<a asp-controller="LoginControler" asp-action="Cadastro" class="btn btn-primary">Cadastrar</a>
+<br />
+
+@{
+    HttpContextAccessor.HttpContext.Session.SetString("logL", "");
+
+}
+<br />
+<a asp-controller="LoginControler" asp-action="Cadastro" style="font-size: 20px;" class="text-white fontpagina btn btn-primary">Cadastrar</a>
