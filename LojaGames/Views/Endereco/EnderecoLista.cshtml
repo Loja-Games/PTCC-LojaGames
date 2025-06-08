@@ -1,4 +1,5 @@
 ﻿@model LojaGames.Models.ListasProdutos;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
 
 @{
@@ -16,44 +17,44 @@
         <h1 class="fontpagina fontbold w-100" style="text-align:center;">SEUS ENDEREÇOS</h1>
         <hr class="w-100" style="border: 1px solid #146FAD;">
         <div class="w-100" style="overflow-y:auto; height: 200px;">
-        <table class="tabelaedere">
-            <thead>
-                <tr>
-                    <th>CEP:</th>
-                    <th>Endereços:</th>
-                    <th>Numero:</th>
-                    <th>Complemento:</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-        
-            <tbody class="listaderesu" style="max-height:100px; overflow:auto;">
+            <table class="tabelaedere">
+                <thead>
+                    <tr>
+                        <th>CEP:</th>
+                        <th>Endereços:</th>
+                        <th>Numero:</th>
+                        <th>Complemento:</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
 
-                @{
-                    foreach(var item in Model.listadeenderecos)
-                    {
-                        <tr>
-                            <td>@item.Cep</td>
-                            <td>@item.Endereco</td>
-                            <td>@item.Numero_residencia</td>
-                            @if (item.Complemento == null)
-                            {
-                                <td></td>
-                            }
-                            else
-                            {
-                                <td>@item.Complemento</td>
-                            }
+                <tbody class="listaderesu" style="max-height:100px; overflow:auto;">
 
-                            <td><a asp-action="ExcluirEndereco" asp-route-cep="@item.Cep" asp-route-numero="@item.Numero_residencia" class="btn btn-warning" type="button">Excluir</a></td>
-                        </tr>
+                    @{
+                        foreach(var item in Model.listadeenderecos)
+                        {
+                            <tr>
+                                <td>@item.Cep</td>
+                                <td>@item.Endereco</td>
+                                <td>@item.Numero_residencia</td>
+                                @if (item.Complemento == null)
+                                {
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td>@item.Complemento</td>
+                                }
+
+                                <td><a asp-action="ExcluirEndereco" asp-route-cep="@item.Cep" asp-route-numero="@item.Numero_residencia" class="btn btn-warning" type="button">Excluir</a></td>
+                            </tr>
+
+                        }
+
 
                     }
-
-
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
         </div>
         <hr class="w-100" style="border: 1px solid #146FAD;" />
         <form class="w-100" asp-action="EnderecoLista" method="post">
@@ -78,6 +79,19 @@
 
             </div>
         </form>
+        <hr class="w-100" style="border: 1px solid #146FAD;" />
+
+        @{
+            if (HttpContextAccessor.HttpContext.Session.GetString("back") == "Pagamento")
+            {
+                <a asp-area="" asp-controller="PagamentoControler" asp-action="Pagamento" class="btn btn-info fontpagina w-25 mt-4" style="font-size: 30px;border-radius: 20px;">Voltar</a>
+            } 
+            else
+            {
+                <a asp-area="" asp-controller="Conta" asp-action="Conta" class="btn btn-info fontpagina w-25 mt-4" style="font-size: 30px;border-radius: 20px;">Voltar</a>
+            }
+        }
+        
     </div>
 </div>
 <script src="~/js/endereco.js"></script>

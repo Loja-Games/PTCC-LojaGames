@@ -61,6 +61,7 @@ namespace LojaGames.Controllers
 
         public IActionResult Conta()
         {
+            HttpContext.Session.SetString("back", "");
             Tb_usuario usuario = new Tb_usuario();
             usuario.Cpf_cli = HttpContext.Session.GetString("cpf");
             _produtoRepositorio.listadeprodutoserdados.usuario = _usuarioRepositorio.ObterUsuarioCpf(usuario);

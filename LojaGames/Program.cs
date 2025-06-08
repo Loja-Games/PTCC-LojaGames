@@ -21,6 +21,7 @@ builder.Services.AddHttpContextAccessor(); /* Permite injetar HttpContext nas vi
 
 var app = builder.Build();
 
+
 app.UseSession(); // adicionando as variaveis de sessao no projeto
 
 

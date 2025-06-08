@@ -74,8 +74,11 @@
     flex-direction:row;
     padding-top:3%;
     padding-bottom:3%;
-
+    text-decoration: none;
+    cursor:pointer;
 }
+
+
 .opcoesmenu{
     margin-top: 50px;
     margin-bottom: 50px;

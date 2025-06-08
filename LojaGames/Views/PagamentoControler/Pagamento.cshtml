@@ -1,5 +1,5 @@
 ﻿@model LojaGames.Models.ListasProdutos;
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
 
 @{
@@ -15,8 +15,9 @@
 <div class="fundocontainerpagamento">
 	<form asp-action="Pagamento" class="bg-white formulario" method="post">
 		<div class="row">
-			<label class="fontpagina" style="font-size: 20px">Endereço de Entrega:</label>
+			<label class="fontpagina" style="font-size: 20px">Endereço de Entrega: <label class="text-danger">@HttpContextAccessor.HttpContext.Session.GetString("retornopag")</label></label>
 		</div>
+		
 		<div class="" style="max-height: 200px; max-width: 900px; overflow-x: auto; overflow-y: hidden;">
 			<div style="display: flex; flex-direction: row; gap: 10px; padding: 10px; min-width: max-content;">
 				<a asp-controller="Endereco" asp-action="EnderecoLista" class="btn btn-primary add-endereco-btn d-flex align-items-center justify-content-center" style="min-width: 50px; height: 120px; font-size: 24px; transition: background-color 0.5s ease, transform 0.5s ease;">
