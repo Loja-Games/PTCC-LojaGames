@@ -6,9 +6,7 @@
 	ViewData["Title"] = "Pagamento";
 }
 
-
-<link href="~/css/pagamento.css" rel="stylesheet" />
-
+<link href="@Url.Content("~/css/pagamento.css")" rel="stylesheet" />
 
 
 
@@ -46,7 +44,7 @@
 			<div class="col">
 				<label style="padding-left:25px;" class="w-100 pb-1 fontpagina">METODOS DE PAGAMENTO:</label>
 				<div class="listadebotoes">
-					<button type="button" id="btboleto" class="fontbold fontpagina w-100 botaoselecionarpag btboleto p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconeboleto.png" />Boleto</button>
+					<a type="button" id="btboleto" download="boletofake.pdf" href="@Url.Content("~/assets/boletofake.pdf")" style="width:100%;" class="fontbold fontpagina w-100 botaoselecionarpag p-1 m-1 text-xl-center text-decoration-none text-black"><img class="iconespag" src="~/assets/image/icones/iconeboleto.png" />Boleto</a>
 					<button type="button" id="btpix" class="fontbold fontpagina w-100 botaoselecionarpag btpix p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconepix.svg" />PIX</button>
 					<button type="button" id="btcartaocredito" class="fontbold fontpagina w-100 botaoselecionarpag btcartaocred p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconecartao.png" />Cartão de Credito</button>
 					<button type="button" id="btcartaodebito" class="fontbold fontpagina w-100 botaoselecionarpag background-color p-1 m-1"><img class="iconespag" src="~/assets/image/icones/iconecartao.png" />Cartão de Debito</button>
@@ -83,6 +81,8 @@
 				</div>
 				@*-----------------------------------*@
 			</div>
+
+
 		</div>
 		<div class="w-100 d-flex justify-content-center p-3">
 			<button type="submit" class="fontbold fontpagina text-black btn btn-success botaodesucesso">FINALIZAR PEDIDO</button>
@@ -94,4 +94,4 @@
 	
 	
 </div>
-<script src="~/js/pagamento.js"></script>
+<script src="@Url.Content("~/js/pagamento.js")"></script>

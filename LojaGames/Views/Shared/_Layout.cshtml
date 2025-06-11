@@ -36,7 +36,7 @@
                         <li class="conta">
                             
                             <a asp-area="" asp-controller="LoginControler" asp-action="Login" class="conjuntominhaconta">
-                                <img style="border-radius: 300px;" src="@Model.usuario.Img_caminho"/>
+                                <img style="border-radius: 50vh;width:10vh;height:10vh;margin-left:30px;" src="@Model.usuario.Img_caminho"/>
                                 <label class="text-white nav-link">
                                     @(string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil"))
                                                                                             ? "Entrar na Conta"
@@ -71,7 +71,7 @@
                     <button type="button" class="btn-close carrinhobotao" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
                 </div>
                 <div class="w-100 linhatitulo pb-2"></div>
-                <h1 class="quantitenscar w-100 fontpagina">1 item na sua lista</h1>
+                <h1 id="itemlista" class="quantitenscar w-100 fontpagina">0 item na sua lista</h1>
                 <div class="w-100 linhahr pb-1"><hr class="p-0 m-0"></div>
                 <div class="offcanvas-body">
                     <div class="container alturacont">

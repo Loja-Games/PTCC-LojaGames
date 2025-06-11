@@ -31,8 +31,9 @@ function AtualizarQuantidade() {
     let brutofinal = 0;
     let quantidadefinal = 0;
     let descontofinal = 0;
-
+    let totalitem = 0;
     for (let item of itensquantidade) {
+        totalitem = totalitem + 1;
         let c = parseFloat(item.getAttribute("data-desconto"))
         let a = parseFloat(item.getAttribute("data-valoritemc"));
         console.log("a = " + a);
@@ -45,7 +46,7 @@ function AtualizarQuantidade() {
 
         console.log("a = " + quantidadefinal);
     }
-
+    document.getElementById("itemlista").innerHTML = totalitem.toString() + " itens no carrinho.";
     document.getElementById("saidavalortotal").innerHTML = quantidadefinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     document.getElementById("saidadesconto").innerHTML = descontofinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     document.getElementById("saidapresobruto").innerHTML = brutofinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });

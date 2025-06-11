@@ -4,12 +4,7 @@ const botaocardcred = document.getElementById("btcartaocredito");
 const botaocarddebt = document.getElementById("btcartaodebito");
 
 botaoboleto.addEventListener('click', () => {
-	document.getElementById("listadeformulario").innerHTML = `				
-		<div class="divbotaoboleto pt-5">
-			<label>Boleto: </label>
-			<a download="boleto" class="btn btn-success botaoboleto" type="button" href="~/assets/files/boletofake.pdf">Baixe seu Boleto</a>
-			<input type="hidden" name="formulario" value="boleto">
-		</div>`;
+	document.getElementById("listadeformulario").innerHTML = `<input type="hidden" name="formulario" value="boleto">`;
 });
 
 botaocardcred.addEventListener('click', () => {
@@ -42,14 +37,13 @@ botaocardcred.addEventListener('click', () => {
 			</div>
 		</div>`;
 
-	// 🟢 MODIFICAÇÃO: adiciona o listener após o HTML ser inserido
 	const inputCartao = document.getElementById("numerocartao");
 	const logobandeira = document.getElementById("bande");
 
 	inputCartao.addEventListener("input", () => {
 		const numero = inputCartao.value.replace(/\D/g, '');
 		const bandeira = detectarBandeira(numero);
-		TrocarBandeira(bandeira, logobandeira); // 🟢 Passa o logobandeira
+		TrocarBandeira(bandeira, logobandeira);
 	});
 });
 
@@ -83,14 +77,13 @@ botaocarddebt.addEventListener('click', () => {
 			</div>
 		</div>`;
 
-	// 🟢 MODIFICAÇÃO: adiciona o listener após o HTML ser inserido
 	const inputCartao = document.getElementById("numerocartao");
 	const logobandeira = document.getElementById("bande");
 
 	inputCartao.addEventListener("input", () => {
 		const numero = inputCartao.value.replace(/\D/g, '');
 		const bandeira = detectarBandeira(numero);
-		TrocarBandeira(bandeira, logobandeira); // 🟢 Passa o logobandeira
+		TrocarBandeira(bandeira, logobandeira);
 	});
 });
 
@@ -101,7 +94,7 @@ botaopix.addEventListener('click', () => {
 		<input type="hidden" name="formulario" value="qrcode">`;
 });
 
-function TrocarBandeira(a, imgEl) { // 🟢 Adiciona parâmetro para o elemento img
+function TrocarBandeira(a, imgEl) {
 	switch (a) {
 		case "Visa":
 			imgEl.src = "/assets/image/icones/visa.svg";

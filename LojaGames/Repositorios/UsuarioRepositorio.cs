@@ -418,6 +418,12 @@ namespace LojaGames.Repositorios
             try
             {
                 string nomedoarquivo = $"{nome}."+formato;
+
+                string pastaDestino = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "image", "fromdb");
+                if (Directory.Exists(pastaDestino) == false)
+                {
+                    Directory.CreateDirectory(pastaDestino);
+                }
                 string caminhoFinal = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "image", "fromdb", nomedoarquivo);
                 System.IO.File.WriteAllBytes(caminhoFinal, bytes);
                 string caminhoParaRetorno = "/assets/image/fromdb/" + nomedoarquivo;
