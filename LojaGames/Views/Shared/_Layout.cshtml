@@ -37,7 +37,7 @@
                             
                             <a asp-area="" asp-controller="LoginControler" asp-action="Login" class="conjuntominhaconta">
                                 <img style="border-radius: 50vh;width:10vh;height:10vh;margin-left:30px;" src="@Model.usuario.Img_caminho"/>
-                                <label class="text-white nav-link">
+                                <label class="text-white nav-link" style="min-width:200px;">
                                     @(string.IsNullOrEmpty(HttpContextAccessor.HttpContext.Session.GetString("perfil"))
                                                                                             ? "Entrar na Conta"
                                                                                             : HttpContextAccessor.HttpContext.Session.GetString("perfil"))
